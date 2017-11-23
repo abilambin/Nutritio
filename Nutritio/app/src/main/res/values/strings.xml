@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Nutritio</string>
+
+
+    <!-- Titles -->
+    <string name="title_home"></string>
+    <string name="title_planning"></string>
+    <string name="title_stocks"></string>
+    <string name="title_recipes"></string>
+    <string name="title_fridge"></string>
+
+    <!-- Titles 2 -->
+    <string name="energy">Énergie</string>
+    <string name="intake">Apports</string>
+    <string name="vitamins">Vitamines</string>
+</resources>

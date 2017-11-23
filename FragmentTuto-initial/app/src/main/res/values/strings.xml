@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Fragment Tuto</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="text_fragment1">FRAGMENT 1</string>
-    <string name="text_fragment2">FRAGMENT 2</string>
-
-</resources>
