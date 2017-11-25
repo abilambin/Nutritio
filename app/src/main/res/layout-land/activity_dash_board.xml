@@ -22,24 +22,6 @@
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_intakes" />
 
-<!-- SI ON DECIDE DE RENDRE LES FRAGMENTS DYNAMIQUES
-    <RelativeLayout
-        android:id="@+id/layout1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_weight="1">
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/layout2"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_weight="1">
-
-    </RelativeLayout>
--->
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
