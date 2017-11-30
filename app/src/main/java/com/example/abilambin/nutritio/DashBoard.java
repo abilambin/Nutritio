@@ -10,11 +10,19 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import butterknife.InjectView;
+
 public class DashBoard extends AppCompatActivity implements View.OnClickListener{
     RelativeLayout layout1;
     RelativeLayout layout2;
 
     private TextView mTextMessage;
+
+    //on injecte la view
+    //on ne peut pas injecter une view depuis une variable locale
+    //toujours le faire ici
+    @InjectView(R.id.navigation)
+    private BottomNavigationView navigationView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -42,8 +50,7 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //loadFragments();
     }
