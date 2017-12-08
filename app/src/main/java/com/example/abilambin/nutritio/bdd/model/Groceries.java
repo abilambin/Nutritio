@@ -1,4 +1,4 @@
-package com.example.abilambin.nutritio.model;
+package com.example.abilambin.nutritio.bdd.model;
 
 /**
  * Created by serial on 30/11/2017.

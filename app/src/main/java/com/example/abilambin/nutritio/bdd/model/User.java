@@ -1,12 +1,15 @@
-package com.example.abilambin.nutritio.model;
+package com.example.abilambin.nutritio.bdd.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by serial on 30/11/2017.
  */
 
-public class User {
+public class User implements Serializable {
+    private static long serialVersionUID = 1L;
+
     private String userName;
     private String firstName;
     private String lasteName;

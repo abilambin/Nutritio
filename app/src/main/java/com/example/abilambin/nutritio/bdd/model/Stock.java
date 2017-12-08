@@ -1,4 +1,4 @@
-package com.example.abilambin.nutritio.model;
+package com.example.abilambin.nutritio.bdd.model;
 
 import java.util.List;
 

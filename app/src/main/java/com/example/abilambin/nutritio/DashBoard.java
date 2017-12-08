@@ -3,14 +3,13 @@ package com.example.abilambin.nutritio;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import butterknife.InjectView;
+import butterknife.BindView;
 
 public class DashBoard extends AppCompatActivity implements View.OnClickListener{
     RelativeLayout layout1;
@@ -21,7 +20,7 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
     //on injecte la view
     //on ne peut pas injecter une view depuis une variable locale
     //toujours le faire ici
-    @InjectView(R.id.navigation)
+    @BindView(R.id.navigation)
     private BottomNavigationView navigationView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
