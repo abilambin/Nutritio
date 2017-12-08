@@ -37,9 +37,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
     /**
-     * Dao pour les Report
+     * Dao pour les Users
      */
     private Dao<User, Integer> userDao;
+
+    private Dao<Ingredient, Integer> ingredientsDao;
+
+    private Dao<Meal, Integer> mealsDao;
+
+    private Dao<Stock, Integer> stocksDao;
+
+    private Dao<Groceries, Integer> groceriesDao;
 
     /**
      * Constructeur de l'objet DatabaseHelper
@@ -54,6 +62,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
 
             // création des tables
+            TableUtils.createTable(connectionSource, Ingredient.class);
+            TableUtils.createTable(connectionSource, Meal.class);
+            TableUtils.createTable(connectionSource, Groceries.class);
+            TableUtils.createTable(connectionSource, Stock.class);
             TableUtils.createTable(connectionSource, User.class);
 
         } catch (SQLException e) {
@@ -73,6 +85,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             // une nouvelle table ou une nouvelle colonne dans une table existante,
             // prendre les sauvegardes de la base de données existante, etc.
 
+            TableUtils.dropTable(connectionSource, Ingredient.class, true);
+            TableUtils.dropTable(connectionSource, Meal.class, true);
+            TableUtils.dropTable(connectionSource, Groceries.class, true);
+            TableUtils.dropTable(connectionSource, Stock.class, true);
             TableUtils.dropTable(connectionSource, User.class, true);
             onCreate(database, connectionSource);
 
@@ -83,14 +99,62 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     /**
-     * permet de récupérer le Dao des Reports
+     * permet de récupérer le Dao des Users
      * @return Dao
      * @throws SQLException Exception SQL
      */
-    public Dao<User, Integer> getReportDao() throws SQLException {
+    public Dao<User, Integer> getUserDao() throws SQLException {
         if (userDao == null) {
             userDao = getDao(User.class);
         }
         return userDao;
+    }
+
+    /**
+     * permet de récupérer le Dao des Ingredients
+     * @return Dao
+     * @throws SQLException Exception SQL
+     */
+    public Dao<Ingredient, Integer> getIngredientsDao() throws SQLException {
+        if (ingredientsDao == null) {
+            ingredientsDao = getDao(Ingredient.class);
+        }
+        return ingredientsDao;
+    }
+
+    /**
+     * permet de récupérer le Dao des Meals
+     * @return Dao
+     * @throws SQLException Exception SQL
+     */
+    public Dao<Meal, Integer> getMealsDao() throws SQLException {
+        if (mealsDao == null) {
+            mealsDao = getDao(Meal.class);
+        }
+        return mealsDao;
+    }
+
+    /**
+     * permet de récupérer le Dao des Groceries
+     * @return Dao
+     * @throws SQLException Exception SQL
+     */
+    public Dao<Groceries, Integer> getGroceriesDao() throws SQLException {
+        if (groceriesDao == null) {
+            groceriesDao = getDao(Groceries.class);
+        }
+        return groceriesDao;
+    }
+
+    /**
+     * permet de récupérer le Dao des Stock
+     * @return Dao
+     * @throws SQLException Exception SQL
+     */
+    public Dao<Stock, Integer> getStocksDao() throws SQLException {
+        if (stocksDao == null) {
+            stocksDao = getDao(Stock.class);
+        }
+        return stocksDao;
     }
 }

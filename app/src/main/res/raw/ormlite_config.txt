@@ -1,0 +1,59 @@
+#################################
+# --table start--
+dataClass=com.example.abilambin.nutritio.bdd.model.Ingredient
+tableName=ingredient
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=igt_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+columnName=igt_name
+# --field-end--
+# --field-start--
+fieldName=proteines
+columnName=igt_proteines
+# --field-end--
+# --field-start--
+fieldName=glucides
+columnName=igt_glucides
+# --field-end--
+# --field-start--
+fieldName=lipides
+columnName=igt_lipides
+# --field-end--
+# --field-start--
+fieldName=fibres
+columnName=igt_fibres
+# --field-end--
+# --field-start--
+fieldName=sel
+columnName=igt_sel
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+
+#################################
+# --table start--
+dataClass=com.example.abilambin.nutritio.bdd.model.Meal
+tableName=ingredient
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=mea_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+columnName=mea_name
+# --field-end--
+# --field-start--
+fieldName=ingredients
+columnName=mea_igt
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
