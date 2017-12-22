@@ -1,27 +1,16 @@
 package com.example.abilambin.nutritio;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.view.View;
+import android.content.Context;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import butterknife.BindView;
-
-public class DashBoard extends AppCompatActivity implements View.OnClickListener{
+public class DashBoard extends AbstractNavigationActivity {
     RelativeLayout layout1;
     RelativeLayout layout2;
 
-    private TextView mTextMessage;
-
-    //on injecte la view
-    //on ne peut pas injecter une view depuis une variable locale
-    //toujours le faire ici
+    /*
     @BindView(R.id.navigation)
-    public BottomNavigationView navigationView;
+    public BottomNavigationView navigation;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -30,13 +19,14 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.dashboard:
-                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.planning:
-                    mTextMessage.setText(R.string.title_planning);
                     return true;
                 case R.id.stocks:
-                    mTextMessage.setText(R.string.title_stocks);
+                    return true;
+                case R.id.fridge:
+                    return true;
+                case R.id.recipes:
                     return true;
             }
             return false;
@@ -44,20 +34,21 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
 
     };
 
+    */
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_board);
-
-        navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        //loadFragments();
+    public int getContentViewId() {
+        return R.layout.activity_dash_board;
     }
 
+    @Override
+    public int getNavigationMenuItemId() {
+        return R.id.dashboard;
+    }
 
     @Override
-    public void onClick(View view) {
-
+    public Context getCurrentContext() {
+        return this;
     }
 
     /* SI ON DECIDE DE RENDRE LES FRAGMENTS DYNAMIQUES

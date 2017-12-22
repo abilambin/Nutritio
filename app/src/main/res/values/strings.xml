@@ -3,14 +3,18 @@
 
 
     <!-- Titles -->
-    <string name="title_home"></string>
-    <string name="title_planning"></string>
-    <string name="title_stocks"></string>
-    <string name="title_recipes"></string>
-    <string name="title_fridge"></string>
+    <string name="title_home">HOME</string>
+    <string name="title_planning">PLANNING</string>
+    <string name="title_stocks">STOCKS</string>
+    <string name="title_recipes">RECIPES</string>
+    <string name="title_fridge">FRIDGE</string>
 
     <!-- Titles 2 -->
     <string name="energy">Énergie</string>
     <string name="intake">Apports</string>
     <string name="vitamins">Vitamines</string>
+    <string name="title_activity_stock">StockActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_planning">PlanningActivity</string>
 </resources>
