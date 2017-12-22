@@ -1,12 +1,56 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.j256.ormlite.field.DatabaseField;
+
 import java.io.Serializable;
 
 /**
  * Created by serial on 30/11/2017.
  */
 
-public class Ingredient implements Serializable{
+public class Ingredient implements Serializable {
+
+    private static long serialVersionUID = 2L;
+
+    @DatabaseField(generatedId = true)
+    private int id;
+
+    @DatabaseField
+    private String name;
+
+    @DatabaseField
+    private String brand;
+
+    @DatabaseField
+    private int energy;
+
+    @DatabaseField
+    private float proteins;
+
+    @DatabaseField
+    private float carbohydrates;
+
+    @DatabaseField
+    private float sugar;
+
+    @DatabaseField
+    private float fat;
+
+    @DatabaseField
+    private float saturatedFat;
+
+    @DatabaseField
+    private float fibres;
+
+    @DatabaseField
+    private float salt;
+
+    @DatabaseField
+    private float sodium;
+
+    public Ingredient() {
+
+    }
 
     public Ingredient(String name, String brand) {
         this.name = name;
@@ -27,39 +71,6 @@ public class Ingredient implements Serializable{
         this.salt = salt;
         this.sodium = sodium;
 
-    }
-
-    private static long serialVersionUID = 2L;
-
-    private int id;
-
-    private String name;
-
-    private String brand;
-
-
-    private int energy;
-
-    private float proteins;
-
-    private float carbohydrates;
-    private float sugar;
-
-    private float fat;
-    private float saturatedFat;
-
-    private float fibres;
-
-    private float salt;
-    private float sodium;
-
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public static void setSerialVersionUID(long serialVersionUID) {
-        Ingredient.serialVersionUID = serialVersionUID;
     }
 
     public int getId() {

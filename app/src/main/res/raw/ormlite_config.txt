@@ -1,58 +1,168 @@
+#
+# generated on 2017/12/22 02:39:42
+#
+# --table-start--
+dataClass=com.example.abilambin.nutritio.bdd.model.Groceries
+tableName=groceries
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=ingredients
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
 #################################
-# --table start--
+# --table-start--
 dataClass=com.example.abilambin.nutritio.bdd.model.Ingredient
 tableName=ingredient
 # --table-fields-start--
 # --field-start--
 fieldName=id
-columnName=igt_id
 generatedId=true
 # --field-end--
 # --field-start--
 fieldName=name
-columnName=igt_name
 # --field-end--
 # --field-start--
-fieldName=proteines
-columnName=igt_proteines
+fieldName=brand
 # --field-end--
 # --field-start--
-fieldName=glucides
-columnName=igt_glucides
+fieldName=energy
 # --field-end--
 # --field-start--
-fieldName=lipides
-columnName=igt_lipides
+fieldName=proteins
+# --field-end--
+# --field-start--
+fieldName=carbohydrates
+# --field-end--
+# --field-start--
+fieldName=sugar
+# --field-end--
+# --field-start--
+fieldName=fat
+# --field-end--
+# --field-start--
+fieldName=saturatedFat
 # --field-end--
 # --field-start--
 fieldName=fibres
-columnName=igt_fibres
 # --field-end--
 # --field-start--
-fieldName=sel
-columnName=igt_sel
+fieldName=salt
+# --field-end--
+# --field-start--
+fieldName=sodium
 # --field-end--
 # --table-fields-end--
 # --table-end--
 #################################
-
-#################################
-# --table start--
+# --table-start--
 dataClass=com.example.abilambin.nutritio.bdd.model.Meal
-tableName=ingredient
+tableName=meal
 # --table-fields-start--
 # --field-start--
 fieldName=id
-columnName=mea_id
 generatedId=true
 # --field-end--
 # --field-start--
 fieldName=name
-columnName=mea_name
 # --field-end--
 # --field-start--
 fieldName=ingredients
-columnName=mea_igt
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.example.abilambin.nutritio.bdd.model.Stock
+tableName=stock
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=ingredients
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.example.abilambin.nutritio.bdd.model.User
+tableName=user
+# --table-fields-start--
+# --field-start--
+fieldName=userName
+# --field-end--
+# --field-start--
+fieldName=firstName
+# --field-end--
+# --field-start--
+fieldName=lasteName
+# --field-end--
+# --field-start--
+fieldName=email
+# --field-end--
+# --field-start--
+fieldName=password
+# --field-end--
+# --field-start--
+fieldName=age
+# --field-end--
+# --field-start--
+fieldName=poids
+# --field-end--
+# --field-start--
+fieldName=taille
+# --field-end--
+# --field-start--
+fieldName=stock
+# --field-end--
+# --field-start--
+fieldName=groceries
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=favoriteIngredients
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=favoriteMeals
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=blacklist
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
 # --field-end--
 # --table-fields-end--
 # --table-end--

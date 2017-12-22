@@ -1,5 +1,7 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.j256.ormlite.field.DatabaseField;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,25 +10,51 @@ import java.util.List;
  */
 
 public class User implements Serializable {
+
     private static long serialVersionUID = 1L;
 
+    @DatabaseField
     private String userName;
+
+    @DatabaseField
     private String firstName;
+
+    @DatabaseField
     private String lasteName;
+
+    @DatabaseField
     private String email;
+
+    @DatabaseField
     private String password;
 
-    private int age, poids, taille;
+    @DatabaseField
+    private int age;
 
+    @DatabaseField
+    private int poids;
+
+    @DatabaseField
+    private int taille;
+
+    @DatabaseField
     private Stock stock;
 
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Groceries groceries;
 
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private List<Ingredient> favoriteIngredients;
 
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private List<Meal> favoriteMeals;
 
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private List<Ingredient> blacklist;
+
+    public User() {
+
+    }
 
     public String getUserName() {
         return userName;

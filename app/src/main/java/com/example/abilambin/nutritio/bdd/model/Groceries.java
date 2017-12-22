@@ -1,5 +1,7 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.j256.ormlite.field.DatabaseField;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,9 +13,15 @@ public class Groceries implements Serializable {
 
     private static long serialVersionUID = 4L;
 
+    @DatabaseField(generatedId = true)
     private int id;
 
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private List<Ingredient> ingredients;
+
+    public Groceries(){
+
+    }
 
     public int getId() {
         return id;

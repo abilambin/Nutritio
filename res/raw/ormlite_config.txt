@@ -1,0 +1,8 @@
+# Ce fichier et ce répertoire sont temporaires, ils permettent juste d'éviter que la génération du
+# fichier de configuration de orm ne plante.
+#
+#
+# Le fichier de config est dans app > src > main > res > raw
+#
+#
+# A chaque modif de la BDD, relancer le DatabaseConfigUtil dans le package bdd.utils

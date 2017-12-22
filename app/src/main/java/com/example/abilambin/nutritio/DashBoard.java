@@ -21,7 +21,7 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
     //on ne peut pas injecter une view depuis une variable locale
     //toujours le faire ici
     @BindView(R.id.navigation)
-    private BottomNavigationView navigationView;
+    public BottomNavigationView navigationView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
