@@ -1,5 +1,5 @@
 #
-# generated on 2017/12/22 02:39:42
+# generated on 2018/01/11 10:58:10
 #
 # --table-start--
 dataClass=com.example.abilambin.nutritio.bdd.model.Groceries
@@ -75,13 +75,6 @@ generatedId=true
 fieldName=name
 # --field-end--
 # --field-start--
-fieldName=ingredients
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
-# --field-end--
-# --field-start--
 fieldName=description
 # --field-end--
 # --table-fields-end--
@@ -94,6 +87,13 @@ tableName=stock
 # --field-start--
 fieldName=id
 generatedId=true
+# --field-end--
+# --field-start--
+fieldName=user
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
 # --field-end--
 # --field-start--
 fieldName=ingredients
@@ -163,6 +163,37 @@ canBeNull=false
 foreign=true
 foreignAutoRefresh=true
 maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.example.abilambin.nutritio.bdd.model.MealIngredient
+tableName=mealingredient
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=meal
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=ingredient
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=quantity
+# --field-end--
+# --field-start--
+fieldName=typeOfQuantity
 # --field-end--
 # --table-fields-end--
 # --table-end--

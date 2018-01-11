@@ -5,7 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.bdd.model.*;
+import com.example.abilambin.nutritio.bdd.model.Groceries;
+import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.bdd.model.MealIngredient;
+import com.example.abilambin.nutritio.bdd.model.Stock;
+import com.example.abilambin.nutritio.bdd.model.User;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -49,6 +54,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private Dao<Groceries, Integer> groceriesDao;
 
+    private Dao<MealIngredient, Integer> mealIngredientsDao;
+
     /**
      * Constructeur de l'objet DatabaseHelper
      * @param context le contexte de l'application
@@ -64,6 +71,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             // création des tables
             TableUtils.createTable(connectionSource, Ingredient.class);
             TableUtils.createTable(connectionSource, Meal.class);
+            TableUtils.createTable(connectionSource, MealIngredient.class);
             TableUtils.createTable(connectionSource, Groceries.class);
             TableUtils.createTable(connectionSource, Stock.class);
             TableUtils.createTable(connectionSource, User.class);
@@ -85,6 +93,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             // une nouvelle table ou une nouvelle colonne dans une table existante,
             // prendre les sauvegardes de la base de données existante, etc.
 
+            TableUtils.dropTable(connectionSource, MealIngredient.class, true);
             TableUtils.dropTable(connectionSource, Ingredient.class, true);
             TableUtils.dropTable(connectionSource, Meal.class, true);
             TableUtils.dropTable(connectionSource, Groceries.class, true);
@@ -156,5 +165,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             stocksDao = getDao(Stock.class);
         }
         return stocksDao;
+    }
+
+    /**
+     * permet de récupérer le Dao des MealIngredient
+     * @return Dao
+     * @throws SQLException Exception SQL
+     */
+    public Dao<MealIngredient, Integer> getMealIngredientDao() throws SQLException {
+        if(mealIngredientsDao == null){
+            mealIngredientsDao = getDao(MealIngredient.class);
+        }
+        return mealIngredientsDao;
     }
 }

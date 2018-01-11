@@ -3,7 +3,6 @@ package com.example.abilambin.nutritio.bdd.model;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by serial on 30/11/2017.
@@ -18,9 +17,6 @@ public class Meal implements Serializable{
 
     @DatabaseField
     private String name;
-
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private List<Ingredient> ingredients; //what about quantity ????
 
     @DatabaseField
     private String description;
@@ -43,14 +39,6 @@ public class Meal implements Serializable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
     }
 
     public String getDescription() {

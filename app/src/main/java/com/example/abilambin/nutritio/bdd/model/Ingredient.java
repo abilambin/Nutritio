@@ -89,6 +89,14 @@ public class Ingredient implements Serializable {
         this.name = name;
     }
 
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public int getEnergy() {
         return energy;
     }
