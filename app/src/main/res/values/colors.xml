@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3ab54b</color>
     <color name="colorPrimaryDark">#3ab54b</color>
     <color name="colorAccent">#3ab54b</color>
+
+    <color name="greyBackground">#CCCCCC</color>
+    <color name="proteinesProgressBarColor">#FF8C00</color>
 </resources>

@@ -29,7 +29,7 @@ public class User implements Serializable {
     private String password;
 
     @DatabaseField
-    private int age;
+    private String birthDate;
 
     @DatabaseField
     private int poids;
@@ -96,12 +96,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public int getAge() {
-        return age;
+    public String getAge() {
+        return birthDate;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAge(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public int getPoids() {

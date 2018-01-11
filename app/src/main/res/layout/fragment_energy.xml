@@ -2,29 +2,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#CCCCCC">
+    android:background="#FFFFFF">
     tools:context="com.example.abilambin.nutritio.EnergyFragment">
 
 
-    <TextView
-        android:text="@string/energy"
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/fragment_margin_bottom"
-        android:layout_marginTop="@dimen/fragment_margin_top"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:layout_marginStart="@dimen/fragment_margin_left"
-        android:layout_marginEnd="@dimen/fragment_margin_right"
-        android:layout_marginLeft="@dimen/fragment_margin_left"
-        android:layout_marginRight="@dimen/fragment_margin_right"
-        android:textSize="@dimen/fragment_title_text_size"/>
+        <TextView
+            android:id="@+id/energyFragmentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_margin_bottom"
+            android:layout_marginEnd="@dimen/fragment_margin_right"
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/fragment_line_size"
-        android:layout_marginLeft="@dimen/fragment_line_margin_left"
-        android:layout_marginRight="@dimen/fragment_line_margin_right"
-        android:layout_marginTop="@dimen/fragment_line_margin_top"
-        android:background="#000000" />
+            android:layout_marginLeft="@dimen/fragment_margin_left"
+            android:layout_marginRight="@dimen/fragment_margin_right"
+            android:layout_marginStart="@dimen/fragment_margin_left"
+            android:layout_marginTop="@dimen/fragment_margin_top"
+            android:text="@string/energy"
+            android:textSize="@dimen/fragment_title_text_size" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="@dimen/fragment_line_margin_left"
+            android:layout_marginRight="@dimen/fragment_line_margin_right"
+            android:layout_height="@dimen/fragment_line_size"
+            android:background="#000000" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/energyFragmentCircularProgressBarId"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                app:cpb_background_progressbar_color="#CCCCCC"
+                app:cpb_background_progressbar_width="20dp"
+                app:cpb_progressbar_color="#33CC33"
+                app:cpb_progressbar_width="20dp" />
+
+            <TextView
+                android:id="@+id/energyTextProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/energyFragmentCircularProgressBarId"
+                android:layout_centerInParent="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="25dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
