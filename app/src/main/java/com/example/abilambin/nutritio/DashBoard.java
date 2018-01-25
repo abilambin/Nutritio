@@ -7,35 +7,6 @@ public class DashBoard extends AbstractNavigationActivity {
     RelativeLayout layout1;
     RelativeLayout layout2;
 
-    /*
-    @BindView(R.id.navigation)
-    public BottomNavigationView navigation;
-
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.dashboard:
-                    return true;
-                case R.id.planning:
-                    return true;
-                case R.id.stocks:
-                    return true;
-                case R.id.fridge:
-                    return true;
-                case R.id.recipes:
-                    return true;
-            }
-            return false;
-        }
-
-    };
-
-    */
-
     @Override
     public int getContentViewId() {
         return R.layout.activity_dash_board;

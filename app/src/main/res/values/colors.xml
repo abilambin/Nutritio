@@ -6,4 +6,8 @@
 
     <color name="greyBackground">#CCCCCC</color>
     <color name="proteinesProgressBarColor">#FF8C00</color>
+    <color name="glucidesProgressBarColor">#926239</color>
+    <color name="lipidesProgressBarColor">#0088B7</color>
+    <color name="fibresProgressBarColor">#48B048</color>
+    <color name="selProgressBarColor">#B04538</color>
 </resources>

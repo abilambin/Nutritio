@@ -17,4 +17,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_planning">PlanningActivity</string>
+    <string name="pct">%</string>
+    <string name="glucidesProgressBarText">GLUCIDES</string>
+    <string name="proteinesProgressBarText">PROTEINES</string>
 </resources>

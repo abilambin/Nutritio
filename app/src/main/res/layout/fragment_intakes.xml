@@ -1,67 +1,211 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:orientation="vertical"
     tools:context="com.example.abilambin.nutritio.IntakesFragment">
 
-
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fragment_margin_bottom"
+        android:layout_marginLeft="@dimen/fragment_margin_left"
+        android:layout_marginRight="@dimen/fragment_margin_right"
+        android:layout_marginTop="@dimen/fragment_margin_top"
+        android:text="@string/intake"
+        android:textSize="@dimen/fragment_title_text_size" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/fragment_line_size"
+        android:layout_marginLeft="@dimen/fragment_line_margin_left"
+        android:layout_marginRight="@dimen/fragment_line_margin_right"
+        android:background="#000000" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <ProgressBar
+            android:id="@+id/proteinesProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/proteines_progress_bar" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_margin_bottom"
-            android:layout_marginLeft="@dimen/fragment_margin_left"
-            android:layout_marginRight="@dimen/fragment_margin_right"
-            android:layout_marginTop="@dimen/fragment_margin_top"
-            android:text="@string/intake"
-            android:textSize="@dimen/fragment_title_text_size" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="PROTEINES"
+            android:textColor="#FFFFFF" />
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/fragment_line_size"
-            android:layout_marginLeft="@dimen/fragment_line_margin_left"
-            android:layout_marginRight="@dimen/fragment_line_margin_right"
-            android:background="#000000" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/proteinesPctTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="%" />
 
-            <ProgressBar
-                android:id="@+id/proteinesProgressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:progressDrawable="@drawable/proteines_progress_bar"
-                android:layout_width="match_parent"
-                android:layout_height="25dp" />
+    </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:textColor="#FFFFFF"
-                android:text="PROTEINES" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
 
-            <TextView
-                android:id="@+id/proteinesPctTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="%" />
+        <ProgressBar
+            android:id="@+id/glucidesProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/glucides_progress_bar" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="GLUCIDES"
+            android:textColor="#FFFFFF" />
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/glucidesPctTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="%" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <ProgressBar
+            android:id="@+id/lipidesProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/lipides_progress_bar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="LIPIDES"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/lipidesPctTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="%" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <ProgressBar
+            android:id="@+id/fibresProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/fibres_progress_bar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="FIBRES"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/fibresPctTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="%" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp">
+
+        <ProgressBar
+            android:id="@+id/selProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:progressDrawable="@drawable/sel_progress_bar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="SEL"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/selPctTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="%" />
+
+    </RelativeLayout>
+
+</LinearLayout>
