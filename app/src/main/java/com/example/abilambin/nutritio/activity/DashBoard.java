@@ -1,7 +1,9 @@
-package com.example.abilambin.nutritio;
+package com.example.abilambin.nutritio.activity;
 
 import android.content.Context;
 import android.widget.RelativeLayout;
+
+import com.example.abilambin.nutritio.R;
 
 public class DashBoard extends AbstractNavigationActivity {
     RelativeLayout layout1;

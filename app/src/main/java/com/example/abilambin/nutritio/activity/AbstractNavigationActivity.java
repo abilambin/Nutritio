@@ -1,4 +1,4 @@
-package com.example.abilambin.nutritio;
+package com.example.abilambin.nutritio.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.abilambin.nutritio.R;
 
 public abstract class AbstractNavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 

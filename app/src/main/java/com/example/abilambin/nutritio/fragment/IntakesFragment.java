@@ -1,4 +1,4 @@
-package com.example.abilambin.nutritio;
+package com.example.abilambin.nutritio.fragment;
 
 
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.abilambin.nutritio.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

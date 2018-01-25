@@ -1,6 +1,8 @@
-package com.example.abilambin.nutritio;
+package com.example.abilambin.nutritio.activity;
 
 import android.content.Context;
+
+import com.example.abilambin.nutritio.R;
 
 public class StockActivity extends AbstractNavigationActivity {
 

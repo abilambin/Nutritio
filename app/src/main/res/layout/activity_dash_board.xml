@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.abilambin.nutritio.DashBoard">
+    tools:context="com.example.abilambin.nutritio.activity.DashBoard">
 
-    <fragment android:name="com.example.abilambin.nutritio.EnergyFragment"
+    <fragment android:name="com.example.abilambin.nutritio.fragment.EnergyFragment"
         android:id="@+id/fragment1"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_energy" />
 
-    <fragment android:name="com.example.abilambin.nutritio.IntakesFragment"
+    <fragment android:name="com.example.abilambin.nutritio.fragment.IntakesFragment"
         android:id="@+id/fragment2"
         android:layout_weight="1"
         android:layout_width="match_parent"
