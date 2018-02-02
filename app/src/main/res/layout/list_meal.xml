@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,18 +18,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="HOUR"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/mealItemNameTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -43,7 +50,9 @@
             android:id="@+id/mealItemCuissonTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cuisson : " />
+            android:text="Cuisson : "
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
 
         <TextView
             android:id="@+id/mealItemCuissonTimeTextView"

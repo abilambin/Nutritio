@@ -46,10 +46,10 @@ public class MealListFragment extends Fragment implements OnItemClickListener {
             nameMealTV.setText(meal.getName());
 
             TextView tempsCuissonTV = vi.findViewById(R.id.mealItemCuissonTimeTextView);
-            tempsCuissonTV.setText(meal.getTempsCuisson());
+            tempsCuissonTV.setText(meal.getTempsCuisson()+"");
 
             TextView tempsPreparaionTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
-            tempsPreparaionTV.setText(meal.getTempsPreparation());
+            tempsPreparaionTV.setText(meal.getTempsPreparation()+"");
 
             list.addView(vi);
         }
