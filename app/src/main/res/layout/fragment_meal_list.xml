@@ -1,0 +1,50 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.abilambin.nutritio.fragment.MealListFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mealListFragmentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_margin_bottom"
+            android:layout_marginEnd="@dimen/fragment_margin_right"
+
+            android:layout_marginLeft="@dimen/fragment_margin_left"
+            android:layout_marginRight="@dimen/fragment_margin_right"
+            android:layout_marginStart="@dimen/fragment_margin_left"
+            android:layout_marginTop="@dimen/fragment_margin_top"
+            android:text="@string/reste_consommer"
+            android:textSize="@dimen/fragment_title_text_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_line_size"
+            android:layout_marginLeft="@dimen/fragment_line_margin_left"
+            android:layout_marginRight="@dimen/fragment_line_margin_right"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/mealListFragmentList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/android:empty"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Aucun Repas enregistré" />
+
+    </LinearLayout>
+
+</FrameLayout>

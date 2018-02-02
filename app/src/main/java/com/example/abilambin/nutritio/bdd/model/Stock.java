@@ -17,9 +17,6 @@ public class Stock implements Serializable{
     private int id;
 
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private User user;
-
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private List<Ingredient> ingredients;
 
     public Stock() {
@@ -42,11 +39,4 @@ public class Stock implements Serializable{
         this.ingredients = ingredients;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

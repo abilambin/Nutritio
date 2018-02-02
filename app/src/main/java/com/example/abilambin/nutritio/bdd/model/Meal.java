@@ -21,8 +21,20 @@ public class Meal implements Serializable{
     @DatabaseField
     private String description;
 
+    @DatabaseField
+    private int tempsPreparation;
+
+    @DatabaseField
+    private int tempsCuisson;
+
     public Meal(){
 
+    }
+
+    public Meal(String name, int tempsPreparation, int tempsCuisson){
+        this.name = name;
+        this.tempsPreparation = tempsPreparation;
+        this.tempsCuisson = tempsCuisson;
     }
 
     public int getId() {
@@ -47,5 +59,21 @@ public class Meal implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getTempsPreparation() {
+        return tempsPreparation;
+    }
+
+    public void setTempsPreparation(int tempsPreparation) {
+        this.tempsPreparation = tempsPreparation;
+    }
+
+    public int getTempsCuisson() {
+        return tempsCuisson;
+    }
+
+    public void setTempsCuisson(int tempsCuisson) {
+        this.tempsCuisson = tempsCuisson;
     }
 }

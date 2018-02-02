@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context="com.example.abilambin.nutritio.activity.StockActivity">
 
@@ -9,6 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_stocks"/>
+
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.example.abilambin.nutritio.fragment.MealListFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:layout="@layout/fragment_meal_list" />
 
     <include
         layout="@layout/element_bottom_navigation"
@@ -18,3 +27,7 @@
         />
 
 </LinearLayout>
+
+
+
+

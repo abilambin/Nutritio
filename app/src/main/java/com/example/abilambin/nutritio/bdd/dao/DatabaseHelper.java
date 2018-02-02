@@ -33,7 +33,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     /**
      * nom de la DB
      */
-    private static final String DATABASE_NAME = "reports_database.db";
+    private static final String DATABASE_NAME = "nutritio.db";
 
     /**
      * version de la DB
@@ -71,13 +71,20 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             // création des tables
             TableUtils.createTable(connectionSource, Ingredient.class);
             TableUtils.createTable(connectionSource, Meal.class);
-            TableUtils.createTable(connectionSource, MealIngredient.class);
             TableUtils.createTable(connectionSource, Groceries.class);
-            TableUtils.createTable(connectionSource, Stock.class);
-            TableUtils.createTable(connectionSource, User.class);
+            //TableUtils.createTable(connectionSource, Stock.class);
+            TableUtils.createTable(connectionSource, MealIngredient.class);
+            //TableUtils.createTable(connectionSource, User.class);
+
+            //insertion de mocks
+            //TODO supprimer les insertions quand plus besoin
+            this.getMealsDao().create(new Meal("Spaghetti - Sauce Bolognaise", 10, 10));
+            this.getMealsDao().create(new Meal("Soupe de potiron", 30, 20));
+
 
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Unable to create tables", e);
+            System.out.println("##### ERROR - Impossible de créer les tables");
         }
     }
 
