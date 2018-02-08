@@ -80,6 +80,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             //TODO supprimer les insertions quand plus besoin
             this.getMealsDao().create(new Meal("Spaghetti - Sauce Bolognaise", 10, 10));
             this.getMealsDao().create(new Meal("Soupe de potiron", 30, 20));
+            this.getMealsDao().create(new Meal("Soupe de poireaux", 30, 20));
+            this.getMealsDao().create(new Meal("Carbonnade Flammande", 30, 20));
+            this.getMealsDao().create(new Meal("Petit panaché", 30, 20));
+            this.getMealsDao().create(new Meal("Croquettes de poisson", 30, 20));
+            this.getMealsDao().create(new Meal("Epinards à la crème", 30, 20));
+            this.getMealsDao().create(new Meal("Wrap de nuggets", 30, 20));
+            this.getMealsDao().create(new Meal("Cuillère d'huile de foie de morue", 30, 20));
+            this.getMealsDao().create(new Meal("Haricots verts", 30, 20));
+            this.getMealsDao().create(new Meal("Purée Mousline", 30, 20));
 
 
         } catch (SQLException e) {

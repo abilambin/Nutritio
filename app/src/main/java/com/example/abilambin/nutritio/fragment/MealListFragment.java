@@ -38,6 +38,7 @@ public class MealListFragment extends Fragment implements OnItemClickListener {
         ButterKnife.bind(this, view);
 
         List<Meal> meals = getMealList();
+        String minutes = " min";
         for (int i=0; i < meals.size(); i++) {
             Meal meal = meals.get(i);
             View vi = inflater.inflate(R.layout.list_meal, null);
@@ -46,10 +47,10 @@ public class MealListFragment extends Fragment implements OnItemClickListener {
             nameMealTV.setText(meal.getName());
 
             TextView tempsCuissonTV = vi.findViewById(R.id.mealItemCuissonTimeTextView);
-            tempsCuissonTV.setText(meal.getTempsCuisson()+"");
+            tempsCuissonTV.setText(meal.getTempsCuisson()+minutes);
 
             TextView tempsPreparaionTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
-            tempsPreparaionTV.setText(meal.getTempsPreparation()+"");
+            tempsPreparaionTV.setText(meal.getTempsPreparation()+minutes);
 
             list.addView(vi);
         }
