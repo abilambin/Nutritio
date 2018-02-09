@@ -10,8 +10,17 @@
     tools:context="com.example.abilambin.nutritio.activity.StockActivity">
 
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        >
+
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.example.abilambin.nutritio.fragment.MealListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -25,10 +34,9 @@
             android:text="@string/title_stocks" />
 
 
-    </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.RecyclerView>
 
     <include
-        android:id="@+id/include"
         layout="@layout/element_bottom_navigation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,7 +45,3 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
-
-
-
-
