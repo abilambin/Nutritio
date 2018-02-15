@@ -8,6 +8,7 @@
 
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
@@ -28,21 +29,14 @@
             tools:context="com.example.abilambin.nutritio.activity.StockActivity">
 
             <fragment
-                android:id="@+id/fragment3"
-                android:name="com.example.abilambin.nutritio.fragment.MealListFragment"
+                android:id="@+id/fragment"
+                android:name="com.example.abilambin.nutritio.fragment.StockListFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout="@layout/fragment_meal_list" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_stocks" />
-
         </LinearLayout>
     </ScrollView>
 
@@ -50,8 +44,7 @@
         layout="@layout/element_bottom_navigation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="77dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
