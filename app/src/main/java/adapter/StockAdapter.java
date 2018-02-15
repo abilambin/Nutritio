@@ -1,7 +1,6 @@
 package adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -23,7 +22,7 @@ public class StockAdapter  extends RecyclerView.Adapter<StockAdapter.MyViewHolde
 
             public MyViewHolder(View view) {
                 super(view);
-                textView = view.findViewById(R.id.problemView);
+                //textView = view.findViewById(R.id.problemView);
 
             }
         }
@@ -38,16 +37,16 @@ public class StockAdapter  extends RecyclerView.Adapter<StockAdapter.MyViewHolde
         public StockAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                               int viewType) {
             // Cree une view, charge le template
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.problem_row, parent, false);
+            //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.problem_row, parent, false);
 
-            MyViewHolder vh = new MyViewHolder(view);
-            return vh;
+            //MyViewHolder vh = new MyViewHolder(view);
+            //return vh;
+            return null;
         }
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
-            holder.textView.setText(ingredients.get(position).getType());
+            //holder.textView.setText(ingredients.get(position).getType());
         }
 
         @Override
