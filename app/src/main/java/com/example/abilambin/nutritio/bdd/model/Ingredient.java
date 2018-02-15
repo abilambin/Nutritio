@@ -25,10 +25,10 @@ public class Ingredient implements Serializable {
     private int energy;
 
     @DatabaseField
-    private float proteins;
+    private float protein;
 
     @DatabaseField
-    private float carbohydrates;
+    private float carbohydrate;
 
     @DatabaseField
     private float sugar;
@@ -40,13 +40,8 @@ public class Ingredient implements Serializable {
     private float saturatedFat;
 
     @DatabaseField
-    private float fibres;
+    private float fibre;
 
-    @DatabaseField
-    private float salt;
-
-    @DatabaseField
-    private float sodium;
 
     public Ingredient() {
 
@@ -57,19 +52,17 @@ public class Ingredient implements Serializable {
         this.brand = brand;
     }
 
-    public Ingredient(String name, String brand, int energy, float proteins, float carbohydrates, float sugar, float fat, float saturatedFat, float fibres, float salt, float sodium) {
+    public Ingredient(String name, String brand, int energy, float protein, float carbohydrate, float sugar, float fat, float saturatedFat, float fibre) {
 
         this.name = name;
         this.brand = brand;
         this.energy = energy;
-        this.proteins = proteins;
-        this.carbohydrates = carbohydrates;
+        this.protein = protein;
+        this.carbohydrate = carbohydrate;
         this.sugar = sugar;
         this.fat = fat;
         this.saturatedFat = saturatedFat;
-        this.fibres = fibres;
-        this.salt = salt;
-        this.sodium = sodium;
+        this.fibre = fibre;
 
     }
 
@@ -105,20 +98,20 @@ public class Ingredient implements Serializable {
         this.energy = energy;
     }
 
-    public float getProteins() {
-        return proteins;
+    public float getProtein() {
+        return protein;
     }
 
-    public void setProteins(float proteins) {
-        this.proteins = proteins;
+    public void setProtein(float protein) {
+        this.protein = protein;
     }
 
-    public float getCarbohydrates() {
-        return carbohydrates;
+    public float getCarbohydrate() {
+        return carbohydrate;
     }
 
-    public void setCarbohydrates(float carbohydrates) {
-        this.carbohydrates = carbohydrates;
+    public void setCarbohydrate(float carbohydrate) {
+        this.carbohydrate = carbohydrate;
     }
 
     public float getSugar() {
@@ -145,27 +138,11 @@ public class Ingredient implements Serializable {
         this.saturatedFat = saturatedFat;
     }
 
-    public float getFibres() {
-        return fibres;
+    public float getFibre() {
+        return fibre;
     }
 
-    public void setFibres(float fibres) {
-        this.fibres = fibres;
-    }
-
-    public float getSalt() {
-        return salt;
-    }
-
-    public void setSalt(float salt) {
-        this.salt = salt;
-    }
-
-    public float getSodium() {
-        return sodium;
-    }
-
-    public void setSodium(float sodium) {
-        this.sodium = sodium;
+    public void setFibre(float fibre) {
+        this.fibre = fibre;
     }
 }
