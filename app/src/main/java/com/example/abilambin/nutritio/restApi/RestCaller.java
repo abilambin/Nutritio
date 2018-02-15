@@ -41,8 +41,11 @@ public class RestCaller <T> implements RestCallerInterface<T>{
             // TODO
         }
 
+        String bodyString = response.body().toString();
 
-        return new Gson().fromJson(response.body().toString(), new TypeToken<List<T>>(){}.getType());
+        System.out.println(bodyString);
+
+        return new Gson().fromJson(bodyString, new TypeToken<List<T>>(){}.getType());
     }
 
     @Override
