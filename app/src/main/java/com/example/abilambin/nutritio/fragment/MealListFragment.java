@@ -1,10 +1,15 @@
 package com.example.abilambin.nutritio.fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.RecipeActivity;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.j256.ormlite.dao.Dao;
 
@@ -12,7 +17,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MealListFragment extends AbstractListFragment<Meal> {
+import butterknife.ButterKnife;
+
+public class MealListFragment extends AbstractListFragment<Meal> implements AdapterView.OnItemClickListener {
 
     @Override
     protected int getListLayout() {
@@ -47,5 +54,27 @@ public class MealListFragment extends AbstractListFragment<Meal> {
         tempsPreparaionTV.setText(meal.getTempsPreparation()+minutes);
         return vi;
     }
+
+    /*@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)
+    {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_meal_list, container, false);
+
+        view.setOnClickListener(this);
+        return view;
+    }
+
+    public void onClick(AdapterView<?> parent, View v, int position, long id) {
+        switch (parent.getId()) {
+            case android.R.id.mealListFragmentList:
+                break;
+            default:{
+                Intent intent = new Intent(this, RecipeActivity.class);
+                startActivity(intent);
+            }
+        }
+    }*/
 
 }

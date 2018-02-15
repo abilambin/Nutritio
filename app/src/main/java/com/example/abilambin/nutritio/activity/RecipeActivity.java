@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.abilambin.nutritio.R;
 
-public class RecipesActivity extends AbstractNavigationActivity {
+public class RecipeActivity extends AbstractNavigationActivity {
 
     @Override
     public int getContentViewId() {
@@ -20,7 +20,4 @@ public class RecipesActivity extends AbstractNavigationActivity {
     public Context getCurrentContext() {
         return this;
     }
-
-
-
 }

@@ -21,18 +21,4 @@ public class DashBoard extends AbstractNavigationActivity {
         return this;
     }
 
-    /* SI ON DECIDE DE RENDRE LES FRAGMENTS DYNAMIQUES
-    private void loadFragments() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        EnergyFragment fragmentEnergy = new EnergyFragment();
-        IntakesFragment fragmentApports = new IntakesFragment();
-
-        fragmentTransaction.add(R.id.layout1, fragmentEnergy);
-        fragmentTransaction.add(R.id.layout2, fragmentApports);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-    */
-
 }
