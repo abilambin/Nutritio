@@ -2,6 +2,7 @@ package com.example.abilambin.nutritio;
 
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.restApi.RestCaller;
+import com.google.gson.reflect.TypeToken;
 
 import org.junit.Test;
 
@@ -22,13 +23,11 @@ public class ExampleUnitTest {
 
     @Test
     public void fakeRestCallerTest() {
-        RestCaller<Ingredient> restCaller = new RestCaller<>("ingredients");
+        RestCaller<Ingredient> restCaller = new RestCaller<>("ingredients", new TypeToken<List<Ingredient>>(){});
         List<Ingredient> ingredients = restCaller.getAll();
 
         assertTrue(ingredients.size() > 0);
 
-        for (Ingredient ingredient : ingredients) {
-            System.out.println(ingredient.getName());
-        }
+        assertEquals("Haricot vert", ingredients.get(0).getName());
     }
 }

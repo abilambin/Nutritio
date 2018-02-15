@@ -145,4 +145,20 @@ public class Ingredient implements Serializable {
     public void setFibre(float fibre) {
         this.fibre = fibre;
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", energy=" + energy +
+                ", protein=" + protein +
+                ", carbohydrate=" + carbohydrate +
+                ", sugar=" + sugar +
+                ", fat=" + fat +
+                ", saturatedFat=" + saturatedFat +
+                ", fibre=" + fibre +
+                '}';
+    }
 }

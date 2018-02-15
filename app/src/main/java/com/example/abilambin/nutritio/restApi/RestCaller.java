@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -18,8 +19,10 @@ import okhttp3.Response;
 
 public class RestCaller <T> implements RestCallerInterface<T>{
     private String path;
+    private TypeToken<List<T>> typeToken;
 
-    public RestCaller(String itemName){
+    public RestCaller(String itemName,  TypeToken<List<T>> typeToken){
+        this.typeToken = typeToken;
         this.path = RestCallerConstant.SERVER_ADDR + "/api/" + itemName;
     }
 
@@ -36,16 +39,16 @@ public class RestCaller <T> implements RestCallerInterface<T>{
         try {
             response = client.newCall(request).execute();
 
+            String bodyString = response.body().string();
+
+            System.out.println(bodyString);
+
+            return new Gson().fromJson(bodyString, this.typeToken.getType());
         } catch (IOException e) {
             e.printStackTrace();
-            // TODO
+            return null; // TODO
         }
 
-        String bodyString = response.body().toString();
-
-        System.out.println(bodyString);
-
-        return new Gson().fromJson(bodyString, new TypeToken<List<T>>(){}.getType());
     }
 
     @Override
@@ -66,5 +69,10 @@ public class RestCaller <T> implements RestCallerInterface<T>{
     @Override
     public T get(int id) {
         return null;
+    }
+
+    public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
+        T[] arr = new Gson().fromJson(s, clazz);
+        return Arrays.asList(arr); //or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
     }
 }
