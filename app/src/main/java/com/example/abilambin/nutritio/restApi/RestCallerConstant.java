@@ -1,9 +1,5 @@
 package com.example.abilambin.nutritio.restApi;
 
-import com.example.abilambin.nutritio.bdd.model.Ingredient;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.List;
 
 /**
  * Created by bellamy on 15/02/18.

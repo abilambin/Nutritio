@@ -34,18 +34,18 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
 
     @Override
     public List<T> getAll() throws ExecutionException, InterruptedException, WebServiceCallException {
-        BackgroundRestCaller caller = new BackgroundRestCaller();
+        BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()
                 .url(this.path)
                 .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
                 .build();
 
-        caller.execute(request);
+        bgCaller.execute(request);
 
-        String res = caller.get();
+        String res = bgCaller.get();
 
         if(res != null){
-            return new Gson().fromJson(caller.get(), this.listTypeToken.getType());
+            return new Gson().fromJson(bgCaller.get(), this.listTypeToken.getType());
         }else{
             throw new WebServiceCallException();
         }

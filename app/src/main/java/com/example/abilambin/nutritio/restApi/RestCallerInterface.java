@@ -1,7 +1,6 @@
 package com.example.abilambin.nutritio.restApi;
 
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
