@@ -1,10 +1,39 @@
 package com.example.abilambin.nutritio.activity;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DashBoard extends AbstractNavigationActivity {
+
+    /**
+     * juste pour l'exemple
+     */
+    @BindView(R.id.button)
+    Button button;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
+
+        //juste pour l'exemple
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getCurrentContext(), "Coucou", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 
     @Override
     public int getContentViewId() {
@@ -20,19 +49,5 @@ public class DashBoard extends AbstractNavigationActivity {
     public Context getCurrentContext() {
         return this;
     }
-
-    /* SI ON DECIDE DE RENDRE LES FRAGMENTS DYNAMIQUES
-    private void loadFragments() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        EnergyFragment fragmentEnergy = new EnergyFragment();
-        IntakesFragment fragmentApports = new IntakesFragment();
-
-        fragmentTransaction.add(R.id.layout1, fragmentEnergy);
-        fragmentTransaction.add(R.id.layout2, fragmentApports);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-    */
 
 }

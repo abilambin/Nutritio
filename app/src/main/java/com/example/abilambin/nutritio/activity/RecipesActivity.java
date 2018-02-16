@@ -20,4 +20,7 @@ public class RecipesActivity extends AbstractNavigationActivity {
     public Context getCurrentContext() {
         return this;
     }
+
+
+
 }

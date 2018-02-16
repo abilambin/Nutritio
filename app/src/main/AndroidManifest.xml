@@ -29,6 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.RecipesActivity" />
         <activity android:name=".activity.FridgeActivity" />
+        <activity android:name=".activity.RecipeActivity"></activity>
     </application>
 
 </manifest>
