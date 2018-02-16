@@ -36,6 +36,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout="@layout/fragment_meal_list" />
 
+
+
         </LinearLayout>
     </ScrollView>
 

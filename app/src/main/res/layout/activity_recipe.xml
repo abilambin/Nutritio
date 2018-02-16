@@ -30,15 +30,15 @@
                 android:id="@+id/fragment1"
                 android:name="com.example.abilambin.nutritio.fragment.HeaderRecipeFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                tools:layout="@layout/fragment_energy" />
+                tools:layout="@layout/fragment_header_recipe" />
 
             <fragment
                 android:id="@+id/fragment2"
                 android:name="com.example.abilambin.nutritio.fragment.IntakesFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 tools:layout="@layout/fragment_intakes" />
 

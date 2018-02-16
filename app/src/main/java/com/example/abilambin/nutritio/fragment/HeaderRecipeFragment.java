@@ -24,7 +24,7 @@ public class HeaderRecipeFragment extends Fragment {
     @BindView(R.id.headerRecipeFragmentTitle)
     TextView title;
 
-    //@BindView(R.id.headerRecipeFragmentPreparationTime)
+    @BindView(R.id.headerRecipeFragmentPreparationTime)
     TextView tempsPreparation;
 
     public HeaderRecipeFragment() {
@@ -43,7 +43,7 @@ public class HeaderRecipeFragment extends Fragment {
         Intent intent = getActivity().getIntent();
 
         title.setText(intent.getStringExtra("title"));
-        //tempsPreparation.setText(intent.getStringExtra("tempsPreparation"));
+        tempsPreparation.setText(intent.getStringExtra("tempsPreparation"));
 
         return view;
     }
