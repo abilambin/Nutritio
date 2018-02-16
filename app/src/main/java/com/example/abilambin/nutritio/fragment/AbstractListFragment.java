@@ -26,7 +26,7 @@ public abstract class AbstractListFragment<E> extends Fragment implements Adapte
 
     protected DatabaseHelper databaseHelper;
 
-    @BindView(R.id.mealListFragmentList)
+    @BindView(R.id.fragmentList)
     LinearLayout listLayout;
 
     @Override
