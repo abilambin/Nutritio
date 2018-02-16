@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
@@ -17,9 +18,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 public class MealListFragment extends AbstractListFragment<Meal> implements AdapterView.OnItemClickListener {
+
+    LinearLayout ll;
 
     @Override
     protected int getListLayout() {
@@ -55,26 +56,22 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
         return vi;
     }
 
-    /*@Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_meal_list, container, false);
+        View view = inflater.inflate(R.layout.list_meal, null);
 
-        view.setOnClickListener(this);
-        return view;
-    }
-
-    public void onClick(AdapterView<?> parent, View v, int position, long id) {
-        switch (parent.getId()) {
-            case android.R.id.mealListFragmentList:
-                break;
-            default:{
-                Intent intent = new Intent(this, RecipeActivity.class);
+        ll = view.findViewById(R.id.linearLayout);
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RecipeActivity.class);
                 startActivity(intent);
             }
-        }
-    }*/
+        });
+
+        return view;
+    }
 
 }
