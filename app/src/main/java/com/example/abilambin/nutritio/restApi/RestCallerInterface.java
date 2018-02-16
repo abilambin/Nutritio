@@ -12,9 +12,9 @@ import java.util.concurrent.ExecutionException;
 public interface RestCallerInterface<T> {
 
     public List<T> getAll() throws ExecutionException, InterruptedException, WebServiceCallException;
-    public T create(T item);
-    public T update(T item);
-    public String delete(int id);
-    public T get(int id);
+    public T create(T item) throws ExecutionException, InterruptedException, WebServiceCallException;
+    public T update(T item) throws ExecutionException, InterruptedException, WebServiceCallException;
+    public int delete(int id) throws ExecutionException, InterruptedException, WebServiceCallException;
+    public T get(int id) throws ExecutionException, InterruptedException, WebServiceCallException;
 
 }

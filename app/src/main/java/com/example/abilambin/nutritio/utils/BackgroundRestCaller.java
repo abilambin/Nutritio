@@ -23,6 +23,12 @@ public class BackgroundRestCaller extends AsyncTask<Request, Integer, String> {
         try {
             response = client.newCall(requests[0]).execute();
 
+            String res = response.body().string();
+
+            if(res.equals("no content")){
+                return response.code() + "";
+            }
+
             return response.body().string();
 
         } catch (IOException e) {

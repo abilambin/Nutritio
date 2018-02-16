@@ -21,7 +21,7 @@ import okhttp3.Response;
  */
 
 public class GenericRestCaller<T> implements RestCallerInterface<T>  {
-    protected final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    protected final MediaType JSON_MEDIATYPE = MediaType.parse("application/json; charset=utf-8");
     protected TypeToken<List<Ingredient>> listTypeToken;
     protected TypeToken<Ingredient> typeToken;
     protected String path;
@@ -49,45 +49,86 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
         }else{
             throw new WebServiceCallException();
         }
+    }
 
+    @Override
+    public T create(T item) throws ExecutionException, InterruptedException, WebServiceCallException {
+        BackgroundRestCaller bgCaller = new BackgroundRestCaller();
+        Request request = new Request.Builder()
+                .url(this.path)
+                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
+                .post(RequestBody.create(JSON_MEDIATYPE, new Gson().toJson(item)))
+                .build();
+
+        bgCaller.execute(request);
+
+        String res = bgCaller.get();
+
+        if(res != null){
+            return new Gson().fromJson(bgCaller.get(), this.typeToken.getType());
+        }else{
+            throw new WebServiceCallException();
+        }
 
     }
 
     @Override
-    public T create(T item) {
-        Response response = null;
-        OkHttpClient client = new OkHttpClient();
+    public T update(T item) throws ExecutionException, InterruptedException, WebServiceCallException {
+        BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()
                 .url(this.path)
                 .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
-                .post(RequestBody.create(JSON, new Gson().toJson(item)))
+                .put(RequestBody.create(JSON_MEDIATYPE, new Gson().toJson(item)))
                 .build();
 
-        try {
-            response = client.newCall(request).execute();
+        bgCaller.execute(request);
 
-            String bodyString = response.body().string();
+        String res = bgCaller.get();
 
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null; // TODO
+        if(res != null){
+            return new Gson().fromJson(bgCaller.get(), this.typeToken.getType());
+        }else{
+            throw new WebServiceCallException();
         }
     }
 
     @Override
-    public T update(T item) {
-        return null;
+    public int delete(int id) throws ExecutionException, InterruptedException, WebServiceCallException {
+        BackgroundRestCaller bgCaller = new BackgroundRestCaller();
+        Request request = new Request.Builder()
+                .url(this.path + "/" + id)
+                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
+                .delete()
+                .build();
+
+        bgCaller.execute(request);
+
+        String res = bgCaller.get();
+
+        if(res != null){
+            return Integer.parseInt(res);
+        }else{
+            throw new WebServiceCallException();
+        }
     }
 
     @Override
-    public String delete(int id) {
-        return null;
-    }
+    public T get(int id) throws ExecutionException, InterruptedException, WebServiceCallException {
+        BackgroundRestCaller bgCaller = new BackgroundRestCaller();
+        Request request = new Request.Builder()
+                .url(this.path + "/" + id)
+                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
+                .build();
 
-    @Override
-    public T get(int id) {
-        return null;
+        bgCaller.execute(request);
+
+        String res = bgCaller.get();
+
+        if(res != null){
+            return new Gson().fromJson(bgCaller.get(), this.typeToken.getType());
+        }else{
+            throw new WebServiceCallException();
+        }
     }
 
 }
