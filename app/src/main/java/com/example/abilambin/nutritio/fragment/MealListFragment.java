@@ -39,18 +39,9 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
     }
 
     @Override
-    protected View createElementView(Meal meal, LayoutInflater inflater) {
+    protected View createElementView(final Meal meal, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.list_meal, null);
         String minutes = " min";
-
-        ll = vi.findViewById(R.id.linearLayout);
-        ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RecipeActivity.class);
-                startActivity(intent);
-            }
-        });
 
         TextView nameMealTV = vi.findViewById(R.id.mealItemNameTextView);
         nameMealTV.setText(meal.getName());
@@ -60,6 +51,19 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
 
         TextView tempsPreparaionTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
         tempsPreparaionTV.setText(meal.getTempsPreparation()+minutes);
+
+        ll = vi.findViewById(R.id.linearLayout);
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RecipeActivity.class);
+                intent.putExtra("title",meal.getName());
+                startActivity(intent);
+
+            }
+        });
+
+
         return vi;
     }
 

@@ -28,11 +28,12 @@
 
             <fragment
                 android:id="@+id/fragment1"
-                android:name="com.example.abilambin.nutritio.fragment.EnergyFragment"
+                android:name="com.example.abilambin.nutritio.fragment.HeaderRecipeFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 tools:layout="@layout/fragment_energy" />
+
             <fragment
                 android:id="@+id/fragment2"
                 android:name="com.example.abilambin.nutritio.fragment.IntakesFragment"
