@@ -90,11 +90,30 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             this.getMealsDao().create(new Meal("Haricots verts", 30, 20));
             this.getMealsDao().create(new Meal("Purée Mousline", 30, 20));
 
+            this.getIngredientsDao().create(createIngredient("Pomme", "Fruits et Légumes"));
+            this.getIngredientsDao().create(createIngredient("Pomme", "Fruits et Légumes"));
+            this.getIngredientsDao().create(createIngredient("Potiron", "Fruits et Légumes"));
+            this.getIngredientsDao().create(createIngredient("Riz", "Féculents"));
+            this.getIngredientsDao().create(createIngredient("Banane", "Fruits et Légumes"));
+            this.getIngredientsDao().create(createIngredient("Poulet", "Viande"));
+            this.getIngredientsDao().create(createIngredient("Orange", "Fruits et Légumes"));
+            this.getIngredientsDao().create(createIngredient("Pomme de terre", "Fruits et Légumes"));
+            this.getIngredientsDao().create(createIngredient("Boeuf", "Viande"));
+            this.getIngredientsDao().create(createIngredient("Camenbert", "Fromage"));
+            this.getIngredientsDao().create(createIngredient("Vin", "Alcool"));
+
 
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Unable to create tables", e);
             System.out.println("##### ERROR - Impossible de créer les tables");
         }
+    }
+
+    private Ingredient createIngredient(String name, String categorie){
+        Ingredient i = new Ingredient();
+        i.setName(name);
+        i.setBrand(categorie);
+        return i;
     }
 
     @Override

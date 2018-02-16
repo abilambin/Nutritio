@@ -43,7 +43,7 @@ public class StockListFragment extends AbstractListFragment<Ingredient> {
         name.setText(ingredient.getName());
 
         //FIXME remplacer avec le champ categorie de l'ingredient pas encore créer à ce jour
-        TextView categorie = vi.findViewById(R.id.mealItemCuissonTimeTextView);
+        TextView categorie = vi.findViewById(R.id.list_stock_cat);
         categorie.setText(ingredient.getBrand());
 
         return vi;

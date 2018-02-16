@@ -22,14 +22,16 @@
         </activity>
         <activity
             android:name=".activity.StockActivity"
-            android:label="@string/title_activity_stock" />
+            android:label="@string/app_name" />
         <activity
             android:name=".activity.PlanningActivity"
-            android:label="@string/title_activity_planning"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.RecipesActivity" />
-        <activity android:name=".activity.FridgeActivity" />
-        <activity android:name=".activity.RecipeActivity"></activity>
+            android:label="@string/app_name" />
+        <activity android:name=".activity.RecipesActivity"
+            android:label="@string/app_name"/>
+        <activity android:name=".activity.FridgeActivity"
+            android:label="@string/app_name"/>
+        <activity android:name=".activity.RecipeActivity"
+            android:label="@string/app_name"/>
     </application>
 
 </manifest>
