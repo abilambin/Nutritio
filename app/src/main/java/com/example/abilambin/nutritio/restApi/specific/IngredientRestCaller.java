@@ -1,6 +1,7 @@
-package com.example.abilambin.nutritio.restApi;
+package com.example.abilambin.nutritio.restApi.specific;
 
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;

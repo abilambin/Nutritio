@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by serial on 11/01/2018.
  */
 
-public class MealIngredient implements Serializable {
+public class IngredientEntry implements Serializable {
 
     private static long serialVersionUID = 6L;
 
@@ -27,7 +27,7 @@ public class MealIngredient implements Serializable {
     @DatabaseField
     private String typeOfQuantity;
 
-    public MealIngredient() {
+    public IngredientEntry() {
 
     }
 

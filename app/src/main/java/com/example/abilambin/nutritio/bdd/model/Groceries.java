@@ -15,6 +15,9 @@ public class Groceries implements Serializable {
     @DatabaseField(generatedId = true)
     private int id;
 
+    @DatabaseField
+    private int name;
+
 
     public Groceries(){
 
@@ -26,6 +29,14 @@ public class Groceries implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getName() {
+        return name;
+    }
+
+    public void setName(int name) {
+        this.name = name;
     }
 
 }
