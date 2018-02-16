@@ -57,7 +57,11 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), RecipeActivity.class);
-                intent.putExtra("title",meal.getName());
+
+                intent.putExtra("title", meal.getName());
+                intent.putExtra("description", meal.getDescription());
+                intent.putExtra("tempsPreparation", meal.getTempsPreparation());
+                intent.putExtra("tempsCuisson", meal.getTempsCuisson());
                 startActivity(intent);
 
             }

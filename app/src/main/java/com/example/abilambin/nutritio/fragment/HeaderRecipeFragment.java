@@ -24,6 +24,9 @@ public class HeaderRecipeFragment extends Fragment {
     @BindView(R.id.headerRecipeFragmentTitle)
     TextView title;
 
+    //@BindView(R.id.headerRecipeFragmentPreparationTime)
+    TextView tempsPreparation;
+
     public HeaderRecipeFragment() {
         // Required empty public constructor
     }
@@ -39,9 +42,8 @@ public class HeaderRecipeFragment extends Fragment {
 
         Intent intent = getActivity().getIntent();
 
-        String recipeTitle = intent.getStringExtra("title");
-
-        title.setText(recipeTitle);
+        title.setText(intent.getStringExtra("title"));
+        //tempsPreparation.setText(intent.getStringExtra("tempsPreparation"));
 
         return view;
     }
