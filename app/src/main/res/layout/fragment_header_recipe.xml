@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
     tools:context="com.example.abilambin.nutritio.fragment.EnergyFragment">
 
 
@@ -22,7 +22,6 @@
             android:layout_marginRight="@dimen/fragment_margin_right"
             android:layout_marginStart="@dimen/fragment_margin_left"
             android:layout_marginTop="@dimen/fragment_margin_top"
-            android:text="@string/energy"
             android:textSize="@dimen/fragment_title_text_size" />
 
         <View
@@ -30,7 +29,28 @@
             android:layout_marginLeft="@dimen/fragment_line_margin_left"
             android:layout_marginRight="@dimen/fragment_line_margin_right"
             android:layout_height="@dimen/fragment_line_size"
+            android:layout_gravity="center_horizontal"
             android:background="#000000" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:cropToPadding="true"
+            android:src="@drawable/plate" />
+
+        <!--TextView
+            android:id="@+id/headerRecipeFragmentPreparationTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fragment_margin_bottom"
+            android:layout_marginEnd="@dimen/fragment_margin_right"
+
+            android:layout_marginLeft="@dimen/fragment_margin_left"
+            android:layout_marginRight="@dimen/fragment_margin_right"
+            android:layout_marginStart="@dimen/fragment_margin_left"
+            android:layout_marginTop="@dimen/fragment_margin_top"
+            android:textSize="@dimen/fragment_title_text_size" /-->
 
         <RelativeLayout
             android:layout_width="match_parent"
