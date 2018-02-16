@@ -1,4 +1,4 @@
-package com.example.abilambin.nutritio.bdd.utils;
+package com.example.abilambin.nutritio.utils;
 
 import com.example.abilambin.nutritio.bdd.model.Groceries;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
