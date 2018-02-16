@@ -1,10 +1,39 @@
 package com.example.abilambin.nutritio.activity;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DashBoard extends AbstractNavigationActivity {
+
+    /**
+     * juste pour l'exemple
+     */
+    @BindView(R.id.button)
+    Button button;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
+
+        //juste pour l'exemple
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getCurrentContext(), "Coucou", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 
     @Override
     public int getContentViewId() {

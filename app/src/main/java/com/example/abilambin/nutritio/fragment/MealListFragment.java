@@ -1,10 +1,8 @@
 package com.example.abilambin.nutritio.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,6 +43,15 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
         View vi = inflater.inflate(R.layout.list_meal, null);
         String minutes = " min";
 
+        ll = vi.findViewById(R.id.linearLayout);
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RecipeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         TextView nameMealTV = vi.findViewById(R.id.mealItemNameTextView);
         nameMealTV.setText(meal.getName());
 
@@ -54,24 +61,6 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
         TextView tempsPreparaionTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
         tempsPreparaionTV.setText(meal.getTempsPreparation()+minutes);
         return vi;
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
-        View view = inflater.inflate(R.layout.list_meal, null);
-
-        ll = view.findViewById(R.id.linearLayout);
-        ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RecipeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        return view;
     }
 
 }
