@@ -26,9 +26,12 @@
             android:orientation="vertical"
             tools:context="com.example.abilambin.nutritio.activity.DashBoard">
 
-
         </LinearLayout>
+
     </ScrollView>
+
+
+
 
     <include
         layout="@layout/element_bottom_navigation"
