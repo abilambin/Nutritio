@@ -59,7 +59,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
                 getFragmentManager().popBackStackImmediate();
             }
         }
-        
+
         if (getSupportFragmentManager().getFragments() != null && getSupportFragmentManager().getFragments().size() > 0) {
             for (int i = 0; i < getSupportFragmentManager().getFragments().size(); i++) {
                 android.support.v4.app.Fragment mFragment = getSupportFragmentManager().getFragments().get(i);

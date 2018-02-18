@@ -20,16 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.StockActivity"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".activity.PlanningActivity"
-            android:label="@string/app_name" />
-        <activity android:name=".activity.RecipesActivity"
-            android:label="@string/app_name"/>
-        <activity android:name=".activity.GroceriesActivity"
-            android:label="@string/app_name"/>
         <activity android:name=".activity.RecipeActivity"
             android:label="@string/app_name"/>
     </application>
