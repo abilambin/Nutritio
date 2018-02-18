@@ -26,31 +26,6 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:context="com.example.abilambin.nutritio.activity.DashBoard">
 
-            <fragment
-                android:id="@+id/fragment1"
-                android:name="com.example.abilambin.nutritio.fragment.EnergyFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:layout="@layout/fragment_energy" />
-
-
-            <fragment
-                android:id="@+id/fragment2"
-                android:name="com.example.abilambin.nutritio.fragment.IntakesFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:layout="@layout/fragment_intakes" />
-
-            <fragment
-                android:id="@+id/fragment3"
-                android:name="com.example.abilambin.nutritio.fragment.MealListFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:layout="@layout/fragment_meal_list" />
-
 
         </LinearLayout>
     </ScrollView>

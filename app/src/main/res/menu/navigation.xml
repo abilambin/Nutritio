@@ -22,8 +22,8 @@
         android:title="@string/title_recipes" />
 
     <item
-        android:id="@+id/fridge"
+        android:id="@+id/groceries"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_fridge" />
+        android:title="@string/title_groceries" />
 
 </menu>

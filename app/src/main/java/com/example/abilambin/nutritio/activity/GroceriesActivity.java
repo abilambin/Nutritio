@@ -13,7 +13,7 @@ public class GroceriesActivity extends AbstractNavigationActivity {
 
     @Override
     public int getNavigationMenuItemId() {
-        return R.id.fridge;
+        return R.id.groceries;
     }
 
     @Override

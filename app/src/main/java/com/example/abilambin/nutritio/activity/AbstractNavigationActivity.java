@@ -1,15 +1,21 @@
 package com.example.abilambin.nutritio.activity;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.fragment.AbstractListFragment;
+import com.example.abilambin.nutritio.fragment.EnergyFragment;
+import com.example.abilambin.nutritio.fragment.StockListFragment;
 
 public abstract class AbstractNavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -40,12 +46,33 @@ public abstract class AbstractNavigationActivity extends AppCompatActivity imple
                 if (itemId == R.id.dashboard) {
                     startActivity(new Intent(getCurrentContext(), DashBoard.class));
                 } else if (itemId == R.id.stocks) {
-                    startActivity(new Intent(getCurrentContext(), StockActivity.class));
+
+                    // Create a new fragment and specify the new fragment
+                    //AbstractListFragment<Ingredient> fragment = new StockListFragment();
+                    //Bundle args = new Bundle();
+                    //args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
+                    //fragment.setArguments(args);
+
+                    // Insert the fragment by replacing any existing fragment
+                    //FragmentManager fragmentManager = getFragmentManager();
+                    //fragmentManager.beginTransaction()
+                      //      .replace(R.id.container, fragment)
+                        //    .commit();
+
+                    android.app.Fragment fragment = new EnergyFragment();
+
+                    // Insert the fragment by replacing any existing fragment
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .add(R.id.container, fragment)
+                            .commit();
+
+                    //startActivity(new Intent(getCurrentContext(), StockActivity.class));
                 } else if (itemId == R.id.planning) {
                     startActivity(new Intent(getCurrentContext(), PlanningActivity.class));
                 } else if(itemId == R.id.recipes){
                     startActivity(new Intent(getCurrentContext(), RecipesActivity.class));
-                } else if(itemId == R.id.fridge){
+                } else if(itemId == R.id.groceries){
                     startActivity(new Intent(getCurrentContext(), GroceriesActivity.class));
                 }
                 finish();

@@ -1,5 +1,7 @@
 package com.example.abilambin.nutritio.fragment;
 
+import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -45,6 +47,8 @@ public class StockListFragment extends AbstractListFragment<Ingredient> {
         //FIXME remplacer avec le champ categorie de l'ingredient pas encore créer à ce jour
         TextView categorie = vi.findViewById(R.id.list_stock_cat);
         categorie.setText(ingredient.getBrand());
+
+
 
         return vi;
     }
