@@ -7,7 +7,8 @@
     <string name="title_planning">PLANNING</string>
     <string name="title_stocks">STOCKS</string>
     <string name="title_recipes">RECIPES</string>
-    <string name="title_fridge">FRIDGE</string>
+    <string name="title_groceries">GROCERIES</string>
+    <string name="title_fridge">GROCERIES</string>
 
     <!-- Titles 2 -->
     <string name="energy">Énergie</string>
@@ -18,11 +19,16 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_planning">PlanningActivity</string>
     <string name="pct">%</string>
+
     <string name="glucidesProgressBarText">GLUCIDES</string>
     <string name="proteinesProgressBarText">PROTEINES</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reste_consommer">Reste à consommer</string>
     <string name="stock">Stock</string>
+    <string name="groceries">Courses</string>
+    <string name="ingredients">Ingredients</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -4,11 +4,11 @@ import android.content.Context;
 
 import com.example.abilambin.nutritio.R;
 
-public class FridgeActivity extends AbstractNavigationActivity {
+public class GroceriesActivity extends AbstractNavigationActivity {
 
     @Override
     public int getContentViewId() {
-        return R.layout.activity_fridge;
+        return R.layout.activity_groceries;
     }
 
     @Override

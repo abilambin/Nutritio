@@ -78,7 +78,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
             //insertion de mocks
             //TODO supprimer les insertions quand plus besoin
-            this.getMealsDao().create(new Meal("Spaghetti - Sauce Bolognaise", 10, 10));
+            this.getMealsDao().create(new Meal("Saumon aux brocolis", 10, 10));
             this.getMealsDao().create(new Meal("Soupe de potiron", 30, 20));
             this.getMealsDao().create(new Meal("Soupe de poireaux", 30, 20));
             this.getMealsDao().create(new Meal("Carbonnade Flammande", 30, 20));

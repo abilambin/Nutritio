@@ -16,22 +16,14 @@ public class DashBoard extends AbstractNavigationActivity {
     /**
      * juste pour l'exemple
      */
-    @BindView(R.id.button)
-    Button button;
+    //@BindView(R.id.button)
+    //Button button;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
-        //juste pour l'exemple
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getCurrentContext(), "Coucou", Toast.LENGTH_LONG).show();
-            }
-        });
 
     }
 

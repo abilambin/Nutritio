@@ -46,7 +46,7 @@ public abstract class AbstractNavigationActivity extends AppCompatActivity imple
                 } else if(itemId == R.id.recipes){
                     startActivity(new Intent(getCurrentContext(), RecipesActivity.class));
                 } else if(itemId == R.id.fridge){
-                    startActivity(new Intent(getCurrentContext(), FridgeActivity.class));
+                    startActivity(new Intent(getCurrentContext(), GroceriesActivity.class));
                 }
                 finish();
             }

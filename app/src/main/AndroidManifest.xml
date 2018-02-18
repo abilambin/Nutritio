@@ -28,7 +28,7 @@
             android:label="@string/app_name" />
         <activity android:name=".activity.RecipesActivity"
             android:label="@string/app_name"/>
-        <activity android:name=".activity.FridgeActivity"
+        <activity android:name=".activity.GroceriesActivity"
             android:label="@string/app_name"/>
         <activity android:name=".activity.RecipeActivity"
             android:label="@string/app_name"/>
