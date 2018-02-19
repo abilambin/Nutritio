@@ -21,13 +21,6 @@ import java.util.List;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    /**
-     * juste pour l'exemple
-     */
-    //@BindView(R.id.button)
-    //Button button;
-
-
     protected BottomNavigationView navigationView;
 
     @Override

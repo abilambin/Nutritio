@@ -33,11 +33,17 @@ public class IntakesFragment extends Fragment {
     @BindView(R.id.glucidesPctTextView)
     TextView glucidesPctTextView;
 
+    @BindView(R.id.sucreProgressBar)
+    ProgressBar sucreProgressBar;
+
     @BindView(R.id.lipidesProgressBar)
     ProgressBar lipidesProgressBar;
 
     @BindView(R.id.lipidesPctTextView)
     TextView lipidesPctTextView;
+
+    @BindView(R.id.agsProgressBar)
+    ProgressBar agsProgressBar;
 
     @BindView(R.id.fibresProgressBar)
     ProgressBar fibresProgressBar;
@@ -71,8 +77,15 @@ public class IntakesFragment extends Fragment {
         glucidesProgressBar.setProgress(85);
         glucidesPctTextView.setText("85%");
 
-        lipidesProgressBar.setProgress(92);
-        lipidesPctTextView.setText("92%");
+        sucreProgressBar.setProgress(30);
+
+        lipidesProgressBar.setProgress(20);
+        lipidesPctTextView.setText("20%");
+
+        agsProgressBar.setProgress(10);
+
+        proteinesProgressBar.setProgress(75);
+        proteinesPctTextView.setText("75%");
 
         fibresProgressBar.setProgress(53);
         fibresPctTextView.setText("53%");

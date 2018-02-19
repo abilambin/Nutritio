@@ -5,9 +5,16 @@
     <color name="colorAccent">#3ab54b</color>
 
     <color name="greyBackground">#CCCCCC</color>
+    <color name="whiteBackground">#FFFFFF</color>
+    <color name="intakesText">#FFFFFF</color>
+    <color name="smallIntakesText">#333333</color>
+
+
     <color name="proteinesProgressBarColor">#FF8C00</color>
+    <color name="sucreProgressBarColor">#b59a81</color>
     <color name="glucidesProgressBarColor">#926239</color>
     <color name="lipidesProgressBarColor">#0088B7</color>
+    <color name="agsProgressBarColor">#5ac7fd</color>
     <color name="fibresProgressBarColor">#48B048</color>
     <color name="selProgressBarColor">#B04538</color>
 </resources>

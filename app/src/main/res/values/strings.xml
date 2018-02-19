@@ -19,8 +19,14 @@
     <string name="title_activity_planning">PlanningActivity</string>
     <string name="pct">%</string>
 
-    <string name="glucidesProgressBarText">GLUCIDES</string>
+
     <string name="proteinesProgressBarText">PROTEINES</string>
+    <string name="glucidesProgressBarText">GLUCIDES</string>
+    <string name="sucresProgressBarText">dont sucres</string>
+    <string name="lipidesProgressBarText">LIPIDES</string>
+    <string name="agsProgressBarText">dont acides gras saturés</string>
+    <string name="fibresProgressBarText">FIBRES</string>
+    <string name="selProgressBarText">SEL</string>
 
     <string name="reste_consommer">Reste à consommer</string>
     <string name="stock">Stock</string>
