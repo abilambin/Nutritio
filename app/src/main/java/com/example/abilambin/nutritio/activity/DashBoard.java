@@ -88,8 +88,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
         if (itemId == R.id.dashboard) {
 
             addFragment(new EnergyFragment());
-            //TODO : résoudre problème : impossible d'ajouter fragment INTAKES
-            //addFragment(new IntakesFragment());
+            addFragment(new IntakesFragment());
             addFragment(new MealListFragment());
 
         } else if (itemId == R.id.stocks) {
@@ -102,7 +101,6 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         } else if(itemId == R.id.recipes){
 
-            //TODO
             addFragment(new MealListFragment());
 
         } else if(itemId == R.id.groceries){
