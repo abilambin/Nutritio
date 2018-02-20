@@ -16,6 +16,7 @@ import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -58,8 +59,19 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
         if (meal.getDate() != null) {
             Log.d("MealListFragment TEST :",meal.getDate().getHours()+"");
             TextView hourMealTV = vi.findViewById(R.id.mealItemHourTextView);
-            String test = meal.getDate().getHours()+"";
-            hourMealTV.setText("Heure :" + test);
+            Date mealDate = meal.getDate();
+            int h = mealDate.getHours();
+            String s = "";
+            if(h < 10){
+                s = "0";
+            }
+            s += mealDate.getHours()+"H";
+            int m = mealDate.getMinutes();
+            if(m < 10){
+                s += "0";
+            }
+            s += m;
+            hourMealTV.setText(s);
         }
 
         TextView nameMealTV = vi.findViewById(R.id.mealItemNameTextView);
