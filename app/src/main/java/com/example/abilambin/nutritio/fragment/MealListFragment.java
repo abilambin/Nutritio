@@ -1,6 +1,8 @@
 package com.example.abilambin.nutritio.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,9 +18,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class MealListFragment extends AbstractListFragment<Meal> implements AdapterView.OnItemClickListener {
 
     LinearLayout ll;
+
+
+
+    @BindView(R.id.mealListFragmentTitle)
+    protected TextView title;
 
     @Override
     protected int getListLayout() {
@@ -43,6 +52,16 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
         View vi = inflater.inflate(R.layout.list_meal, null);
         String minutes = " min";
 
+
+
+
+        if (meal.getDate() != null) {
+            Log.d("MealListFragment TEST :",meal.getDate().getHours()+"");
+            TextView hourMealTV = vi.findViewById(R.id.mealItemHourTextView);
+            String test = meal.getDate().getHours()+"";
+            hourMealTV.setText("Heure :" + test);
+        }
+
         TextView nameMealTV = vi.findViewById(R.id.mealItemNameTextView);
         nameMealTV.setText(meal.getName());
 
@@ -51,6 +70,12 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
 
         TextView tempsPreparaionTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
         tempsPreparaionTV.setText(meal.getTempsPreparation()+minutes);
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            title.setText(bundle.getString("title"));
+        }
+
 
         ll = vi.findViewById(R.id.linearLayout);
         ll.setOnClickListener(new View.OnClickListener() {

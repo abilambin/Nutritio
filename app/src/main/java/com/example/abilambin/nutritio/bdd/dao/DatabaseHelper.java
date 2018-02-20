@@ -17,6 +17,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by serial on 04/12/2017.
@@ -78,10 +79,23 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
             //insertion de mocks
             //TODO supprimer les insertions quand plus besoin
-            this.getMealsDao().create(new Meal("Saumon aux brocolis", 10, 10));
-            this.getMealsDao().create(new Meal("Soupe de potiron", 30, 20));
+            Date date = new Date(2018,02,20);
+            date.setHours(8);
+            Meal meal = new Meal("Saumon aux brocolis", 10, 10);
+            meal.setDate(date);
+            this.getMealsDao().create(meal);
+
+            date.setHours(12);
+            meal = new Meal("Soupe de potiron", 30, 20);
+            meal.setDate(date);
+            this.getMealsDao().create(meal);
+
+            date.setHours(19);
+            meal = new Meal("Carbonnade Flammande", 30, 20);
+            meal.setDate(date);
+            this.getMealsDao().create(meal);
+
             this.getMealsDao().create(new Meal("Soupe de poireaux", 30, 20));
-            this.getMealsDao().create(new Meal("Carbonnade Flammande", 30, 20));
             this.getMealsDao().create(new Meal("Petit panaché", 30, 20));
             this.getMealsDao().create(new Meal("Croquettes de poisson", 30, 20));
             this.getMealsDao().create(new Meal("Epinards à la crème", 30, 20));

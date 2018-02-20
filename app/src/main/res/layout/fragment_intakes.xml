@@ -112,17 +112,6 @@
             android:layout_height="@dimen/intakes_small_line_size"
             android:progressDrawable="@drawable/sucre_progress_bar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/intakes_small_line_text_margin"
-            android:textSize="@dimen/intakes_small_line_text_size"
-            android:text="@string/sucresProgressBarText"
-            android:textColor="@color/smallIntakesText"/>
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -176,17 +165,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/intakes_small_line_size"
             android:progressDrawable="@drawable/ags_progress_bar" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/intakes_small_line_text_margin"
-            android:textSize="@dimen/intakes_small_line_text_size"
-            android:text="@string/agsProgressBarText"
-            android:textColor="@color/smallIntakesText" />
 
     </RelativeLayout>
 

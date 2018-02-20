@@ -1,7 +1,6 @@
 package com.example.abilambin.nutritio.activity;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,14 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.fragment.EnergyFragment;
+
 import butterknife.ButterKnife;
 
-import com.example.abilambin.nutritio.fragment.GroceriesListFragment;
+import com.example.abilambin.nutritio.fragment.IngredientListFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealListFragment;
-import com.example.abilambin.nutritio.fragment.StockListFragment;
-
-import java.util.List;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -32,8 +29,6 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         navigationView = findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
-
-        updateFragments(navigationView.getSelectedItemId());
 
     }
 
@@ -67,6 +62,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
     protected void onStart() {
         super.onStart();
         selectBottomNavigationBarItem(R.id.dashboard);
+        updateFragments(navigationView.getSelectedItemId());
     }
 
     @Override
@@ -78,6 +74,8 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
     private void updateFragments(Integer itemId) {
         clearStack();
 
+        Bundle bundle;
+
         if (itemId == R.id.dashboard) {
 
             addFragment(new EnergyFragment());
@@ -86,19 +84,40 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         } else if (itemId == R.id.stocks) {
 
-            addFragment(new StockListFragment());
+            bundle = new Bundle();
+            bundle.putString("title", "Courses");
+
+            Fragment fragment = new IngredientListFragment();
+            fragment.setArguments(bundle);
+            addFragment(fragment);
 
         } else if (itemId == R.id.planning) {
 
-            //TODO
+            bundle = new Bundle();
+            bundle.putString("title", "Planning");
+
+            Fragment fragment = new MealListFragment();
+            fragment.setArguments(bundle);
+            addFragment(fragment);
+
 
         } else if(itemId == R.id.recipes){
 
-            addFragment(new MealListFragment());
+            bundle = new Bundle();
+            bundle.putString("title", "Recettes");
+
+            Fragment fragment = new MealListFragment();
+            fragment.setArguments(bundle);
+            addFragment(fragment);
 
         } else if(itemId == R.id.groceries){
 
-            addFragment(new GroceriesListFragment());
+            bundle = new Bundle();
+            bundle.putString("title", "Courses");
+
+            Fragment fragment = new IngredientListFragment();
+            fragment.setArguments(bundle);
+            addFragment(fragment);
 
         }
     }

@@ -3,6 +3,7 @@ package com.example.abilambin.nutritio.bdd.model;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by serial on 30/11/2017.
@@ -19,6 +20,9 @@ public class Meal implements Serializable{
     private String name;
 
     @DatabaseField
+    private Date date;
+
+    @DatabaseField
     private String description;
 
     @DatabaseField
@@ -30,6 +34,7 @@ public class Meal implements Serializable{
     public Meal(){
 
     }
+
 
     public Meal(String name, int tempsPreparation, int tempsCuisson){
         this.name = name;
@@ -52,6 +57,10 @@ public class Meal implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
+
+    public Date getDate() { return date; }
+
+    public void setDate(Date date) { this.date = date; }
 
     public String getDescription() {
         return description;

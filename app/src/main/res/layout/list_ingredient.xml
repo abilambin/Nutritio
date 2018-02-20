@@ -6,11 +6,11 @@
 
     <LinearLayout
         android:orientation="vertical"
+        android:background="@drawable/list_meal_element_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/list_meal_element_background"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp">
 
@@ -19,20 +19,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/list_groceries_name"
+                android:id="@+id/list_ingredient_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/list_groceries_cat"
+                    android:id="@+id/list_ingredient_cat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:text="Catégorie : "/>
                 <TextView
+                    android:id="@+id/list_ingredient_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
