@@ -62,6 +62,9 @@ generatedId=true
 fieldName=name
 # --field-end--
 # --field-start--
+fieldName=date
+# --field-end--
+# --field-start--
 fieldName=description
 # --field-end--
 # --field-start--
