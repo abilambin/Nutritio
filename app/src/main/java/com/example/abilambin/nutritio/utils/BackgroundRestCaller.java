@@ -13,6 +13,7 @@ import okhttp3.Response;
  */
 
 public class BackgroundRestCaller extends AsyncTask<Request, Integer, String> {
+    private int responseCode;
 
     @Override
     protected String doInBackground(Request... requests) {
@@ -23,17 +24,19 @@ public class BackgroundRestCaller extends AsyncTask<Request, Integer, String> {
         try {
             response = client.newCall(requests[0]).execute();
 
+
             String res = response.body().string();
+            this.responseCode = response.code();
 
-            if(res.equals("no content")){
-                return response.code() + "";
-            }
-
-            return response.body().string();
+            return res;
 
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public int getResponseCode() {
+        return responseCode;
     }
 }

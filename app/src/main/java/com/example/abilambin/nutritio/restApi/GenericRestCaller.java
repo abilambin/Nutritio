@@ -1,6 +1,7 @@
 package com.example.abilambin.nutritio.restApi;
 
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.utils.BackgroundRestCaller;
 import com.google.gson.Gson;
@@ -21,7 +22,6 @@ import okhttp3.Response;
  */
 
 public class GenericRestCaller<T> implements RestCallerInterface<T>  {
-    protected final MediaType JSON_MEDIATYPE = MediaType.parse("application/json; charset=utf-8");
     protected TypeToken<List<Ingredient>> listTypeToken;
     protected TypeToken<Ingredient> typeToken;
     protected String path;
@@ -33,16 +33,20 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
     }
 
     @Override
-    public List<T> getAll() throws ExecutionException, InterruptedException, WebServiceCallException {
+    public List<T> getAll() throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
         BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()
                 .url(this.path)
-                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
+                .addHeader("Authorization", AuthenticateUser.getInstance().getAuthToken())
                 .build();
 
         bgCaller.execute(request);
 
         String res = bgCaller.get();
+
+        if(bgCaller.getResponseCode() >= 300){
+            throw new WebServiceCallException(res);
+        }
 
         if(res != null){
             return new Gson().fromJson(bgCaller.get(), this.listTypeToken.getType());
@@ -52,12 +56,12 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
     }
 
     @Override
-    public T create(T item) throws ExecutionException, InterruptedException, WebServiceCallException {
+    public T create(T item) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
         BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()
                 .url(this.path)
-                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
-                .post(RequestBody.create(JSON_MEDIATYPE, new Gson().toJson(item)))
+                .addHeader("Authorization", AuthenticateUser.getInstance().getAuthToken())
+                .post(RequestBody.create(RestCallerConstant.JSON_MEDIATYPE, new Gson().toJson(item)))
                 .build();
 
         bgCaller.execute(request);
@@ -73,12 +77,12 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
     }
 
     @Override
-    public T update(T item) throws ExecutionException, InterruptedException, WebServiceCallException {
+    public T update(T item) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
         BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()
                 .url(this.path)
-                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
-                .put(RequestBody.create(JSON_MEDIATYPE, new Gson().toJson(item)))
+                .addHeader("Authorization", AuthenticateUser.getInstance().getAuthToken())
+                .put(RequestBody.create(RestCallerConstant.JSON_MEDIATYPE, new Gson().toJson(item)))
                 .build();
 
         bgCaller.execute(request);
@@ -93,11 +97,11 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
     }
 
     @Override
-    public int delete(int id) throws ExecutionException, InterruptedException, WebServiceCallException {
+    public int delete(int id) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
         BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()
                 .url(this.path + "/" + id)
-                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
+                .addHeader("Authorization", AuthenticateUser.getInstance().getAuthToken())
                 .delete()
                 .build();
 
@@ -113,11 +117,11 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
     }
 
     @Override
-    public T get(int id) throws ExecutionException, InterruptedException, WebServiceCallException {
+    public T get(int id) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
         BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()
                 .url(this.path + "/" + id)
-                .addHeader("Authorization", RestCallerConstant.AUTH_TOKEN)
+                .addHeader("Authorization", AuthenticateUser.getInstance().getAuthToken())
                 .build();
 
         bgCaller.execute(request);

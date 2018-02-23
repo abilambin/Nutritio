@@ -3,15 +3,14 @@ package com.example.abilambin.nutritio.bdd.model;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by serial on 30/11/2017.
  */
 
-public class Stock implements Serializable{
+public class Grocerie implements Serializable {
 
-    private static long serialVersionUID = 5L;
+    private static long serialVersionUID = 4L;
 
     @DatabaseField(generatedId = true)
     private int id;
@@ -19,7 +18,8 @@ public class Stock implements Serializable{
     @DatabaseField
     private String name;
 
-    public Stock() {
+
+    public Grocerie(){
 
     }
 

@@ -1,9 +1,11 @@
 package com.example.abilambin.nutritio.utils;
 
-import com.example.abilambin.nutritio.bdd.model.Groceries;
+import com.example.abilambin.nutritio.bdd.model.BlackList;
+import com.example.abilambin.nutritio.bdd.model.Grocerie;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.bdd.model.MealIngredient;
+import com.example.abilambin.nutritio.bdd.model.Person;
 import com.example.abilambin.nutritio.bdd.model.Stock;
 import com.example.abilambin.nutritio.bdd.model.User;
 import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
@@ -25,7 +27,7 @@ public class DatabaseConfigUtil extends OrmLiteConfigUtil {
      */
 
     private static final Class<?>[] classes = new Class[] {
-            Groceries.class, Ingredient.class, Meal.class, Stock.class, User.class, MealIngredient.class
+            Grocerie.class, Ingredient.class, Meal.class, Stock.class, User.class, MealIngredient.class, Person.class, BlackList.class
     };
 
     public static void main(String[] args) throws IOException, SQLException {

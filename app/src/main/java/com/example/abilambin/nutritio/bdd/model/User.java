@@ -41,7 +41,7 @@ public class User implements Serializable {
     private Stock stock;
 
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private Groceries groceries;
+    private Grocerie grocerie;
 
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private List<Ingredient> favoriteIngredients;
@@ -128,12 +128,12 @@ public class User implements Serializable {
         this.stock = stock;
     }
 
-    public Groceries getGroceries() {
-        return groceries;
+    public Grocerie getGrocerie() {
+        return grocerie;
     }
 
-    public void setGroceries(Groceries groceries) {
-        this.groceries = groceries;
+    public void setGrocerie(Grocerie grocerie) {
+        this.grocerie = grocerie;
     }
 
     public List<Ingredient> getFavoriteIngredients() {

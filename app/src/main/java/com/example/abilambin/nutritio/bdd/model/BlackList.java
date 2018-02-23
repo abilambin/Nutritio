@@ -2,24 +2,21 @@ package com.example.abilambin.nutritio.bdd.model;
 
 import com.j256.ormlite.field.DatabaseField;
 
-import java.io.Serializable;
-
 /**
- * Created by serial on 30/11/2017.
+ * Created by bellamy on 23/02/18.
  */
 
-public class Groceries implements Serializable {
+public class BlackList {
 
-    private static long serialVersionUID = 4L;
+    private static long serialVersionUID = 5L;
 
     @DatabaseField(generatedId = true)
     private int id;
 
     @DatabaseField
-    private int name;
+    private String name;
 
-
-    public Groceries(){
+    public BlackList(){
 
     }
 
@@ -31,12 +28,11 @@ public class Groceries implements Serializable {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
-
 }
