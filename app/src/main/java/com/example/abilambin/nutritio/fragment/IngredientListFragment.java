@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.IngredientActivity;
 import com.example.abilambin.nutritio.activity.RecipeActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.Meal;
@@ -61,13 +62,15 @@ public class IngredientListFragment extends AbstractListFragment<Ingredient> imp
         }
 
         ll = vi.findViewById(R.id.linearLayout);
+
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getActivity(), IngredientActivity.class);
+                Intent intent = new Intent(getActivity(), IngredientActivity.class);
 
-                //intent.putExtra("title", ingredient.getName());
-                //startActivity(intent);
+                intent.putExtra("name", ingredient.getName());
+                intent.putExtra("brand", ingredient.getBrand());
+                startActivity(intent);
 
             }
         });

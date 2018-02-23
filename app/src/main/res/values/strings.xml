@@ -32,6 +32,7 @@
     <string name="stock">Stock</string>
     <string name="groceries">Courses</string>
     <string name="ingredients">Ingredients</string>
+    <string name="title_activity_ingredient">IngredientActivity</string>
 
 
 </resources>

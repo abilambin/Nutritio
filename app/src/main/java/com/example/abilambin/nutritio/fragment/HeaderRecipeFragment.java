@@ -42,7 +42,7 @@ public class HeaderRecipeFragment extends Fragment {
 
         Intent intent = getActivity().getIntent();
 
-        title.setText(intent.getStringExtra("title"));
+        title.setText(intent.getStringExtra("name"));
         tempsPreparation.setText(intent.getStringExtra("tempsPreparation"));
 
         return view;

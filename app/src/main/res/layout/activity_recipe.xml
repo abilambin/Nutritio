@@ -23,7 +23,7 @@
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            tools:context="com.example.abilambin.nutritio.activity.DashBoard">
+            tools:context="com.example.abilambin.nutritio.activity.RecipeActivity">
 
             <fragment
                 android:id="@+id/fragment1"

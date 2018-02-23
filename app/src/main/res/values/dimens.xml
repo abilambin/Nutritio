@@ -38,7 +38,6 @@
     <dimen name="intakes_small_line_text_margin">5dp</dimen>
 
 
-
     <!-- Navigation Bar-->
     <dimen name="navigation_bar_height">70dp</dimen>
 
