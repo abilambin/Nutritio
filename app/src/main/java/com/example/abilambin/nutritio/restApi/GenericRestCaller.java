@@ -1,32 +1,27 @@
 package com.example.abilambin.nutritio.restApi;
 
-import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.utils.BackgroundRestCaller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * Created by bellamy on 15/02/18.
  */
 
 public class GenericRestCaller<T> implements RestCallerInterface<T>  {
-    protected TypeToken<List<Ingredient>> listTypeToken;
-    protected TypeToken<Ingredient> typeToken;
+    protected TypeToken<List<T>> listTypeToken;
+    protected TypeToken<T> typeToken;
     protected String path;
 
-    public GenericRestCaller(String itemName, TypeToken<List<Ingredient>> listTypeToken, TypeToken<Ingredient> typeToken){
+    public GenericRestCaller(String itemName, TypeToken<List<T>> listTypeToken, TypeToken<T> typeToken){
         this.listTypeToken = listTypeToken;
         this.typeToken = typeToken;
         this.path = RestCallerConstant.SERVER_ADDR + "/api/" + itemName;

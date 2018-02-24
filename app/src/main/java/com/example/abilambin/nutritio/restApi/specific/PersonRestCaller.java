@@ -10,9 +10,9 @@ import java.util.List;
  * Created by bellamy on 23/02/18.
  */
 
-public class PersonCaller extends GenericRestCaller {
+public class PersonRestCaller extends GenericRestCaller {
 
-    public PersonCaller() {
+    public PersonRestCaller() {
         super("people", new TypeToken<List<Person>>(){}, new TypeToken<Person>(){});
     }
 }
