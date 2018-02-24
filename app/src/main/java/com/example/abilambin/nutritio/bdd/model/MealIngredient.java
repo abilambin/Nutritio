@@ -1,5 +1,6 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.example.abilambin.nutritio.bdd.model.enums.Unit;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -15,20 +16,44 @@ public class MealIngredient implements Serializable {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private Meal meal;
+    @DatabaseField(canBeNull = false)
+    private int amount;
+
+    @DatabaseField(canBeNull = false)
+    private Unit unit;
 
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Ingredient ingredient;
 
-    @DatabaseField
-    private int quantity;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private BlackList blackList;
 
-    @DatabaseField
-    private String typeOfQuantity;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Grocerie grocerie;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Recipe recipe;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Stock stock;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Meal meal;
 
     public MealIngredient() {
 
+    }
+
+    public MealIngredient(int id, int amount, Unit unit, Ingredient ingredient, BlackList blackList, Grocerie grocerie, Recipe recipe, Stock stock, Meal meal) {
+        this.id = id;
+        this.amount = amount;
+        this.unit = unit;
+        this.ingredient = ingredient;
+        this.blackList = blackList;
+        this.grocerie = grocerie;
+        this.recipe = recipe;
+        this.stock = stock;
+        this.meal = meal;
     }
 
     public int getId() {
@@ -39,12 +64,20 @@ public class MealIngredient implements Serializable {
         this.id = id;
     }
 
-    public Meal getMeal() {
-        return meal;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setMeal(Meal meal) {
-        this.meal = meal;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public Ingredient getIngredient() {
@@ -55,19 +88,58 @@ public class MealIngredient implements Serializable {
         this.ingredient = ingredient;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public BlackList getBlackList() {
+        return blackList;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setBlackList(BlackList blackList) {
+        this.blackList = blackList;
     }
 
-    public String getTypeOfQuantity() {
-        return typeOfQuantity;
+    public Grocerie getGrocerie() {
+        return grocerie;
     }
 
-    public void setTypeOfQuantity(String typeOfQuantity) {
-        this.typeOfQuantity = typeOfQuantity;
+    public void setGrocerie(Grocerie grocerie) {
+        this.grocerie = grocerie;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
+    }
+
+    @Override
+    public String toString() {
+        return "MealIngredient{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", unit=" + unit +
+                ", ingredient=" + ingredient +
+                ", blackList=" + blackList +
+                ", grocerie=" + grocerie +
+                ", recipe=" + recipe +
+                ", stock=" + stock +
+                ", meal=" + meal +
+                '}';
     }
 }

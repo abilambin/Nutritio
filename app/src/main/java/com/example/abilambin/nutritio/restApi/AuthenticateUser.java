@@ -34,7 +34,7 @@ public class AuthenticateUser {
 
     private void makeAuth() throws CannotAuthenticateUserException {
         if(this.login == null || this.password == null){
-            throw new CannotAuthenticateUserException("Login or password null");
+            throw new CannotAuthenticateUserException("Login or/and password null. You must have forgotten to call the setAuthenticateInfo() method");
         }
 
         JsonObject info = new JsonObject();

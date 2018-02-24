@@ -122,4 +122,19 @@ public class Goal {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Goal{" +
+                "id=" + id +
+                ", energy=" + energy +
+                ", protein=" + protein +
+                ", carbohydrate=" + carbohydrate +
+                ", sugar=" + sugar +
+                ", fat=" + fat +
+                ", saturatedFat=" + saturatedFat +
+                ", fibre=" + fibre +
+                ", person=" + person +
+                '}';
+    }
 }

@@ -101,4 +101,18 @@ public class Person {
     public void setGrocerie(Grocerie grocerie) {
         this.grocerie = grocerie;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", birthday=" + birthday +
+                ", email='" + email + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", stock=" + stock +
+                ", grocerie=" + grocerie +
+                ", blacklist=" + blacklist +
+                '}';
+    }
 }
