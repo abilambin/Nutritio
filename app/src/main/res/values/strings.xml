@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Nutritio</string>
+    <string name="error">Une erreur est survenue</string>
+
+    <!-- Util -->
+    <string name="submit">Valider</string>
 
 
     <!-- Titles -->
@@ -32,6 +36,11 @@
     <string name="stock">Stock</string>
     <string name="groceries">Courses</string>
     <string name="ingredients">Ingredients</string>
+
+    <!-- LoginActivity -->
+    <string name="forgot_email">Veuilliez renseigner un email</string>
+    <string name="forgot_password">Veuilliez renseigner un mot de passe</string>
+    <string name="unknown_user">Utilisateur inconnu</string>
 
 
 </resources>

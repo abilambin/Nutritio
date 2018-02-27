@@ -32,7 +32,12 @@ public class AuthenticateUser {
         return authenticateUser;
     }
 
-    private void makeAuth() throws CannotAuthenticateUserException {
+    /**
+     * Authentifie un utilisateur
+     * @return True si l'utilisateur est trouvé, false sinon
+     * @throws CannotAuthenticateUserException Si une erreur surviens lors de l'authentification
+     */
+    private boolean makeAuth() throws CannotAuthenticateUserException {
         if(this.login == null || this.password == null){
             throw new CannotAuthenticateUserException("Login or/and password null. You must have forgotten to call the setAuthenticateInfo() method");
         }
@@ -54,14 +59,20 @@ public class AuthenticateUser {
             String res = caller.get();
 
             JsonObject jsonRes = new JsonParser().parse(res).getAsJsonObject();
-
             JsonElement token = jsonRes.get("id_token");
 
             if(token == null){
+                JsonElement status = jsonRes.get("status");
+
+                if(status != null && status.getAsInt() == 401){
+                    return false;
+                }
+
                 throw new CannotAuthenticateUserException("Unable to find response id token");
             }
 
             this.authToken = "Bearer " + token.getAsString();
+            return true;
         } catch (Exception e) {
             throw new CannotAuthenticateUserException(e);
         }
@@ -82,4 +93,7 @@ public class AuthenticateUser {
         this.password = password;
     }
 
+    public boolean testAuthenticateInfo() throws CannotAuthenticateUserException {
+            return this.makeAuth();
+    }
 }
