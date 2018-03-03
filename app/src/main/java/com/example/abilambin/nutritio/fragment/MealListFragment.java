@@ -78,10 +78,10 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
         nameMealTV.setText(meal.getName());
 
         TextView tempsCuissonTV = vi.findViewById(R.id.mealItemCuissonTimeTextView);
-        tempsCuissonTV.setText(meal.getTempsCuisson()+minutes);
+        tempsCuissonTV.setText(meal.getBakingTime()+minutes);
 
-        TextView tempsPreparaionTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
-        tempsPreparaionTV.setText(meal.getTempsPreparation()+minutes);
+        TextView tempsPreparationTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
+        tempsPreparationTV.setText(meal.getPreparationTime()+minutes);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -97,8 +97,8 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
 
                 intent.putExtra("name", meal.getName());
                 intent.putExtra("description", meal.getDescription());
-                intent.putExtra("tempsPreparation", meal.getTempsPreparation());
-                intent.putExtra("tempsCuisson", meal.getTempsCuisson());
+                intent.putExtra("tempsPreparation", meal.getPreparationTime());
+                intent.putExtra("tempsCuisson", meal.getBakingTime());
                 startActivity(intent);
 
             }

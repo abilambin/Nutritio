@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/imgPlaylistItemBg"
@@ -11,7 +12,7 @@
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
 
-        android:src="@drawable/plate" />
+        android:src="@drawable/none" />
 
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -26,11 +27,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/fragment_margin_bottom"
             android:layout_marginEnd="@dimen/fragment_margin_right"
-
             android:layout_marginLeft="@dimen/fragment_margin_left"
             android:layout_marginRight="@dimen/fragment_margin_right"
             android:layout_marginStart="@dimen/fragment_margin_left"
             android:layout_marginTop="@dimen/fragment_margin_top"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="0.01"
             android:textSize="@dimen/fragment_title_text_size" />
 
         <View
@@ -39,20 +43,41 @@
             android:layout_marginRight="@dimen/fragment_line_margin_right"
             android:layout_height="@dimen/fragment_line_size"
             android:layout_gravity="center_horizontal"
-            android:background="#000000" />
+            android:background="#000000"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="@dimen/fragment_line_margin_left"
+            android:layout_marginRight="@dimen/fragment_line_margin_right"
+            android:layout_height="@dimen/fragment_line_size"
+            android:layout_gravity="center_horizontal"
+            android:background="#FFFFFF"/>
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPlaylistItemBg"
+        tools:context="com.example.abilambin.nutritio.fragment.HeaderRecipeFragment">
 
         <TextView
-            android:id="@+id/headerRecipeFragmentPreparationTime"
-            android:layout_width="match_parent"
+            android:id="@+id/headerRecipeFragmentPreparationBakingTime"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_margin_bottom"
-            android:layout_marginEnd="@dimen/fragment_margin_right"
-
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginLeft="@dimen/fragment_margin_left"
             android:layout_marginRight="@dimen/fragment_margin_right"
             android:layout_marginStart="@dimen/fragment_margin_left"
             android:layout_marginTop="@dimen/fragment_margin_top"
-            android:textSize="@dimen/fragment_title_text_size" />
+            android:textSize="@dimen/fragment_title2_text_size"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="0.01"
+            app:layout_constraintBottom_toBottomOf="@+id/imgPlaylistItemBg"/>
 
 
     </LinearLayout>

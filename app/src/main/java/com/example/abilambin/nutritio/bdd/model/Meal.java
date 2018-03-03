@@ -26,20 +26,20 @@ public class Meal implements Serializable{
     private String description;
 
     @DatabaseField
-    private int tempsPreparation;
+    private int preparationTime;
 
     @DatabaseField
-    private int tempsCuisson;
+    private int bakingTime;
 
     public Meal(){
 
     }
 
 
-    public Meal(String name, int tempsPreparation, int tempsCuisson){
+    public Meal(String name, int preparationTime, int bakingTime){
         this.name = name;
-        this.tempsPreparation = tempsPreparation;
-        this.tempsCuisson = tempsCuisson;
+        this.preparationTime = preparationTime;
+        this.bakingTime = bakingTime;
     }
 
     public int getId() {
@@ -70,19 +70,19 @@ public class Meal implements Serializable{
         this.description = description;
     }
 
-    public int getTempsPreparation() {
-        return tempsPreparation;
+    public int getPreparationTime() {
+        return preparationTime;
     }
 
-    public void setTempsPreparation(int tempsPreparation) {
-        this.tempsPreparation = tempsPreparation;
+    public void setPreparationTime(int preparationTime) {
+        this.preparationTime = preparationTime;
     }
 
-    public int getTempsCuisson() {
-        return tempsCuisson;
+    public int getBakingTime() {
+        return bakingTime;
     }
 
-    public void setTempsCuisson(int tempsCuisson) {
-        this.tempsCuisson = tempsCuisson;
+    public void setBakingTime(int bakingTime) {
+        this.bakingTime = bakingTime;
     }
 }

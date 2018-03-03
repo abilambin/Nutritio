@@ -69,6 +69,7 @@ public class IngredientListFragment extends AbstractListFragment<Ingredient> imp
                 Intent intent = new Intent(getActivity(), IngredientActivity.class);
 
                 intent.putExtra("name", ingredient.getName());
+                intent.putExtra("category", ingredient.getCategory());
                 intent.putExtra("brand", ingredient.getBrand());
                 startActivity(intent);
 

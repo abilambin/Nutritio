@@ -19,6 +19,9 @@ public class Ingredient implements Serializable {
     private String name;
 
     @DatabaseField
+    private Enum category;
+
+    @DatabaseField
     private String brand;
 
     @DatabaseField
@@ -80,6 +83,15 @@ public class Ingredient implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public Enum getCategory() {
+        return category;
+    }
+
+    public void setCategory(Enum category) {
+        this.category = category;
     }
 
     public String getBrand() {

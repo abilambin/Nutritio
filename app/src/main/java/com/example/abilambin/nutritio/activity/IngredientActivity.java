@@ -21,6 +21,12 @@ public class IngredientActivity extends AppCompatActivity {
     @BindView(R.id.ingredientTitle)
     TextView title;
 
+    @BindView(R.id.ingredientCategory)
+    TextView category;
+
+    @BindView(R.id.ingredientBrand)
+    TextView brand;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,8 @@ public class IngredientActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         title.setText(intent.getStringExtra("name"));
+        category.setText(intent.getStringExtra("category"));
+        brand.setText(intent.getStringExtra("brand"));
     }
 
 }

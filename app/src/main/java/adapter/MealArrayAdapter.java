@@ -47,11 +47,11 @@ public class MealArrayAdapter extends ArrayAdapter<Meal> {
         String MINUTES = " minutes";
         //temps de préparation
         TextView preparationTimeTextView = v.findViewById(R.id.mealItemPreparationTimeTextView);
-        preparationTimeTextView.setText(m.getTempsPreparation() + MINUTES);
+        preparationTimeTextView.setText(m.getPreparationTime() + MINUTES);
 
         //temps cuisson
         TextView cuissonTimeTextView = v.findViewById(R.id.mealItemCuissonTimeTextView);
-        cuissonTimeTextView.setText(m.getTempsCuisson() + MINUTES);
+        cuissonTimeTextView.setText(m.getBakingTime() + MINUTES);
 
         return v;
 
