@@ -1,5 +1,8 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.example.abilambin.nutritio.bdd.model.ingredientList.BlackList;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.util.Date;
@@ -102,6 +105,10 @@ public class Person {
         this.grocerie = grocerie;
     }
 
+    public BlackList getBlacklist() { return blacklist; }
+
+    public void setBlacklist(BlackList blacklist) { this.blacklist = blacklist; }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -115,4 +122,6 @@ public class Person {
                 ", blacklist=" + blacklist +
                 '}';
     }
+
+
 }

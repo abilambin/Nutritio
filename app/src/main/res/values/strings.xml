@@ -32,7 +32,10 @@
     <string name="stock">Stock</string>
     <string name="groceries">Courses</string>
     <string name="ingredients">Ingredients</string>
-    <string name="title_activity_ingredient">IngredientActivity</string>
+    <string name="title_activity_ingredient">Ingrédient</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

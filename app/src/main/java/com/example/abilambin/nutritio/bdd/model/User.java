@@ -1,5 +1,7 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;

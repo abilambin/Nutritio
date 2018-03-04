@@ -12,9 +12,10 @@ import com.example.abilambin.nutritio.fragment.EnergyFragment;
 
 import butterknife.ButterKnife;
 
-import com.example.abilambin.nutritio.fragment.IngredientListFragment;
+import com.example.abilambin.nutritio.fragment.GroceriesFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealListFragment;
+import com.example.abilambin.nutritio.fragment.StockFragment;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -84,20 +85,12 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         } else if (itemId == R.id.stocks) {
 
-            bundle = new Bundle();
-            bundle.putString("title", "Courses");
-
-            Fragment fragment = new IngredientListFragment();
-            fragment.setArguments(bundle);
+            Fragment fragment = new StockFragment();
             addFragment(fragment);
 
         } else if (itemId == R.id.planning) {
 
-            bundle = new Bundle();
-            bundle.putString("title", "Planning");
-
             Fragment fragment = new MealListFragment();
-            fragment.setArguments(bundle);
             addFragment(fragment);
 
 
@@ -112,11 +105,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         } else if(itemId == R.id.groceries){
 
-            bundle = new Bundle();
-            bundle.putString("title", "Courses");
-
-            Fragment fragment = new IngredientListFragment();
-            fragment.setArguments(bundle);
+            Fragment fragment = new GroceriesFragment();
             addFragment(fragment);
 
         }

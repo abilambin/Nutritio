@@ -1,9 +1,11 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by serial on 30/11/2017.
@@ -23,23 +25,17 @@ public class Meal implements Serializable{
     private Date date;
 
     @DatabaseField
-    private String description;
+    private Recipe recipe;
 
     @DatabaseField
-    private int preparationTime;
-
-    @DatabaseField
-    private int bakingTime;
+    private Person person;
 
     public Meal(){
 
     }
 
-
-    public Meal(String name, int preparationTime, int bakingTime){
+    public Meal(String name, Date date){
         this.name = name;
-        this.preparationTime = preparationTime;
-        this.bakingTime = bakingTime;
     }
 
     public int getId() {
@@ -62,27 +58,19 @@ public class Meal implements Serializable{
 
     public void setDate(Date date) { this.date = date; }
 
-    public String getDescription() {
-        return description;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
-    public int getPreparationTime() {
-        return preparationTime;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setPreparationTime(int preparationTime) {
-        this.preparationTime = preparationTime;
-    }
-
-    public int getBakingTime() {
-        return bakingTime;
-    }
-
-    public void setBakingTime(int bakingTime) {
-        this.bakingTime = bakingTime;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 }
