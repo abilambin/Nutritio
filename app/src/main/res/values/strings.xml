@@ -4,6 +4,12 @@
 
     <!-- Util -->
     <string name="submit">Valider</string>
+    <string name="email">Email</string>
+    <string name="password">Mot de passe</string>
+    <string name="confirm">Confirmation</string>
+    <string name="firstname">Prénom</string>
+    <string name="lastname">Nom</string>
+    <string name="birthdate">Date de naissance</string>
 
 
     <!-- Titles -->
@@ -41,6 +47,16 @@
     <string name="forgot_email">Veuilliez renseigner un email</string>
     <string name="forgot_password">Veuilliez renseigner un mot de passe</string>
     <string name="unknown_user">Utilisateur inconnu</string>
+    <string name="create_account">Créer un compte</string>
+
+    <!-- CreateAccountActivity -->
+    <string name="must_have_email">"Veillez renseigner un email valide"</string>
+    <string name="must_have_firstname">"Veuillez renseigner un prénom"</string>
+    <string name="must_have_lastname">"Veuillez renseigner un nom"</string>
+    <string name="must_have_password">Veuillez renseigner un mot de passe"</string>
+    <string name="bad_password_confirmation">"Veuillez renseigner deux mot de passe identiques"</string>
+    <string name="must_have_birthdate">"Veuillez renseigner une date de naissance</string>
+    <string name="account_created">"Compte créé"</string>
 
 
 </resources>
