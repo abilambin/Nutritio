@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.bdd.model.Grocerie;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.Meal;
-import com.example.abilambin.nutritio.bdd.model.MealIngredient;
-import com.example.abilambin.nutritio.bdd.model.Stock;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.example.abilambin.nutritio.bdd.model.User;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
@@ -55,7 +55,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private Dao<Grocerie, Integer> groceriesDao;
 
-    private Dao<MealIngredient, Integer> mealIngredientsDao;
+    private Dao<IngredientEntry, Integer> mealIngredientsDao;
 
     /**
      * Constructeur de l'objet DatabaseHelper
@@ -74,35 +74,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Meal.class);
             TableUtils.createTable(connectionSource, Grocerie.class);
             //TableUtils.createTable(connectionSource, Stock.class);
-            TableUtils.createTable(connectionSource, MealIngredient.class);
+            TableUtils.createTable(connectionSource, IngredientEntry.class);
             //TableUtils.createTable(connectionSource, User.class);
 
             //insertion de mocks
             //TODO supprimer les insertions quand plus besoin
-            Date date = new Date(2018,02,20);
-            date.setHours(8);
-            Meal meal = new Meal("Saumon aux brocolis", 10, 10);
-            meal.setDate(date);
-            this.getMealsDao().create(meal);
-
-            date.setHours(12);
-            meal = new Meal("Soupe de potiron", 30, 20);
-            meal.setDate(date);
-            this.getMealsDao().create(meal);
-
-            date.setHours(19);
-            meal = new Meal("Carbonnade Flammande", 30, 20);
-            meal.setDate(date);
-            this.getMealsDao().create(meal);
-
-            this.getMealsDao().create(new Meal("Soupe de poireaux", 30, 20));
-            this.getMealsDao().create(new Meal("Petit panaché", 30, 20));
-            this.getMealsDao().create(new Meal("Croquettes de poisson", 30, 20));
-            this.getMealsDao().create(new Meal("Epinards à la crème", 30, 20));
-            this.getMealsDao().create(new Meal("Wrap de nuggets", 30, 20));
-            this.getMealsDao().create(new Meal("Cuillère d'huile de foie de morue", 30, 20));
-            this.getMealsDao().create(new Meal("Haricots verts", 30, 20));
-            this.getMealsDao().create(new Meal("Purée Mousline", 30, 20));
 
             this.getIngredientsDao().create(createIngredient("Pomme", "Fruits et Légumes"));
             this.getIngredientsDao().create(createIngredient("Pomme", "Fruits et Légumes"));
@@ -135,14 +111,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
 
             // Dans le cas d'un éventuel changement dans la base pour une nouvelle version de l'appli
-            // incrémentez la varaible DATABASE_VERSION, alors cette méthode sera invoquée
+            // incrémentez la variable DATABASE_VERSION, alors cette méthode sera invoquée
             // automatiquement.
 
             // Le développeur doit gérer la logique de mise à niveau ici, c'est-à-dire créer
             // une nouvelle table ou une nouvelle colonne dans une table existante,
             // prendre les sauvegardes de la base de données existante, etc.
 
-            TableUtils.dropTable(connectionSource, MealIngredient.class, true);
+            TableUtils.dropTable(connectionSource, IngredientEntry.class, true);
             TableUtils.dropTable(connectionSource, Ingredient.class, true);
             TableUtils.dropTable(connectionSource, Meal.class, true);
             TableUtils.dropTable(connectionSource, Grocerie.class, true);
@@ -217,13 +193,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
     /**
-     * permet de récupérer le Dao des MealIngredient
+     * permet de récupérer le Dao des IngredientEntry
      * @return Dao
      * @throws SQLException Exception SQL
      */
-    public Dao<MealIngredient, Integer> getMealIngredientDao() throws SQLException {
+    public Dao<IngredientEntry, Integer> getMealIngredientDao() throws SQLException {
         if(mealIngredientsDao == null){
-            mealIngredientsDao = getDao(MealIngredient.class);
+            mealIngredientsDao = getDao(IngredientEntry.class);
         }
         return mealIngredientsDao;
     }

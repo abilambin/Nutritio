@@ -25,8 +25,6 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
 
     LinearLayout ll;
 
-
-
     @BindView(R.id.mealListFragmentTitle)
     protected TextView title;
 
@@ -37,23 +35,16 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
 
     @Override
     public List<Meal> getList(){
-        try {
-            Dao<Meal, Integer> dao = getHelper().getMealsDao();
-            List<Meal> list = dao.queryForAll();
+            List<Meal> list = new ArrayList<>();
             return list;
-        } catch (SQLException e){
-            System.out.println("##### ERROR - Impossible de récupérer les plats");
-            return new ArrayList<>();
-        }
+
+
 
     }
 
     @Override
     protected View createElementView(final Meal meal, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.list_meal, null);
-        String minutes = " min";
-
-
 
 
         if (meal.getDate() != null) {
@@ -77,12 +68,6 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
         TextView nameMealTV = vi.findViewById(R.id.mealItemNameTextView);
         nameMealTV.setText(meal.getName());
 
-        TextView tempsCuissonTV = vi.findViewById(R.id.mealItemCuissonTimeTextView);
-        tempsCuissonTV.setText(meal.getTempsCuisson()+minutes);
-
-        TextView tempsPreparaionTV = vi.findViewById(R.id.mealItemPreparationTimeTextView);
-        tempsPreparaionTV.setText(meal.getTempsPreparation()+minutes);
-
         Bundle bundle = getArguments();
         if (bundle != null) {
             title.setText(bundle.getString("title"));
@@ -95,10 +80,8 @@ public class MealListFragment extends AbstractListFragment<Meal> implements Adap
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), RecipeActivity.class);
 
-                intent.putExtra("title", meal.getName());
-                intent.putExtra("description", meal.getDescription());
-                intent.putExtra("tempsPreparation", meal.getTempsPreparation());
-                intent.putExtra("tempsCuisson", meal.getTempsCuisson());
+                intent.putExtra("name", meal.getName());
+                intent.putExtra("description", meal.getRecipe());
                 startActivity(intent);
 
             }

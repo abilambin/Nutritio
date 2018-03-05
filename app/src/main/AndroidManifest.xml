@@ -25,6 +25,10 @@
             android:label="@string/app_name" />
         <activity android:name=".activity.DashBoard" />
         <activity android:name=".activity.CreateAccountActivity"></activity>
+        <activity
+            android:name=".activity.IngredientActivity"
+            android:label="@string/title_activity_ingredient"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

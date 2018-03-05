@@ -1,8 +1,8 @@
 #
-# generated on 2018/02/23 03:51:07
+# generated on 2018/03/03 11:13:27
 #
 # --table-start--
-dataClass=com.example.abilambin.nutritio.bdd.model.Grocerie
+dataClass=com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie
 tableName=grocerie
 # --table-fields-start--
 # --field-start--
@@ -11,6 +11,9 @@ generatedId=true
 # --field-end--
 # --field-start--
 fieldName=name
+# --field-end--
+# --field-start--
+fieldName=ingredientEntries
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -25,6 +28,9 @@ generatedId=true
 # --field-end--
 # --field-start--
 fieldName=name
+# --field-end--
+# --field-start--
+fieldName=category
 # --field-end--
 # --field-start--
 fieldName=brand
@@ -71,16 +77,19 @@ fieldName=date
 fieldName=description
 # --field-end--
 # --field-start--
-fieldName=tempsPreparation
+fieldName=preparationTime
 # --field-end--
 # --field-start--
-fieldName=tempsCuisson
+fieldName=bakingTime
+# --field-end--
+# --field-start--
+fieldName=ingredientEntries
 # --field-end--
 # --table-fields-end--
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.abilambin.nutritio.bdd.model.Stock
+dataClass=com.example.abilambin.nutritio.bdd.model.ingredientList.Stock
 tableName=stock
 # --table-fields-start--
 # --field-start--
@@ -89,6 +98,9 @@ generatedId=true
 # --field-end--
 # --field-start--
 fieldName=name
+# --field-end--
+# --field-start--
+fieldName=ingredientEntries
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -156,19 +168,20 @@ maxForeignAutoRefreshLevel=2
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.abilambin.nutritio.bdd.model.MealIngredient
-tableName=mealingredient
+dataClass=com.example.abilambin.nutritio.bdd.model.IngredientEntry
+tableName=ingrediententry
 # --table-fields-start--
 # --field-start--
 fieldName=id
 generatedId=true
 # --field-end--
 # --field-start--
-fieldName=meal
+fieldName=amount
 canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=unit
+canBeNull=false
 # --field-end--
 # --field-start--
 fieldName=ingredient
@@ -178,10 +191,34 @@ foreignAutoRefresh=true
 maxForeignAutoRefreshLevel=2
 # --field-end--
 # --field-start--
-fieldName=quantity
+fieldName=blackList
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
 # --field-end--
 # --field-start--
-fieldName=typeOfQuantity
+fieldName=grocerie
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=recipe
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=stock
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=meal
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -231,7 +268,7 @@ maxForeignAutoRefreshLevel=2
 # --table-end--
 #################################
 # --table-start--
-dataClass=com.example.abilambin.nutritio.bdd.model.BlackList
+dataClass=com.example.abilambin.nutritio.bdd.model.ingredientList.BlackList
 tableName=blacklist
 # --table-fields-start--
 # --field-start--

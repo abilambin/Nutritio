@@ -1,5 +1,6 @@
 package com.example.abilambin.nutritio.bdd.model;
 
+import com.example.abilambin.nutritio.bdd.model.enums.Category;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -17,6 +18,9 @@ public class Ingredient implements Serializable {
 
     @DatabaseField
     private String name;
+
+    @DatabaseField
+    private Category category;
 
     @DatabaseField
     private String brand;
@@ -80,6 +84,52 @@ public class Ingredient implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getCategoryText() {
+        String result;
+
+        switch (category) {
+            case FRUIT:
+                result = "Fruits";
+                break;
+            case VEGETABLE_BEAN:
+                result = "Légumes & Légumineuses";
+                break;
+            case MEAT_FISH:
+                result = "Viandes et Poissons";
+                break;
+            case MILK_PRODUCT:
+                result = "Produits Laitier";
+                break;
+            case DRINK:
+                result = "Boissons";
+                break;
+            case GRAIN:
+                result = "Féculents";
+                break;
+            case SWEET:
+                result = "Patisseries & Friandises";
+                break;
+            case SAUCE_SPICE:
+                result = "Epices & Sauces";
+                break;
+            case OTHER:
+                result = "Autre";
+                break;
+            default:
+                result = "Sans catégorie";
+        }
+
+        return result;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getBrand() {

@@ -1,6 +1,10 @@
 package com.example.abilambin.nutritio.bdd.model;
 
 import com.example.abilambin.nutritio.bdd.model.enums.Unit;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.BlackList;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -9,7 +13,7 @@ import java.io.Serializable;
  * Created by serial on 11/01/2018.
  */
 
-public class MealIngredient implements Serializable {
+public class IngredientEntry implements Serializable {
 
     private static long serialVersionUID = 6L;
 
@@ -40,11 +44,11 @@ public class MealIngredient implements Serializable {
     @DatabaseField(foreign = true, foreignAutoRefresh = true)
     private Meal meal;
 
-    public MealIngredient() {
+    public IngredientEntry() {
 
     }
 
-    public MealIngredient(int id, int amount, Unit unit, Ingredient ingredient, BlackList blackList, Grocerie grocerie, Recipe recipe, Stock stock, Meal meal) {
+    public IngredientEntry(int id, int amount, Unit unit, Ingredient ingredient, BlackList blackList, Grocerie grocerie, Recipe recipe, Stock stock, Meal meal) {
         this.id = id;
         this.amount = amount;
         this.unit = unit;
@@ -72,8 +76,64 @@ public class MealIngredient implements Serializable {
         this.amount = amount;
     }
 
-    public Unit getUnit() {
-        return unit;
+    public Unit getUnit() { return unit; }
+
+    public String getUnitText() {
+        String result;
+        switch (unit) {
+            case GRAMM :
+                result = "grammes";
+                break;
+            case MILLILITRE :
+                result = "millilitres";
+                break;
+            case UNIT :
+                result = "unités";
+                break;
+            case TEASPOON :
+                result = "cuillère à café";
+                break;
+            case TABLESPOON :
+                result = "cuillère à soupe";
+                break;
+            case CUP :
+                result = "tasse";
+                break;
+            default:
+                result = "unité";
+                break;
+        }
+
+        return result;
+    }
+
+    public String getUnitSmallText() {
+        String result;
+        switch (unit) {
+            case GRAMM :
+                result = "g";
+                break;
+            case MILLILITRE :
+                result = "ml";
+                break;
+            case UNIT :
+                result = "unit.";
+                break;
+            case TEASPOON :
+                result = " c.à.c.";
+                break;
+            case TABLESPOON :
+                result = " c.à.s.";
+                break;
+            case CUP :
+                result = "tasse";
+                break;
+            default:
+                result = "unit.";
+                break;
+        }
+
+        return result;
     }
 
     public void setUnit(Unit unit) {
@@ -130,7 +190,7 @@ public class MealIngredient implements Serializable {
 
     @Override
     public String toString() {
-        return "MealIngredient{" +
+        return "IngredientEntry{" +
                 "id=" + id +
                 ", amount=" + amount +
                 ", unit=" + unit +
