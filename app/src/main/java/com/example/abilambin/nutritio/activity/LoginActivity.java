@@ -49,24 +49,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        // Test la présence des informations
         if(email.getText() == ""){
             Toast.makeText(LoginActivity.this, R.string.forgot_email, Toast.LENGTH_SHORT).show();
         }else if(password.getText() == ""){
             Toast.makeText(LoginActivity.this, R.string.forgot_password, Toast.LENGTH_SHORT).show();
         }
 
+        // Ajoute ces informations au singleton AuthenticateUser
         AuthenticateUser.getInstance().setAuthenticateInfo(email.getText().toString(), password.getText().toString());
 
         String authToken = "";
         try {
+            // Test la cohérence des informations
             authToken = AuthenticateUser.getInstance().testAuthenticateInfo();
 
+            // Si celles si sont correctes
             if(authToken != null){
+                // Stockage dans les SharedPreferences
                 SharedPreferences.Editor editor = getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE).edit();
                 editor.putString("authToken", authToken);
                 editor.putString("username", email.getText().toString());
                 editor.apply();
 
+                // Go to DashBoard
                 startActivity(new Intent(LoginActivity.this, DashBoard.class));
             }else{
                 Toast.makeText(LoginActivity.this, R.string.unknown_user, Toast.LENGTH_SHORT).show();

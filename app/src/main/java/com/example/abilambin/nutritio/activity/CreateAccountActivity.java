@@ -46,13 +46,14 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if(this.validateField()) {
-            JsonObject account = new JsonObject();
+            JsonObject account = new JsonObject();                                  // JsonObject matérialisant le nouveau compte
             SimpleDateFormat dayDF = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat hourDF = new SimpleDateFormat("hh:mm:ss");
             Date now = Calendar.getInstance().getTime();
-            JsonArray authorities = new JsonArray();
-            authorities.add("ROLE_USER");
+            JsonArray authorities = new JsonArray();                                // Droit de l'utilisateur
+            authorities.add("ROLE_USER");                                           //
 
+            // Remplissage des informations du compte
             try {
                 account.addProperty("activated", true);
                 account.add("authorities", authorities);
@@ -75,8 +76,10 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
                 BackgroundRestCaller caller = new BackgroundRestCaller();
 
+                // Inscription
                 caller.execute(request);
 
+                // Récupération de la réponse sous fomre de JsonObject
                 JsonObject response = new JsonParser().parse(caller.get()).getAsJsonObject();
                 if (caller.getResponseCode() >= 300) {
                     Toast.makeText(CreateAccountActivity.this, "Error : " + response.get("title"), Toast.LENGTH_SHORT).show();
@@ -93,6 +96,10 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     * Vérifie que la cohérence des champs
+     * @return True si ceux-ci sont correctement renseignés, false sinon
+     */
     private boolean validateField(){
         if(email.getText().toString().trim().equals("") || !email.getText().toString().contains("@")) {
             Toast.makeText(CreateAccountActivity.this, R.string.must_have_email, Toast.LENGTH_SHORT).show();
