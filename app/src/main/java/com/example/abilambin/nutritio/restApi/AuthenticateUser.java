@@ -64,6 +64,7 @@ public class AuthenticateUser {
             if(token == null){
                 JsonElement status = jsonRes.get("status");
 
+                // Utilisateur inconnu
                 if(status != null && status.getAsInt() == 401){
                     return false;
                 }
@@ -93,7 +94,14 @@ public class AuthenticateUser {
         this.password = password;
     }
 
-    public boolean testAuthenticateInfo() throws CannotAuthenticateUserException {
-            return this.makeAuth();
+    public String testAuthenticateInfo() throws CannotAuthenticateUserException {
+        if(this.makeAuth())
+            return this.authToken;
+
+        return null;
+    }
+
+    public void setAuthenticateToken(String authToken) {
+        this.authToken = authToken;
     }
 }
