@@ -21,6 +21,9 @@ public class AuthenticateUser {
     private String password;
     private String authToken;
 
+    private AuthenticateUser(){
+
+    }
 
     public static AuthenticateUser getInstance(){
         if(authenticateUser != null){
