@@ -1,5 +1,6 @@
 package com.example.abilambin.nutritio.fragment;
 
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
@@ -9,7 +10,7 @@ import com.example.abilambin.nutritio.restApi.specific.GrocerieRestCaller;
 
 import butterknife.BindView;
 
-public class GroceriesFragment extends IngredientListFragment<Grocerie> implements AdapterView.OnItemClickListener {
+public class GroceriesFragment extends IngredientListFragment<Grocerie> {
 
     @Override
     protected int getListLayout() {
@@ -19,6 +20,4 @@ public class GroceriesFragment extends IngredientListFragment<Grocerie> implemen
     public GroceriesFragment(){
         this.restCaller = new GrocerieRestCaller();
     }
-
-
 }

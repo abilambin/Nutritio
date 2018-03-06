@@ -2,11 +2,14 @@ package com.example.abilambin.nutritio.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
@@ -22,12 +25,13 @@ import butterknife.ButterKnife;
  * Created by serial on 09/02/2018.
  */
 
-public abstract class AbstractListFragment<E> extends Fragment implements AdapterView.OnItemClickListener {
+public abstract class AbstractListFragment<E> extends Fragment implements AdapterView.OnItemLongClickListener, AdapterView.OnItemClickListener {
 
     protected DatabaseHelper databaseHelper;
 
     @BindView(R.id.fragmentList)
     LinearLayout listLayout;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -60,6 +64,12 @@ public abstract class AbstractListFragment<E> extends Fragment implements Adapte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getActivity(), "Item: " + position, Toast.LENGTH_SHORT).show();
+        return false;
     }
 
     protected abstract int getListLayout();

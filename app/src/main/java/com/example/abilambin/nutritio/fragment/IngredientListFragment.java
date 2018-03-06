@@ -3,8 +3,10 @@ package com.example.abilambin.nutritio.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ActionMenuView;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,7 +31,7 @@ import butterknife.BindView;
 
 import static com.example.abilambin.nutritio.restApi.AuthenticateUser.getInstance;
 
-public abstract class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> implements AdapterView.OnItemClickListener {
+public abstract class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
 
     LinearLayout ll;
 
@@ -88,7 +90,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
         ingredientQuantity.setText(entry.getAmount() + entry.getUnitSmallText());
 
 
-        ll = vi.findViewById(R.id.linearLayout);
+        ll = vi.findViewById(R.id.ingredientContainer);
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +99,17 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
                 intent.putExtra("ingredient", ingredient);
                 startActivity(intent);
 
+            }
+        });
+
+        ll.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                ll.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                ll.setBackgroundColor(222222);
+                ActionBarCallBack bar = new ActionBarCallBack();
+                getActivity().startActionMode(bar);
+                return true;
             }
         });
 
