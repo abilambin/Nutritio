@@ -21,9 +21,14 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
     protected BottomNavigationView navigationView;
 
+    protected int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //On souhaite que la page qui s'affiche en premier soit celle du Dashboard
+        id = R.id.dashboard;
 
         ButterKnife.bind(this);
         setContentView(R.layout.activity_dash_board);
@@ -33,6 +38,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
     }
 
+
+    /**
+     * Ajoute le fragment en paramètre à la vue en cours (à la suite des autres fragments déjà présents)
+     * @param fragment le fragment à ajouter
+     */
     private void addFragment(Fragment fragment) {
         getFragmentManager()
                 .beginTransaction()
@@ -41,6 +51,9 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
                 .commit();
     }
 
+    /**
+     * Permet de retirer tous les fragments de la vue (afin de les remplacer par de nouveaux par exemple)
+     */
     private void clearStack() {
         int backStackEntry = getFragmentManager().getBackStackEntryCount();
         if (backStackEntry > 0) {
@@ -62,16 +75,30 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
     @Override
     protected void onStart() {
         super.onStart();
-        selectBottomNavigationBarItem(R.id.dashboard);
+
+        //Au (re)démarrage de l'activité, on affiche la dernière "page" affichée.
+        selectBottomNavigationBarItem(id);
         updateFragments(navigationView.getSelectedItemId());
+
+
     }
 
+    /**
+     * A la sélection d'un item dans la barre de navigation (en bas) :
+     * on appelle les fragments voulus en fonction de la "page" désirée
+     * @param item l'item cliqué dans le menu
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
         updateFragments(item.getItemId());
         return true;
     }
 
+    /**
+     * Permet d'ajouter tous les fragments nécessaires pour une "page" en particulier
+     * @param itemId l'id de la page voulue
+     */
     private void updateFragments(Integer itemId) {
         clearStack();
 
@@ -109,8 +136,14 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             addFragment(fragment);
 
         }
+
+        id = itemId;
     }
 
+    /**
+     * Permet de mettre en surbrillance l'item voulu dans la barre de navigation (celui sur lequel on aura cliqué)
+     * @param itemId l'id de l'item à mettre en surbrillance
+     */
     void selectBottomNavigationBarItem(int itemId) {
         Menu menu = navigationView.getMenu();
         for (int i = 0, size = menu.size(); i < size; i++) {

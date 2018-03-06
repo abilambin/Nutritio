@@ -1,8 +1,10 @@
 package com.example.abilambin.nutritio.fragment;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +39,8 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
     GenericRestCaller<T> restCaller;
 
+    private ActionMode mActionMode;
+
     @Override
     protected int getListLayout() {
         return R.layout.fragment_groceries;
@@ -45,10 +49,10 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     @Override
     public List<IngredientEntry> getList(){
         try {
-            AuthenticateUser user = getInstance();
-            user.setAuthenticateInfo("admin", "cam3113?");
+            //On récupère la liste des ingrédients récupéré par appel rest
             T list = restCaller.get(1);
 
+            //Si elle est null, alors on en crée une vide
             if (list == null) return new ArrayList<>();
 
             return list.getIngredientEntries();
@@ -73,6 +77,12 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
     }
 
+    /**
+     * Génère la vue de l'ingrédient en paramètre (y ajoute les listener d'évênements)
+     * @param entry l'entrée Ingrédient/Quantité à afficher
+     * @param inflater
+     * @return
+     */
     @Override
     protected View createElementView(final IngredientEntry entry, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.list_ingredient, null);
@@ -90,25 +100,41 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
         ingredientQuantity.setText(entry.getAmount() + entry.getUnitSmallText());
 
 
+        // On récupère le layout de l'ingrédient
         ll = vi.findViewById(R.id.ingredientContainer);
+
+        // ON CLICK -> READ
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), IngredientActivity.class);
 
+                // On appelle l'activité de visualisation de l'ingrédient concerné
                 intent.putExtra("ingredient", ingredient);
                 startActivity(intent);
 
             }
         });
 
+        // ON LONG CLICK -> UPDATE, DELETE
         ll.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                // Génération d'un retour haptique
                 ll.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                //TODO : Changer le style de l'élément sélectionné
                 ll.setBackgroundColor(222222);
+
+
+                // On génère la barre de modification de l'ingrédient
                 ActionBarCallBack bar = new ActionBarCallBack();
-                getActivity().startActionMode(bar);
+
+                // On ajoute l'id de la vue de l'ingrédient à la barre
+                bar.setSelectedItemId(v.getId());
+                bar.setSelectedEntry(entry);
+
+                mActionMode = getActivity().startActionMode(bar);
+
                 return true;
             }
         });
@@ -116,5 +142,14 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
         return vi;
     }
+
+    public void onStop() {
+        if (mActionMode != null) mActionMode.finish();
+
+        super.onStop();
+    }
+
+
+
 
 }
