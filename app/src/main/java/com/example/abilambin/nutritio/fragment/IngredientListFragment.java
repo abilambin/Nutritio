@@ -1,16 +1,12 @@
 package com.example.abilambin.nutritio.fragment;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ActionMenuView;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,19 +18,13 @@ import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
-import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
-import com.example.abilambin.nutritio.restApi.specific.GrocerieRestCaller;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
-import butterknife.OnClick;
-
-import static com.example.abilambin.nutritio.restApi.AuthenticateUser.getInstance;
 
 public abstract class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
 
@@ -146,6 +136,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
                 // On ajoute l'id de la vue de l'ingrédient à la barre
                 bar.setSelectedItemId(v.getId());
                 bar.setSelectedEntry(entry);
+                bar.setContext(v.getContext());
 
                 mActionMode = getActivity().startActionMode(bar);
                 Object[] tags = new Object[2];

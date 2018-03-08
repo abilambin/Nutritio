@@ -68,9 +68,10 @@
     <string name="units_prompt">Chose a unit</string>
     <string name="unit">Unité</string>
     <string name="quantity">Quantité</string>
+    <string name="cancel">Annuler</string>
     <string-array name="units">
         <item>Grammes (g)</item>
-        <item>Millilites (ml)</item>
+        <item>Millilitres (ml)</item>
         <item>Unité</item>
         <item>Cuillère à café</item>
         <item>Cuillère à soupe</item>
