@@ -43,6 +43,7 @@
     <string name="groceries">Courses</string>
     <string name="ingredients">Ingredients</string>
     <string name="title_activity_ingredient">Ingrédient</string>
+    <string name="category">Catégorie</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -61,6 +62,8 @@
     <string name="bad_password_confirmation">"Veuillez renseigner deux mot de passe identiques"</string>
     <string name="must_have_birthdate">"Veuillez renseigner une date de naissance</string>
     <string name="account_created">"Compte créé"</string>
+    <string name="title_activity_add_ingredient_to_groceries">AddIngredientToGroceriesActivity
+    </string>
 
 
 </resources>

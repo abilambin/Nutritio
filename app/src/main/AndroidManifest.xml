@@ -24,10 +24,14 @@
             android:name=".activity.RecipeActivity"
             android:label="@string/app_name" />
         <activity android:name=".activity.DashBoard" />
-        <activity android:name=".activity.CreateAccountActivity"></activity>
+        <activity android:name=".activity.CreateAccountActivity" />
         <activity
             android:name=".activity.IngredientActivity"
             android:label="@string/title_activity_ingredient"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AddIngredientToListActivity"
+            android:label="@string/title_activity_add_ingredient_to_groceries"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -3,6 +3,7 @@ package com.example.abilambin.nutritio.fragment;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.AddIngredientToListActivity;
 import com.example.abilambin.nutritio.activity.IngredientActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
@@ -30,6 +32,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 import static com.example.abilambin.nutritio.restApi.AuthenticateUser.getInstance;
 
@@ -40,6 +43,9 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     GenericRestCaller<T> restCaller;
 
     private ActionMode mActionMode;
+
+    @BindView(R.id.addIngredientButton)
+    FloatingActionButton addIngredientButton;
 
     @Override
     protected int getListLayout() {
@@ -86,6 +92,14 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     @Override
     protected View createElementView(final IngredientEntry entry, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.list_ingredient, null);
+
+        addIngredientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), AddIngredientToListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         final Ingredient ingredient = entry.getIngredient();
         String brand = ingredient.getBrand();

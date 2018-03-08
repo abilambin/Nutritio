@@ -100,7 +100,9 @@ class ActionBarCallBack implements ActionMode.Callback {
 
     @Override
     public void onDestroyActionMode(ActionMode mode) {
-        // TODO Auto-generated method stub
+        Object[] tags = (Object[]) mode.getTag();
+        Activity activity = (Activity) tags[0];
+        View view = (View) activity.getCurrentFocus();
 
     }
 
