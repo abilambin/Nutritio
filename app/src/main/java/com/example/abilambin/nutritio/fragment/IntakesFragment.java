@@ -80,6 +80,7 @@ public class IntakesFragment extends Fragment {
         int userId = Integer.parseInt(prefs.getString("id", null));
 
         IntakesLoader loader = new IntakesLoader(
+                this.getActivity(),
                 userId,
                 proteinesProgressBar,
                 proteinesPctTextView,

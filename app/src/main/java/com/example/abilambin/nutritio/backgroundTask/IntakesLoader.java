@@ -1,11 +1,12 @@
 package com.example.abilambin.nutritio.backgroundTask;
 
 import android.accounts.NetworkErrorException;
-import android.content.SharedPreferences;
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.RestCallerConstant;
@@ -19,9 +20,6 @@ import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-
-import static android.content.Context.MODE_PRIVATE;
-import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
 
 /**
  * Created by bellamy on 08/03/18.
@@ -42,14 +40,17 @@ public class IntakesLoader extends AsyncTask<Void, Void, Void> {
     private ProgressBar selProgressBar;
     private TextView selPctTextView;
 
-    private final int proteineNeeds = 70000;
-    private final int glucideNeeds = 124000;
-    private final int lipideNeeds = 62000;
-    private final int sucreNeeds = 30000;
-    private final int fibreNeeds = 30000;
-    private final int agsNeeds = 10000;
+    private final long proteineNeeds = 70000;
+    private final long glucideNeeds = 124000;
+    private final long lipideNeeds = 62000;
+    private final long sucreNeeds = 30000;
+    private final long fibreNeeds = 30000;
+    private final long agsNeeds = 10000;
 
-    public IntakesLoader(int userId, ProgressBar proteinesProgressBar, TextView proteinesPctTextView, ProgressBar glucidesProgressBar, TextView glucidesPctTextView, ProgressBar sucreProgressBar, ProgressBar lipidesProgressBar, TextView lipidesPctTextView, ProgressBar agsProgressBar, ProgressBar fibresProgressBar, TextView fibresPctTextView, ProgressBar selProgressBar, TextView selPctTextView) {
+    private Activity activity;
+
+    public IntakesLoader(Activity activity, int userId, ProgressBar proteinesProgressBar, TextView proteinesPctTextView, ProgressBar glucidesProgressBar, TextView glucidesPctTextView, ProgressBar sucreProgressBar, ProgressBar lipidesProgressBar, TextView lipidesPctTextView, ProgressBar agsProgressBar, ProgressBar fibresProgressBar, TextView fibresPctTextView, ProgressBar selProgressBar, TextView selPctTextView) {
+        this.activity = activity;
         this.userId = userId;
         this.proteinesProgressBar = proteinesProgressBar;
         this.proteinesPctTextView = proteinesPctTextView;
@@ -78,12 +79,12 @@ public class IntakesLoader extends AsyncTask<Void, Void, Void> {
             Response response = httpClient.newCall(getUserMeals).execute();
             if(response.code() == 200){
                 JsonArray meals = new JsonParser().parse(response.body().string()).getAsJsonArray();
-                int totalProteineNeeds = 0;
-                int totalGlucideNeeds = 0;
-                int totalLipideNeeds = 0;
-                int totalSucreNeeds = 0;
-                int totalFibreNeeds = 0;
-                int totalAgsNeeds = 0;
+                long totalProteineNeeds = 0;
+                long totalGlucideNeeds = 0;
+                long totalLipideNeeds = 0;
+                long totalSucreNeeds = 0;
+                long totalFibreNeeds = 0;
+                long totalAgsNeeds = 0;
 
                 // Pour chaque repas
                 for (JsonElement meal : meals) {
@@ -99,24 +100,51 @@ public class IntakesLoader extends AsyncTask<Void, Void, Void> {
 
                         JsonArray ingredients = new JsonParser().parse(response.body().string()).getAsJsonObject().get("ingredientEntries").getAsJsonArray();
 
-                        for (JsonElement ingredient : ingredients) {
-                            totalProteineNeeds += ingredient.getAsJsonObject().get("protein").getAsInt();
-                            totalGlucideNeeds += ingredient.getAsJsonObject().get("carbohydrate").getAsInt();
-                            totalLipideNeeds += ingredient.getAsJsonObject().get("fat").getAsInt();
-                            totalSucreNeeds += ingredient.getAsJsonObject().get("sugar").getAsInt();
-                            totalFibreNeeds += ingredient.getAsJsonObject().get("fibre").getAsInt();
-                            totalAgsNeeds += ingredient.getAsJsonObject().get("saturatedFat").getAsInt();
+                        // Pour chaque ingredient
+                        for (JsonElement ingredientEntry : ingredients) {
+                            int amount = ingredientEntry.getAsJsonObject().get("amount").getAsInt();
+                            JsonObject ingredient = ingredientEntry.getAsJsonObject().get("ingredient").getAsJsonObject();
+                            totalProteineNeeds += amount * ingredient.get("protein").getAsInt() / 100;                          //
+                            totalGlucideNeeds += amount * ingredient.get("carbohydrate").getAsInt() / 100;                      //
+                            totalLipideNeeds += amount * ingredient.get("fat").getAsInt() / 100;                                //
+                            totalSucreNeeds += amount * ingredient.get("sugar").getAsInt() / 100;                               // Divisé par 100 puique les valeurs nutritives sont notées pour 100 unités
+                            totalFibreNeeds += amount * ingredient.get("fibre").getAsInt() / 100;                               //
+                            totalAgsNeeds += amount * ingredient.get("saturatedFat").getAsInt() / 100;                          //
                         }
 
                     }
                 }
 
-                proteinesProgressBar.setProgress(totalProteineNeeds * 100 / proteineNeeds);
+                // Calcul des pourcentages journalier
+                final int pctProtein = (int) (totalProteineNeeds * 100 / proteineNeeds);
+                final int pctGlucide = (int) (totalGlucideNeeds * 100 / glucideNeeds);
+                final int pctLipide = (int) (totalLipideNeeds * 100 / lipideNeeds);
+                final int pctSucre = (int) (totalSucreNeeds * 100 / sucreNeeds);
+                final int pctFibre = (int) (totalFibreNeeds * 100 / fibreNeeds);
+                final int pctAgs = (int) (totalAgsNeeds * 100 / agsNeeds);
 
-                System.out.println(this.userId);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                    proteinesProgressBar.setProgress(pctProtein);
+                    proteinesPctTextView.setText(pctProtein + "%");
+
+                    glucidesProgressBar.setProgress(pctGlucide);
+                    glucidesPctTextView.setText(pctGlucide + "%");
+                    sucreProgressBar.setProgress(pctSucre);
+
+                    lipidesProgressBar.setProgress(pctLipide);
+                    lipidesPctTextView.setText(pctLipide + "%");
+                    agsProgressBar.setProgress(pctAgs);
+
+                    fibresProgressBar.setProgress(pctFibre);
+                    fibresPctTextView.setText(pctFibre + "%");
+                    }
+                });
+                /*System.out.println(this.userId);
                 System.out.println("#############");
                 System.out.println(response.body().string());
-                System.out.println("#############");
+                System.out.println("#############");*/
             }else{
                 throw new NetworkErrorException("Unable to load user intakes information : " + response.code());
             }
