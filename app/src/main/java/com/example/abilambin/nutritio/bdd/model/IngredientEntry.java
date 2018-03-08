@@ -107,6 +107,29 @@ public class IngredientEntry implements Serializable {
         return result;
     }
 
+    public static Unit getUnitFromText(String text){
+        String s = text.toLowerCase();
+        switch (s){
+            case "gramme":
+            case "grammes":
+            case "grammes (g)":
+                return Unit.GRAMM;
+            case "millilitres":
+            case "millilitres (ml)":
+                return Unit.MILLILITRE;
+            case "unités":
+                return Unit.UNIT;
+            case "cuillère à café":
+                return Unit.TEASPOON;
+            case "cuillère à soupe" :
+                return Unit.TABLESPOON;
+            case "tasse" :
+                return Unit.CUP;
+            default:
+                return null;
+        }
+    }
+
     public String getUnitSmallText() {
         String result;
         switch (unit) {
