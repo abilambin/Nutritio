@@ -107,8 +107,10 @@ public class AddIngredientToGroceryAdapter extends BaseAdapter implements Filter
                 } else {
                     constraint = constraint.toString().toLowerCase();
                     for (int i = 0; i < originalsIngredients.size(); i++) {
-                        String data = originalsIngredients.get(i).getName();
-                        if (data.toLowerCase().startsWith(constraint.toString())) {
+                        String name = originalsIngredients.get(i).getName();
+                        String brand = originalsIngredients.get(i).getBrand();
+                        brand = brand == null ? "" : brand;
+                        if (name.toLowerCase().contains(constraint.toString()) || brand.toLowerCase().contains(constraint.toString())) {
                             filteredArrList.add(originalsIngredients.get(i));
                         }
                     }
