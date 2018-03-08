@@ -1,6 +1,7 @@
 package com.example.abilambin.nutritio.fragment;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +11,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
 
 
 /**
@@ -25,7 +30,6 @@ public class IntakesFragment extends Fragment {
 
     @BindView(R.id.proteinesPctTextView)
     TextView proteinesPctTextView;
-
 
     @BindView(R.id.glucidesProgressBar)
     ProgressBar glucidesProgressBar;
@@ -70,6 +74,27 @@ public class IntakesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_intakes, container, false);
         ButterKnife.bind(this, view);
+
+        // Récupération de l'id utilisateur
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
+        int userId = Integer.parseInt(prefs.getString("id", null));
+
+        IntakesLoader loader = new IntakesLoader(
+                userId,
+                proteinesProgressBar,
+                proteinesPctTextView,
+                glucidesProgressBar,
+                glucidesPctTextView,
+                sucreProgressBar,
+                lipidesProgressBar,
+                lipidesPctTextView,
+                agsProgressBar,
+                fibresProgressBar,
+                fibresPctTextView,
+                selProgressBar,
+                selPctTextView);
+
+        loader.execute();
 
         proteinesProgressBar.setProgress(75);
         proteinesPctTextView.setText("75%");

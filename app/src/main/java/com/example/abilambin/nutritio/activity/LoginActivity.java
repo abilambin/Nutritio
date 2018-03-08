@@ -11,9 +11,17 @@ import android.widget.Toast;
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.restApi.AuthenticateUser;
+import com.example.abilambin.nutritio.restApi.RestCallerConstant;
+import com.example.abilambin.nutritio.utils.BackgroundRestCaller;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Request;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     @BindView(R.id.email_login) TextView email;
@@ -27,11 +35,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         // Vérification des SharedPreferences. i.e : Déjà connecté
-        SharedPreferences prefs = getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         String authToken = prefs.getString("authToken", null);
         String username = prefs.getString("username", null);
+        String userId = prefs.getString("id", null);
+        String userInfo = prefs.getString("userInfo", null);
 
-        if (authToken != null && username != null) {
+        if (authToken != null && username != null && userId != null && userInfo != null) {
             AuthenticateUser.getInstance().setAuthenticateToken(authToken);
             startActivity(new Intent(LoginActivity.this, DashBoard.class));
         }
@@ -64,12 +74,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // Test la cohérence des informations
             authToken = AuthenticateUser.getInstance().testAuthenticateInfo();
 
+
             // Si celles si sont correctes
             if(authToken != null){
+                // Récupération des infos utilisateur
+                Request getInfoUserRequest = new Request.Builder()
+                        .url(RestCallerConstant.SERVER_ADDR + "/api/account")
+                        .header("Authorization", authToken)
+                        .build();
+
+                BackgroundRestCaller caller = new BackgroundRestCaller();
+                caller.execute(getInfoUserRequest);
+                JsonObject jsonUserInfo = new JsonParser().parse(caller.get()).getAsJsonObject();
+
+
                 // Stockage dans les SharedPreferences
                 SharedPreferences.Editor editor = getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE).edit();
                 editor.putString("authToken", authToken);
                 editor.putString("username", email.getText().toString());
+                editor.putString("id", jsonUserInfo.get("id").getAsString());
+                editor.putString("userInfo", new Gson().toJson(jsonUserInfo));
                 editor.apply();
 
                 // Go to DashBoard
@@ -77,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }else{
                 Toast.makeText(LoginActivity.this, R.string.unknown_user, Toast.LENGTH_SHORT).show();
             }
-        } catch (CannotAuthenticateUserException e) {
+        } catch (CannotAuthenticateUserException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
             Toast.makeText(LoginActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
         }
