@@ -37,8 +37,6 @@ public class IntakesLoader extends AsyncTask<Void, Void, Void> {
     private ProgressBar agsProgressBar;
     private ProgressBar fibresProgressBar;
     private TextView fibresPctTextView;
-    private ProgressBar selProgressBar;
-    private TextView selPctTextView;
 
     private final long proteineNeeds = 70000;
     private final long glucideNeeds = 124000;
@@ -49,7 +47,7 @@ public class IntakesLoader extends AsyncTask<Void, Void, Void> {
 
     private Activity activity;
 
-    public IntakesLoader(Activity activity, int userId, ProgressBar proteinesProgressBar, TextView proteinesPctTextView, ProgressBar glucidesProgressBar, TextView glucidesPctTextView, ProgressBar sucreProgressBar, ProgressBar lipidesProgressBar, TextView lipidesPctTextView, ProgressBar agsProgressBar, ProgressBar fibresProgressBar, TextView fibresPctTextView, ProgressBar selProgressBar, TextView selPctTextView) {
+    public IntakesLoader(Activity activity, int userId, ProgressBar proteinesProgressBar, TextView proteinesPctTextView, ProgressBar glucidesProgressBar, TextView glucidesPctTextView, ProgressBar sucreProgressBar, ProgressBar lipidesProgressBar, TextView lipidesPctTextView, ProgressBar agsProgressBar, ProgressBar fibresProgressBar, TextView fibresPctTextView) {
         this.activity = activity;
         this.userId = userId;
         this.proteinesProgressBar = proteinesProgressBar;
@@ -62,8 +60,6 @@ public class IntakesLoader extends AsyncTask<Void, Void, Void> {
         this.agsProgressBar = agsProgressBar;
         this.fibresProgressBar = fibresProgressBar;
         this.fibresPctTextView = fibresPctTextView;
-        this.selProgressBar = selProgressBar;
-        this.selPctTextView = selPctTextView;
     }
 
     @Override
