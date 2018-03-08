@@ -125,12 +125,7 @@ public class IntakesFragment extends Fragment {
                 fibresProgressBar,
                 fibresPctTextView);
 
-        loader.execute();
-
-        proteinesProgressBar.setProgress(75);
-        proteinesPctTextView.setText("75%");
-        generateIntakes();
-
+        loader.execute(3);      // 3 i.e. Mode tous les repas
 
         return view;
     }
