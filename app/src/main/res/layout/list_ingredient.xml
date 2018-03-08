@@ -32,14 +32,12 @@
                     android:id="@+id/list_ingredient_brand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="Catégorie : "/>
+                    android:layout_gravity="left"/>
                 <TextView
                     android:id="@+id/list_ingredient_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="Quantité : "/>
+                    android:layout_gravity="right"/>
 
             </LinearLayout>
         </LinearLayout>

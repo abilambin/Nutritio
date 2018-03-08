@@ -1,31 +1,29 @@
 package com.example.abilambin.nutritio.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.dao.DatabaseHelper;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
-import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
-import com.example.abilambin.nutritio.restApi.GenericRestCaller;
-import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.IngredientRestCaller;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
-import com.j256.ormlite.dao.Dao;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import adapter.AddIngredientToGroceryAdapter;
+import adapter.AddIngredientToListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -42,7 +40,7 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
     private DatabaseHelper databaseHelper;
 
     private List<Ingredient> ingredients;
-    private AddIngredientToGroceryAdapter adapter;
+    private AddIngredientToListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,7 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Call back the Adapter with current character to Filter
-                adapter.getFilter().filter(s.toString());
+                if (adapter != null) adapter.getFilter().filter(s.toString());
             }
 
             @Override
@@ -87,7 +85,7 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
         } catch (CannotAuthenticateUserException e) {
             e.printStackTrace();
         } finally {
-            adapter = new AddIngredientToGroceryAdapter(this, ingredients);
+            adapter = new AddIngredientToListAdapter(this, ingredients);
             lvIngredients.setAdapter(adapter);
         }
     }

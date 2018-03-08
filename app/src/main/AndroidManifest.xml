@@ -32,7 +32,8 @@
         <activity
             android:name=".activity.AddIngredientToListActivity"
             android:label="@string/title_activity_add_ingredient_to_groceries"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.CreateIngredientEntryActivity"></activity>
     </application>
 
 </manifest>

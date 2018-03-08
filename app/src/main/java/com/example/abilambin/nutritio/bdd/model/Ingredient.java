@@ -141,7 +141,7 @@ public class Ingredient implements Serializable {
     }
 
     public int getEnergy() {
-        return energy;
+        return energy/1000;
     }
 
     public void setEnergy(int energy) {
@@ -149,7 +149,7 @@ public class Ingredient implements Serializable {
     }
 
     public float getProtein() {
-        return protein;
+        return protein/1000;
     }
 
     public void setProtein(float protein) {
@@ -157,7 +157,7 @@ public class Ingredient implements Serializable {
     }
 
     public float getCarbohydrate() {
-        return carbohydrate;
+        return carbohydrate/1000;
     }
 
     public void setCarbohydrate(float carbohydrate) {
@@ -165,7 +165,7 @@ public class Ingredient implements Serializable {
     }
 
     public float getSugar() {
-        return sugar;
+        return sugar/1000;
     }
 
     public void setSugar(float sugar) {
@@ -173,7 +173,7 @@ public class Ingredient implements Serializable {
     }
 
     public float getFat() {
-        return fat;
+        return fat/1000;
     }
 
     public void setFat(float fat) {
@@ -181,7 +181,7 @@ public class Ingredient implements Serializable {
     }
 
     public float getSaturatedFat() {
-        return saturatedFat;
+        return saturatedFat/1000;
     }
 
     public void setSaturatedFat(float saturatedFat) {
@@ -189,7 +189,7 @@ public class Ingredient implements Serializable {
     }
 
     public float getFibre() {
-        return fibre;
+        return fibre/1000;
     }
 
     public void setFibre(float fibre) {

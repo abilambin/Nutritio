@@ -1,6 +1,8 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -9,7 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.CreateIngredientEntryActivity;
+import com.example.abilambin.nutritio.activity.IngredientActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 
 import java.util.List;
 
@@ -17,9 +22,9 @@ import java.util.List;
  * Created by serial on 23/02/2018.
  */
 
-public class AddIngredientToGroceryAdapter extends AbstractListAdapter<Ingredient> {
+public class AddIngredientToListAdapter<T extends IngredientList> extends AbstractListAdapter<Ingredient> {
 
-    public AddIngredientToGroceryAdapter(Context context, List<Ingredient> items){
+    public AddIngredientToListAdapter(Context context, List<Ingredient> items){
         super(context, items);
     }
 
@@ -32,27 +37,22 @@ public class AddIngredientToGroceryAdapter extends AbstractListAdapter<Ingredien
     }
 
     private class ViewHolder {
-        LinearLayout infoContainer, buttonContainer;
-        Button minus, plus;
+        LinearLayout infoContainer;
         TextView name, category;
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup viewGroup) {
         ViewHolder holder;
+        final Ingredient ingredient = getFilteredElements().get(position);
 
         if (convertView == null) {
-
             holder = new ViewHolder();
             convertView = getInflater().inflate(R.layout.list_element_add_ingredient, null);
-            holder.infoContainer = convertView.findViewById(R.id.ingredientInfoContainer);
-            holder.buttonContainer = convertView.findViewById(R.id.ingredientButtonContainer);
+            holder.infoContainer = convertView.findViewById(R.id.ingredientContainer);
 
             holder.name = convertView.findViewById(R.id.list_ingredient_name);
-            holder.category = convertView.findViewById(R.id.list_ingredient_cat);
-
-            holder.minus = convertView.findViewById(R.id.minus);
-            holder.plus = convertView.findViewById(R.id.plus);
+            holder.category = convertView.findViewById(R.id.list_ingredient_category);
 
             convertView.setTag(holder);
         } else {
@@ -61,11 +61,16 @@ public class AddIngredientToGroceryAdapter extends AbstractListAdapter<Ingredien
         holder.name.setText(getFilteredElements().get(position).getName());
         holder.category.setText(getFilteredElements().get(position).getBrand());
 
-        holder.minus.setOnClickListener(new View.OnClickListener() {
-
+        // ON CLICK -> READ
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CreateIngredientEntryActivity.class);
 
-                Toast.makeText(v.getContext(), getFilteredElements().get(position).getName(), Toast.LENGTH_SHORT).show();
+                // On appelle l'activité de visualisation de l'ingrédient concerné
+                intent.putExtra("ingredient", ingredient);
+                v.getContext().startActivity(intent);
+
             }
         });
 
