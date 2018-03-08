@@ -11,14 +11,14 @@
         android:title="AddTo"
         android:titleCondensed="AddTo"
         app:showAsAction="ifRoom|withText">
-        <menu>
+        <!--menu>
             <item
                 android:id="@+id/add1"
-                android:title="Add 1"/>
+                android:title="Ajouter"/>
             <item
                 android:id="@+id/add2"
                 android:title="Add 2" />
-        </menu>
+        </menu-->
 
     </item>
 

@@ -1,11 +1,17 @@
 package com.example.abilambin.nutritio.fragment;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
+import android.text.InputType;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.abilambin.nutritio.R;
@@ -21,11 +27,17 @@ class ActionBarCallBack implements ActionMode.Callback {
 
     private IngredientEntry selectedEntry;
 
+    private String m_Text = "";
+
 
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
         switch (item.getItemId()) {
+
+            /*Object[] tags = (Object[]) mode.getTag();
+            Activity activity = (Activity) tags[0];
+            int index = (Integer) tags[1];*/
 
             case R.id.item_delete:
                 // Message de confirmation :
@@ -34,27 +46,44 @@ class ActionBarCallBack implements ActionMode.Callback {
                 mode.finish();
                 return true;
             case R.id.item_edit:
-
+                View view = mode.getCustomView();
+                Context ctx = mode.getCustomView().getContext();
+                edit(ctx);
                 mode.finish();
-                //Intent intent = new Intent(this, IngredientActivity.class);
-
-                // On appelle l'activité de visualisation de l'ingrédient concerné
-                //intent.putExtra("entry", selectedEntry);
-                //startActivity(intent);
                 return true;
 
             case R.id.item_addTo:
                 return true;
-
-            case R.id.add1:
-                mode.finish();
-                return true;
-
-            case R.id.add2:
-                mode.finish();
-                return true;
         }
         return false;
+    }
+
+    private void edit(Context ctx) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        builder.setTitle("Title");
+
+        // On crée l'input
+        final EditText input = new EditText(ctx);
+
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                m_Text = input.getText().toString();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 
     @Override

@@ -134,7 +134,9 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
                 bar.setSelectedEntry(entry);
 
                 mActionMode = getActivity().startActionMode(bar);
-
+                Object[] tags = new Object[2];
+                tags[0] = v.getRootView().getContext();
+                mActionMode.setTag(tags);
                 return true;
             }
         });
