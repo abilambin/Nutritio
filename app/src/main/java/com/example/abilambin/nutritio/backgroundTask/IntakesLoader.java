@@ -6,17 +6,22 @@ import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.RestCallerConstant;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -26,7 +31,7 @@ import okhttp3.Response;
  * Created by bellamy on 08/03/18.
  */
 
-public class IntakesLoader extends AsyncTask<Integer, Void, Void> {
+public class IntakesLoader extends AsyncTask<Integer, Void, List<Ingredient>> {
     private int userId;
     private ProgressBar proteinesProgressBar;
     private TextView proteinesPctTextView;
@@ -64,7 +69,7 @@ public class IntakesLoader extends AsyncTask<Integer, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Integer... mode) {
+    protected List<Ingredient> doInBackground(Integer... mode) {
         OkHttpClient httpClient = new OkHttpClient();
         Response response = null;
         JsonArray ingredients = new JsonArray();
@@ -181,18 +186,26 @@ public class IntakesLoader extends AsyncTask<Integer, Void, Void> {
             e.printStackTrace();
         }
 
+        System.out.println(ingredients.toString());
+        Gson gson = new Gson();
+
+
+        List<Ingredient> res = new ArrayList<>();
         // Pour chaque ingredient
         for (JsonElement ingredientEntry : ingredients) {
             int amount = ingredientEntry.getAsJsonObject().get("amount").getAsInt();
             JsonObject ingredient = ingredientEntry.getAsJsonObject().get("ingredient").getAsJsonObject();
-            totalProteineNeeds += amount * ingredient.get("protein").getAsInt() / 100;                          //
+            res.add((Ingredient) gson.fromJson(ingredient.toString(), new TypeToken<Ingredient>(){}.getType()));
+            /*totalProteineNeeds += amount * ingredient.get("protein").getAsInt() / 100;                          //
             totalGlucideNeeds += amount * ingredient.get("carbohydrate").getAsInt() / 100;                      //
             totalLipideNeeds += amount * ingredient.get("fat").getAsInt() / 100;                                //
             totalSucreNeeds += amount * ingredient.get("sugar").getAsInt() / 100;                               // Divisé par 100 puique les valeurs nutritives sont notées pour 100 unités
             totalFibreNeeds += amount * ingredient.get("fibre").getAsInt() / 100;                               //
             totalAgsNeeds += amount * ingredient.get("saturatedFat").getAsInt() / 100;                          //
+            */
         }
-
+        return res;
+        /*
         // Calcul des pourcentages journalier
         final int pctProtein = (int) (totalProteineNeeds * 100 / proteineNeeds);
         final int pctGlucide = (int) (totalGlucideNeeds * 100 / glucideNeeds);
@@ -220,6 +233,6 @@ public class IntakesLoader extends AsyncTask<Integer, Void, Void> {
             }
         });
 
-        return null;
+        return null;*/
     }
 }

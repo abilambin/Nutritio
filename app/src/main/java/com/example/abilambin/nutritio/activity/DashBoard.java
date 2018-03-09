@@ -105,9 +105,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
         Bundle bundle;
 
         if (itemId == R.id.dashboard) {
+            IntakesFragment intakesFragment = new IntakesFragment();
+            intakesFragment.setMode(3);
 
             addFragment(new EnergyFragment());
-            addFragment(new IntakesFragment());
+            addFragment(intakesFragment);
             addFragment(new MealListFragment());
 
         } else if (itemId == R.id.stocks) {

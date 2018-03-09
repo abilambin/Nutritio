@@ -18,6 +18,8 @@ import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,12 +34,20 @@ import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAM
 public class IntakesFragment extends Fragment {
 
 
-    protected ArrayList<Ingredient> ingredients;
+    protected List<Ingredient> ingredients;
 
     protected ArrayList<Meal> meals;
 
     protected static int quantity = 100;
 
+    private int mode = 3;
+
+    private final long proteineNeeds = 70;
+    private final long glucideNeeds = 124;
+    private final long lipideNeeds = 62;
+    private final long sucreNeeds = 30;
+    private final long fibreNeeds = 30;
+    private final long agsNeeds = 10;
 
 
     @BindView(R.id.proteinesProgressBar)
@@ -72,7 +82,7 @@ public class IntakesFragment extends Fragment {
     private Goal goal;
 
 
-    public ArrayList<Ingredient> getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
@@ -98,12 +108,18 @@ public class IntakesFragment extends Fragment {
 
     public IntakesFragment() {
         // Required empty public constructor
+        this.goal = new Goal();
+        this.goal.setProtein(proteineNeeds);
+        this.goal.setCarbohydrate(glucideNeeds);
+        this.goal.setFibre(fibreNeeds);
+        this.goal.setFat(lipideNeeds);
+        this.goal.setSugar(sucreNeeds);
+        this.goal.setSaturatedFat(agsNeeds);
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_intakes, container, false);
         ButterKnife.bind(this, view);
@@ -126,21 +142,28 @@ public class IntakesFragment extends Fragment {
                 fibresProgressBar,
                 fibresPctTextView);
 
-        loader.execute(3);      // 3 i.e. Mode tous les repas
+        if(mode == 3){
+            loader.execute(3);      // 3 i.e. Mode tous les repas
+            try {
+                ingredients = loader.get();
+                generateIntakes();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
 
         return view;
     }
 
     public void generateIntakes() {
-        if (meals != null && !meals.isEmpty()) {
-            //Parcourir les ingrédient et leur associer les valeurs
-
-        } else if (ingredients != null  && !ingredients.isEmpty()){
+        if (ingredients != null  && !ingredients.isEmpty()){
             setIntakes(ingredients);
         }
     }
 
-    private void setIntakes(ArrayList<Ingredient> ingredients) {
+    private void setIntakes(List<Ingredient> ingredients) {
 
         float prot=0;
         float carb=0;
@@ -226,4 +249,7 @@ public class IntakesFragment extends Fragment {
         super.onAttach(ctx);
     }
 
+    public void setMode(int mode) {
+        this.mode = mode;
+    }
 }
