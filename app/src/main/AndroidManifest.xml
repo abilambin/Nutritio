@@ -37,6 +37,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.CreateIngredientEntryGrocerieActivity" />
         <activity android:name=".activity.CreateIngredientEntryStockActivity" />
+        <activity android:name=".activity.PersonaliseIntakesActivity" />
     </application>
 
 </manifest>
