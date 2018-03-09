@@ -54,6 +54,9 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
     @BindView(R.id.submit)
     Button submit;
 
+    @BindView(R.id.cancel)
+    Button cancel;
+
     GenericRestCaller<T> tGenericRestCaller;
 
     @Override
@@ -114,6 +117,15 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
                 if(type != null){
                     updateType(newIngredientEntry, type);
                 }
+
+                finish();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -200,12 +212,7 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-    Intent intent = new Intent(getApplicationContext(), DashBoard.class);
-
-    intent.putExtra("id",R.id.dashboard);
-
-    startActivity(intent);
-
+        finish();
     }
 
 }
