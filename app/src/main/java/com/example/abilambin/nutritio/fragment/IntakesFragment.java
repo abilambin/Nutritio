@@ -111,6 +111,17 @@ public class IntakesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_intakes, container, false);
         ButterKnife.bind(this, view);
 
+
+
+
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         // Récupération de l'id utilisateur
         SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         int userId = Integer.parseInt(prefs.getString("id", null));
@@ -140,8 +151,6 @@ public class IntakesFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
-        return view;
     }
 
     public void generateIntakes() {
