@@ -46,8 +46,8 @@ class ActionBarCallBack implements ActionMode.Callback {
                 edit();
                 mode.finish();
                 return true;
-            case R.id.item_addTo:
-                return true;
+            //case R.id.item_addTo:
+              //  return true;
         }
 
         return false;

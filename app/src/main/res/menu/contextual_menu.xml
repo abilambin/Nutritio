@@ -5,22 +5,22 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    <item
+    <!--item
         android:id="@+id/item_addTo"
         android:icon="@android:drawable/ic_menu_add"
         android:title="AddTo"
         android:titleCondensed="AddTo"
         app:showAsAction="ifRoom|withText">
-        <!--menu>
+        <menu>
             <item
                 android:id="@+id/add1"
                 android:title="Ajouter"/>
             <item
                 android:id="@+id/add2"
                 android:title="Add 2" />
-        </menu-->
+        </menu>
 
-    </item>
+    </item-->
 
     <item
         android:id="@+id/item_edit"
