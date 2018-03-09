@@ -160,10 +160,17 @@ public class CreateIngredientEntryActivity extends AppCompatActivity {
 
         title.setText(ingredient.getName());
         category.setText(Html.fromHtml("<b>Catégorie : </b>" +ingredient.getCategoryText()));
-        brand.setText(Html.fromHtml("<b>Marque : </b>"+ingredient.getBrand()));
+        String marque = ingredient.getBrand();
+        if (marque != null) {
+            brand.setText(Html.fromHtml("<b>Marque : </b>"+marque));
+        }
         quantity.setText("100");
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
 
 }

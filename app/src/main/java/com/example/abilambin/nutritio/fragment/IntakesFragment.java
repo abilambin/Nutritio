@@ -181,13 +181,6 @@ public class IntakesFragment extends Fragment {
             fibre += ingredient.getFibre();
         }
 
-        prot = valueCalcul(prot);
-        carb = valueCalcul(carb);
-        sugar = valueCalcul(sugar);
-        fat = valueCalcul(fat);
-        sf = valueCalcul(sf);
-        fibre = valueCalcul(fibre);
-
         proteinesProgressBar.setProgress(percent(prot, goal.getProtein()));
         proteinesPctTextView.setText(prot+" / "+goal.getProtein());
 
