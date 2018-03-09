@@ -1,17 +1,18 @@
 package com.example.abilambin.nutritio.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Html;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.AddIngredientToListActivity;
 import com.example.abilambin.nutritio.activity.IngredientActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
@@ -32,15 +33,36 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
     GenericRestCaller<T> restCaller;
 
+    private String typeName;
+
     private ActionMode mActionMode;
 
     @BindView(R.id.addIngredientButton)
     FloatingActionButton addIngredientButton;
 
+    public View onCreateView(LayoutInflater inflater,
+                              ViewGroup container, Bundle savedInstanceState) {
+        typeName = (String) getArguments().get("typeName");
+        View v = super.onCreateView(inflater, container, savedInstanceState);
+        addIngredientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), getAddIngredientActivity());
+                intent.putExtra(typeName, 1);
+                intent.putExtra("typeName", typeName);
+                startActivity(intent);
+            }
+        });
+
+        return v;
+    }
+
     @Override
     protected int getListLayout() {
         return R.layout.fragment_groceries;
     }
+
+    public abstract Class getAddIngredientActivity();
 
     @Override
     public List<IngredientEntry> getList(){
@@ -51,7 +73,17 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
             //Si elle est null, alors on en crée une vide
             if (list == null) return new ArrayList<>();
 
-            return list.getIngredientEntries();
+            //si la quantité est égale à 0, on affiche pas l'ingrédient
+            List<IngredientEntry> entries = new ArrayList<>();
+            if(list.getIngredientEntries() != null && !list.getIngredientEntries().isEmpty()) {
+                for (IngredientEntry ingredientEntry : list.getIngredientEntries()) {
+                    if(ingredientEntry.getAmount() != 0){
+                        entries.add(ingredientEntry);
+                    }
+                }
+            }
+
+            return entries;
 
         } catch (WebServiceCallException e) {
             System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
@@ -82,14 +114,6 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     @Override
     protected View createElementView(final IngredientEntry entry, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.list_ingredient, null);
-
-        addIngredientButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getActivity(), AddIngredientToListActivity.class);
-                startActivity(intent);
-            }
-        });
 
         final Ingredient ingredient = entry.getIngredient();
         String brand = ingredient.getBrand();
@@ -134,7 +158,6 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
                 ActionBarCallBack bar = new ActionBarCallBack();
 
                 // On ajoute l'id de la vue de l'ingrédient à la barre
-                bar.setSelectedItemId(v.getId());
                 bar.setSelectedEntry(entry);
                 bar.setContext(v.getContext());
 

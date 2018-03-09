@@ -7,17 +7,18 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.fragment.EnergyFragment;
-
-import butterknife.ButterKnife;
-
 import com.example.abilambin.nutritio.fragment.GroceriesFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealListFragment;
 import com.example.abilambin.nutritio.fragment.SetGoalFragment;
+import com.example.abilambin.nutritio.fragment.RecipeFragment;
 import com.example.abilambin.nutritio.fragment.StockFragment;
+
+import butterknife.ButterKnife;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -47,7 +48,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
      * Ajoute le fragment en paramètre à la vue en cours (à la suite des autres fragments déjà présents)
      * @param fragment le fragment à ajouter
      */
-    private void addFragment(Fragment fragment) {
+    public void addFragment(Fragment fragment) {
         getFragmentManager()
                 .beginTransaction()
                 .add(R.id.container,fragment)
@@ -118,7 +119,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         } else if (itemId == R.id.stocks) {
 
+            bundle = new Bundle();
+            bundle.putString("typeName", "stockId");
+
             Fragment fragment = new StockFragment();
+            fragment.setArguments(bundle);
             addFragment(fragment);
 
         } else if (itemId == R.id.planning) {
@@ -133,13 +138,16 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             bundle = new Bundle();
             bundle.putString("title", "Recettes");
 
-            Fragment fragment = new MealListFragment();
+            Fragment fragment = new RecipeFragment();
             fragment.setArguments(bundle);
             addFragment(fragment);
 
         } else if(itemId == R.id.groceries){
+            bundle = new Bundle();
+            bundle.putString("typeName", "grocerieId");
 
             Fragment fragment = new GroceriesFragment();
+            fragment.setArguments(bundle);
             addFragment(fragment);
 
         }
@@ -151,7 +159,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
      * Permet de mettre en surbrillance l'item voulu dans la barre de navigation (celui sur lequel on aura cliqué)
      * @param itemId l'id de l'item à mettre en surbrillance
      */
-    void selectBottomNavigationBarItem(int itemId) {
+    public void selectBottomNavigationBarItem(int itemId) {
         Menu menu = navigationView.getMenu();
         for (int i = 0, size = menu.size(); i < size; i++) {
             MenuItem item = menu.getItem(i);
@@ -161,6 +169,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
                 break;
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
 

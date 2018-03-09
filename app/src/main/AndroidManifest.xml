@@ -30,10 +30,13 @@
             android:label="@string/title_activity_ingredient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.AddIngredientToListActivity"
-            android:label="@string/title_activity_add_ingredient_to_groceries"
+            android:name=".activity.AddIngredientToGrocerieActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.CreateIngredientEntryActivity"></activity>
+        <activity
+            android:name=".activity.AddIngredientToStockActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.CreateIngredientEntryGrocerieActivity" />
+        <activity android:name=".activity.CreateIngredientEntryStockActivity" />
     </application>
 
 </manifest>
