@@ -37,24 +37,20 @@ class ActionBarCallBack implements ActionMode.Callback {
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        Boolean res = false;
         switch (item.getItemId()) {
             case R.id.item_delete:
                 delete();
                 mode.finish();
-                res = true;
+                return true;
             case R.id.item_edit:
                 edit();
                 mode.finish();
-                res = true;
+                return true;
             case R.id.item_addTo:
-                res = true;
+                return true;
         }
 
-        //TODO UPDATE LE FRAGMENT
-        //DashBoard.updateFragments();
-
-        return res;
+        return false;
     }
 
     private void delete() {
