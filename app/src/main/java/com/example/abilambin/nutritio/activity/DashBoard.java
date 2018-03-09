@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.fragment.EnergyFragment;
 
 import butterknife.ButterKnife;
@@ -15,6 +16,7 @@ import butterknife.ButterKnife;
 import com.example.abilambin.nutritio.fragment.GroceriesFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealListFragment;
+import com.example.abilambin.nutritio.fragment.SetGoalFragment;
 import com.example.abilambin.nutritio.fragment.StockFragment;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -22,6 +24,8 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
     protected BottomNavigationView navigationView;
 
     protected int id;
+
+    public static Goal goal = new Goal();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,8 +124,9 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
         } else if (itemId == R.id.planning) {
 
             Fragment fragment = new MealListFragment();
-            addFragment(fragment);
 
+            addFragment(new SetGoalFragment());
+            addFragment(fragment);
 
         } else if(itemId == R.id.recipes){
 

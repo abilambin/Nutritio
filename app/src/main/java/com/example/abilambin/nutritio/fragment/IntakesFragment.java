@@ -16,6 +16,7 @@ import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.utils.PersonalGoal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +42,6 @@ public class IntakesFragment extends Fragment {
     protected static int quantity = 100;
 
     private int mode = 3;
-
-    private final long proteineNeeds = 70;
-    private final long glucideNeeds = 124;
-    private final long lipideNeeds = 62;
-    private final long sucreNeeds = 30;
-    private final long fibreNeeds = 30;
-    private final long agsNeeds = 10;
-
 
     @BindView(R.id.proteinesProgressBar)
     ProgressBar proteinesProgressBar;
@@ -108,13 +101,7 @@ public class IntakesFragment extends Fragment {
 
     public IntakesFragment() {
         // Required empty public constructor
-        this.goal = new Goal();
-        this.goal.setProtein(proteineNeeds);
-        this.goal.setCarbohydrate(glucideNeeds);
-        this.goal.setFibre(fibreNeeds);
-        this.goal.setFat(lipideNeeds);
-        this.goal.setSugar(sucreNeeds);
-        this.goal.setSaturatedFat(agsNeeds);
+        this.goal = PersonalGoal.getInstance().getGoal();
     }
 
 

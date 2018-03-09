@@ -17,29 +17,29 @@ public class Goal {
     private int energy;
 
     @DatabaseField
-    private float protein;
+    private int protein;
 
     @DatabaseField
-    private float carbohydrate;
+    private int carbohydrate;
 
     @DatabaseField
-    private float sugar;
+    private int sugar;
 
     @DatabaseField
-    private float fat;
+    private int fat;
 
     @DatabaseField
-    private float saturatedFat;
+    private int saturatedFat;
 
     @DatabaseField
-    private float fibre;
+    private int fibre;
 
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Person person;
 
     public Goal(){ }
 
-    public Goal(int id, int energy, float protein, float carbohydrate, float sugar, float fat, float saturatedFat, float fibre, Person person) {
+    public Goal(int id, int energy, int protein, int carbohydrate, int sugar, int fat, int saturatedFat, int fibre, Person person) {
         this.id = id;
         this.energy = energy;
         this.protein = protein;
@@ -67,51 +67,51 @@ public class Goal {
         this.energy = energy;
     }
 
-    public float getProtein() {
+    public int getProtein() {
         return protein;
     }
 
-    public void setProtein(float protein) {
+    public void setProtein(int protein) {
         this.protein = protein;
     }
 
-    public float getCarbohydrate() {
+    public int getCarbohydrate() {
         return carbohydrate;
     }
 
-    public void setCarbohydrate(float carbohydrate) {
+    public void setCarbohydrate(int carbohydrate) {
         this.carbohydrate = carbohydrate;
     }
 
-    public float getSugar() {
+    public int getSugar() {
         return sugar;
     }
 
-    public void setSugar(float sugar) {
+    public void setSugar(int sugar) {
         this.sugar = sugar;
     }
 
-    public float getFat() {
+    public int getFat() {
         return fat;
     }
 
-    public void setFat(float fat) {
+    public void setFat(int fat) {
         this.fat = fat;
     }
 
-    public float getSaturatedFat() {
+    public int getSaturatedFat() {
         return saturatedFat;
     }
 
-    public void setSaturatedFat(float saturatedFat) {
+    public void setSaturatedFat(int saturatedFat) {
         this.saturatedFat = saturatedFat;
     }
 
-    public float getFibre() {
+    public int getFibre() {
         return fibre;
     }
 
-    public void setFibre(float fibre) {
+    public void setFibre(int fibre) {
         this.fibre = fibre;
     }
 
