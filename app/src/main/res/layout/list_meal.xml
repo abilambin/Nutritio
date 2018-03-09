@@ -47,10 +47,10 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/mealItemPreparationTitleTextView"
+                android:id="@+id/ingredientTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Préparation : " />
+                android:text="Ingredient : " />
 
             <TextView
                 android:id="@+id/mealItemCuissonTimeTextView"
