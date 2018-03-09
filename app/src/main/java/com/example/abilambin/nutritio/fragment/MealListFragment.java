@@ -84,7 +84,7 @@ public class MealListFragment extends AbstractListFragment<Meal> {
      */
     @Override
     protected View createElementView(final Meal meal, LayoutInflater inflater) {
-        View vi = inflater.inflate(R.layout.list_ingredient, null);
+        View vi = inflater.inflate(R.layout.list_meal, null);
 
 
         if (meal.getDate() != null) {
