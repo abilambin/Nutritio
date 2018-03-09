@@ -1,52 +1,57 @@
 package com.example.abilambin.nutritio.fragment;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.annotation.NonNull;
-        import android.support.design.widget.FloatingActionButton;
-        import android.util.Log;
-        import android.view.ActionMode;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.widget.LinearLayout;
-        import android.widget.TextView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.text.Html;
+import android.util.Log;
+import android.view.ActionMode;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-        import com.example.abilambin.nutritio.R;
-        import com.example.abilambin.nutritio.activity.RecipeActivity;
-        import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
-        import com.example.abilambin.nutritio.bdd.model.Meal;
-        import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
-        import com.example.abilambin.nutritio.exception.WebServiceCallException;
-        import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
+import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.RecipeActivity;
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
+import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
+import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
+import com.example.abilambin.nutritio.exception.WebServiceCallException;
+import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
+import com.example.abilambin.nutritio.restApi.specific.RecipeRestCaller;
 
-        import java.util.ArrayList;
-        import java.util.Date;
-        import java.util.List;
-        import java.util.concurrent.ExecutionException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-        import butterknife.BindView;
+import butterknife.BindView;
 
-public class MealListFragment extends AbstractListFragment<Meal> {
+public class RecipeFragment extends AbstractListFragment<Recipe> {
 
     LinearLayout ll;
 
     @BindView(R.id.mealListFragmentTitle)
     protected TextView title;
 
-    MealRestCaller mealRestCaller = new MealRestCaller();
+    RecipeRestCaller recipeRestCaller = new RecipeRestCaller();
 
     private ActionMode mActionMode;
 
+
+
     @Override
     protected int getListLayout() {
-        return R.layout.fragment_meal_list;
+        return R.layout.fragment_recipe;
     }
 
     @Override
-    public List<Meal> getList(){
+    public List<Recipe> getList(){
         try {
             //On récupère la liste des ingrédients récupéré par appel rest
-            List<Meal> list = (List<Meal>) mealRestCaller.getAll();
+            List<Recipe> list = (List<Recipe>) recipeRestCaller.getAll();
 
             //Si elle est null, alors on en crée une vide
             if (list == null) return new ArrayList<>();
@@ -75,38 +80,28 @@ public class MealListFragment extends AbstractListFragment<Meal> {
 
     /**
      * Génère la vue de l'ingrédient en paramètre (y ajoute les listener d'évênements)
-     * @param meal le plat à afficher
+     * @param recipe le plat à afficher
      * @param inflater
      * @return
      */
     @Override
-    protected View createElementView(final Meal meal, LayoutInflater inflater) {
-        View vi = inflater.inflate(R.layout.list_meal, null);
+    protected View createElementView(final Recipe recipe, LayoutInflater inflater) {
+        View vi = inflater.inflate(R.layout.list_recipe, null);
 
 
-        if (meal.getDate() != null) {
-            Log.d("MealListFragment TEST :",meal.getDate().getHours()+"");
-            TextView hourMealTV = vi.findViewById(R.id.mealItemHourTextView);
-            Date mealDate = meal.getDate();
 
-            String s = formate(mealDate);
-            hourMealTV.setText(s);
-        }
 
-        String text = "";
+        TextView nameMealTV = vi.findViewById(R.id.recipeItemNameTextView);
         TextView ingredientTitleTextView = vi.findViewById(R.id.ingredientTitleTextView);
 
-        if (meal.getRecipe() != null) {
-
-            for (IngredientEntry ingredientEntry : meal.getRecipe().getIngredientEntries()) {
-                text += ingredientEntry.getIngredient().getName() + " : " + ingredientEntry.getAmount() + " " +ingredientEntry.getUnitSmallText() + "\n";
-            }
+        if (recipe != null) {
+            nameMealTV.setText(recipe.getName());
         }
-
+        String text = Html.fromHtml("<b> Ingrédients : </b>") +"\n";
+        for (IngredientEntry ingredientEntry : recipe.getIngredientEntries()) {
+            text += ingredientEntry.getIngredient().getName() + " : " + ingredientEntry.getAmount() + " " +ingredientEntry.getUnitSmallText() + "\n";
+        }
         ingredientTitleTextView.setText(text);
-
-        TextView nameMealTV = vi.findViewById(R.id.mealItemNameTextView);
-        nameMealTV.setText(meal.getName());
 
         Bundle bundle = getArguments();
         if (bundle != null) {

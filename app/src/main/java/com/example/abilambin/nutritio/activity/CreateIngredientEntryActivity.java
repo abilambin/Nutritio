@@ -165,4 +165,5 @@ public class CreateIngredientEntryActivity extends AppCompatActivity {
 
     }
 
+
 }

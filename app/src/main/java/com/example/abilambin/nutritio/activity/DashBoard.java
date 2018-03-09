@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import com.example.abilambin.nutritio.fragment.GroceriesFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealListFragment;
+import com.example.abilambin.nutritio.fragment.RecipeFragment;
 import com.example.abilambin.nutritio.fragment.StockFragment;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -43,7 +44,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
      * Ajoute le fragment en paramètre à la vue en cours (à la suite des autres fragments déjà présents)
      * @param fragment le fragment à ajouter
      */
-    private void addFragment(Fragment fragment) {
+    public void addFragment(Fragment fragment) {
         getFragmentManager()
                 .beginTransaction()
                 .add(R.id.container,fragment)
@@ -128,7 +129,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             bundle = new Bundle();
             bundle.putString("title", "Recettes");
 
-            Fragment fragment = new MealListFragment();
+            Fragment fragment = new RecipeFragment();
             fragment.setArguments(bundle);
             addFragment(fragment);
 
@@ -146,7 +147,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
      * Permet de mettre en surbrillance l'item voulu dans la barre de navigation (celui sur lequel on aura cliqué)
      * @param itemId l'id de l'item à mettre en surbrillance
      */
-    void selectBottomNavigationBarItem(int itemId) {
+    public void selectBottomNavigationBarItem(int itemId) {
         Menu menu = navigationView.getMenu();
         for (int i = 0, size = menu.size(); i < size; i++) {
             MenuItem item = menu.getItem(i);
@@ -156,6 +157,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
                 break;
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
 
