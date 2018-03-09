@@ -1,5 +1,6 @@
 package com.example.abilambin.nutritio.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -199,6 +200,11 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+    Intent intent = new Intent(getApplicationContext(), DashBoard.class);
+
+    intent.putExtra("id",R.id.dashboard);
+
+    startActivity(intent);
 
     }
 

@@ -35,6 +35,9 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
         //On souhaite que la page qui s'affiche en premier soit celle du Dashboard
         id = R.id.dashboard;
 
+        Bundle liste = getIntent().getExtras();
+        if (liste != null) id = liste.getInt("id");
+
         ButterKnife.bind(this);
         setContentView(R.layout.activity_dash_board);
 
@@ -106,6 +109,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
      */
     private void updateFragments(Integer itemId) {
         clearStack();
+
 
         Bundle bundle;
 
