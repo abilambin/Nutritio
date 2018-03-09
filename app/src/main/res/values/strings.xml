@@ -13,11 +13,11 @@
 
 
     <!-- Titles -->
-    <string name="title_home">HOME</string>
-    <string name="title_planning">PLANNING</string>
-    <string name="title_stocks">STOCKS</string>
-    <string name="title_recipes">RECIPES</string>
-    <string name="title_groceries">GROCERIES</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_planning">Planning</string>
+    <string name="title_stocks">Stocks</string>
+    <string name="title_recipes">Recettes</string>
+    <string name="title_groceries">Courses</string>
 
     <!-- Titles 2 -->
     <string name="energy">Énergie</string>
