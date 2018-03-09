@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 editor.putString("username", email.getText().toString());
                 editor.putString("id", jsonUserInfo.get("id").getAsString());
                 editor.putString("userInfo", new Gson().toJson(jsonUserInfo));
+                //ON AJOUTE L'ID DE LA LISTE DE COURSE ET DU STOCK
+                editor.putInt("listeId",2);
                 editor.apply();
 
                 // Go to DashBoard

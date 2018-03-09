@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.DashBoard;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
@@ -36,20 +37,24 @@ class ActionBarCallBack implements ActionMode.Callback {
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        Boolean res = false;
         switch (item.getItemId()) {
             case R.id.item_delete:
                 delete();
                 mode.finish();
-                return true;
+                res = true;
             case R.id.item_edit:
                 edit();
                 mode.finish();
-                return true;
-
+                res = true;
             case R.id.item_addTo:
-                return true;
+                res = true;
         }
-        return false;
+
+        //TODO UPDATE LE FRAGMENT
+        //DashBoard.updateFragments();
+
+        return res;
     }
 
     private void delete() {

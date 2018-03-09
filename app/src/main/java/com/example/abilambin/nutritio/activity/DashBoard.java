@@ -36,7 +36,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
         id = R.id.dashboard;
 
         Bundle liste = getIntent().getExtras();
-        if (liste != null) id = liste.getInt("id");
+        if (liste != null) id = liste.getInt("listeId");
 
         ButterKnife.bind(this);
         setContentView(R.layout.activity_dash_board);
@@ -107,7 +107,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
      * Permet d'ajouter tous les fragments nécessaires pour une "page" en particulier
      * @param itemId l'id de la page voulue
      */
-    private void updateFragments(Integer itemId) {
+    public void updateFragments(Integer itemId) {
         clearStack();
 
 
