@@ -34,6 +34,7 @@ import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAM
  */
 public class IntakesFragment extends Fragment {
 
+    public static int energy = 76;
 
     protected List<Ingredient> ingredients;
 
@@ -167,6 +168,9 @@ public class IntakesFragment extends Fragment {
         float fat=0;
         float sf=0;
         float fibre = 0;
+        int energys = 0;
+
+
 
         for (Ingredient ingredient : ingredients) {
             prot += ingredient.getProtein();
@@ -175,7 +179,10 @@ public class IntakesFragment extends Fragment {
             fat += ingredient.getFat();
             sf += ingredient.getSaturatedFat();
             fibre += ingredient.getFibre();
+            energys += ingredient.getEnergy();
         }
+
+        energy = percent(energys, goal.getEnergy());
 
         proteinesProgressBar.setProgress(percent(prot, goal.getProtein()));
         proteinesPctTextView.setText(prot+" / "+goal.getProtein());

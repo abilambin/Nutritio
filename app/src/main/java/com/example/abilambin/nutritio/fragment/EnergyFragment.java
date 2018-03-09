@@ -39,9 +39,9 @@ public class EnergyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_energy, container, false);
         ButterKnife.bind(this, view);
 
-        energyProgressText.setText("76%");
+        energyProgressText.setText(IntakesFragment.energy + "%");
         int animationDuration = 1500;
-        circularProgressBar.setProgressWithAnimation(76, animationDuration);
+        circularProgressBar.setProgressWithAnimation(IntakesFragment.energy, animationDuration);
 
         return view;
     }
