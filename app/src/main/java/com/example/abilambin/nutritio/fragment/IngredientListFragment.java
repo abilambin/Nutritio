@@ -46,7 +46,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     public List<IngredientEntry> getList(){
         try {
             //On récupère la liste des ingrédients récupéré par appel rest
-            T list = restCaller.get(1);
+            T list = restCaller.get(2);
 
             //Si elle est null, alors on en crée une vide
             if (list == null) return new ArrayList<>();
