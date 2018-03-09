@@ -94,7 +94,7 @@ public class CreateIngredientEntryActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     fg.setQuantity(q);
-                    fg.generateIntakes();
+                    //fg.generateIntakes();
                 }
             }
         });
