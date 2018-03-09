@@ -1,23 +1,18 @@
 package com.example.abilambin.nutritio.activity;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.bdd.dao.DatabaseHelper;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
-import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.IngredientRestCaller;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +22,7 @@ import adapter.AddIngredientToListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddIngredientToListActivity<T extends IngredientList> extends AppCompatActivity {
+public abstract class AddIngredientToListActivity extends AppCompatActivity {
 
     @BindView(R.id.etSearch)
     EditText etSearch;
@@ -37,8 +32,9 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
 
     IngredientRestCaller ingredientRestCaller = new IngredientRestCaller();
 
-    //private List<Ingredient> ingredients;
     private AddIngredientToListAdapter adapter;
+
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +42,7 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
         setContentView(R.layout.activity_add_ingredient_to_list);
         ButterKnife.bind(this);
 
+        bundle = getIntent().getExtras();
         // Add Text Change Listener to EditText
         etSearch.addTextChangedListener(new TextWatcher() {
 
@@ -83,8 +80,12 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
         } catch (CannotAuthenticateUserException e) {
             e.printStackTrace();
         } finally {
-            adapter = new AddIngredientToListAdapter(this, ingredients);
+            adapter = getAdapter(this, ingredients);
+            String typeName = (String) bundle.get("typeName");
+            adapter.setTypeId((Integer) bundle.get(typeName));
             lvIngredients.setAdapter(adapter);
         }
     }
+
+    public abstract AddIngredientToListAdapter getAdapter(Context ctx, List<Ingredient> ingredients);
 }

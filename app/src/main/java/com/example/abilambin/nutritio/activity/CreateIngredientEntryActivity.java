@@ -1,12 +1,7 @@
 package com.example.abilambin.nutritio.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -23,18 +18,28 @@ import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
+import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
+import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.restApi.specific.GrocerieRestCaller;
+import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
+import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import adapter.AddIngredientToListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CreateIngredientEntryActivity extends AppCompatActivity {
+public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity {
+
+    private int id;
+
+    public void setId(int id){
+        this.id = id;
+    }
 
 
     @BindView(R.id.ingredientTitle)
@@ -55,7 +60,7 @@ public class CreateIngredientEntryActivity extends AppCompatActivity {
     @BindView(R.id.submit)
     Button submit;
 
-    private AddIngredientToListAdapter adapter;
+    GenericRestCaller<T> tGenericRestCaller;
 
     private IngredientEntryRestCaller ingredientEntryRestCaller = new IngredientEntryRestCaller();
 
@@ -68,8 +73,11 @@ public class CreateIngredientEntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_ingredient_entry);
         ButterKnife.bind(this);
 
+        tGenericRestCaller = getRestCaller();
+
         Bundle bundle = getIntent().getExtras();
         final Ingredient ingredient = (Ingredient) bundle.get("ingredient");
+        id = (int) bundle.get("typeId");
 
         final IntakesFragment fg = new IntakesFragment();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -144,12 +152,78 @@ public class CreateIngredientEntryActivity extends AppCompatActivity {
                 }
 
 
+                T type = getType();
+                IngredientEntry newIngredientEntry = createEntry(ingredient, type);
+                if(type != null){
+                    updateType(newIngredientEntry, type);
+                }
             }
 
         });
 
     }
 
+    private IngredientEntry createEntry(Ingredient ingredient, T type) {
+        IngredientEntry newIngredientEntry = new IngredientEntry();
+        newIngredientEntry = addTypeToEntry(newIngredientEntry, type);
+        newIngredientEntry.setAmount(Integer.parseInt(quantity.getText().toString()));
+        newIngredientEntry.setUnit(IngredientEntry.getUnitFromText(unit.getSelectedItem().toString()));
+        newIngredientEntry.setIngredient(ingredient);
+        newIngredientEntry.setId(null);
+
+        GenericRestCaller<IngredientEntry> ingredientEntryGenericRestCaller = new IngredientEntryRestCaller();
+        IngredientEntry newEntry = null;
+        try {
+            newEntry = ingredientEntryGenericRestCaller.create(newIngredientEntry);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (WebServiceCallException e) {
+            e.printStackTrace();
+        } catch (CannotAuthenticateUserException e) {
+            e.printStackTrace();
+        }
+
+        return newEntry;
+    }
+
+    private void updateType(IngredientEntry entry, T type) {
+        type = addEntryToType(entry, type);
+        try {
+            tGenericRestCaller.update(type);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (WebServiceCallException e) {
+            e.printStackTrace();
+        } catch (CannotAuthenticateUserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private T getType() {
+        T type = null;
+        try {
+            type = tGenericRestCaller.get(id);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (WebServiceCallException e) {
+            e.printStackTrace();
+        } catch (CannotAuthenticateUserException e) {
+            e.printStackTrace();
+        }
+        return type;
+    }
+
+    public abstract T addEntryToType(IngredientEntry entry, T type);
+
+    public abstract GenericRestCaller<T> getRestCaller();
+
+    public abstract IngredientEntry addTypeToEntry(IngredientEntry entry, T type);
 
     @Override
     protected void onStart() {

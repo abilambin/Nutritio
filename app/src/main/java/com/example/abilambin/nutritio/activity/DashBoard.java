@@ -7,16 +7,16 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.fragment.EnergyFragment;
-
-import butterknife.ButterKnife;
-
 import com.example.abilambin.nutritio.fragment.GroceriesFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealListFragment;
 import com.example.abilambin.nutritio.fragment.RecipeFragment;
 import com.example.abilambin.nutritio.fragment.StockFragment;
+
+import butterknife.ButterKnife;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -115,7 +115,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         } else if (itemId == R.id.stocks) {
 
+            bundle = new Bundle();
+            bundle.putString("typeName", "stockId");
+
             Fragment fragment = new StockFragment();
+            fragment.setArguments(bundle);
             addFragment(fragment);
 
         } else if (itemId == R.id.planning) {
@@ -134,8 +138,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             addFragment(fragment);
 
         } else if(itemId == R.id.groceries){
+            bundle = new Bundle();
+            bundle.putString("typeName", "grocerieId");
 
             Fragment fragment = new GroceriesFragment();
+            fragment.setArguments(bundle);
             addFragment(fragment);
 
         }

@@ -18,7 +18,7 @@ public class IngredientEntry implements Serializable {
     private static long serialVersionUID = 6L;
 
     @DatabaseField(generatedId = true)
-    private int id;
+    private Integer id;
 
     @DatabaseField(canBeNull = false)
     private int amount;
@@ -48,7 +48,7 @@ public class IngredientEntry implements Serializable {
 
     }
 
-    public IngredientEntry(int id, int amount, Unit unit, Ingredient ingredient, BlackList blackList, Grocerie grocerie, Recipe recipe, Stock stock, Meal meal) {
+    public IngredientEntry(Integer id, int amount, Unit unit, Ingredient ingredient, BlackList blackList, Grocerie grocerie, Recipe recipe, Stock stock, Meal meal) {
         this.id = id;
         this.amount = amount;
         this.unit = unit;
@@ -60,11 +60,11 @@ public class IngredientEntry implements Serializable {
         this.meal = meal;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
