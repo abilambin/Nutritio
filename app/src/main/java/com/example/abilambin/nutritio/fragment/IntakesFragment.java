@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
+import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -36,7 +36,7 @@ public class IntakesFragment extends Fragment {
 
     protected ArrayList<Meal> meals;
 
-    protected int quantity = 100;
+    protected static int quantity = 100;
 
 
 
@@ -69,6 +69,7 @@ public class IntakesFragment extends Fragment {
 
     @BindView(R.id.fibresPctTextView)
     TextView fibresPctTextView;
+    private Goal goal;
 
 
     public ArrayList<Ingredient> getIngredients() {
@@ -157,36 +158,65 @@ public class IntakesFragment extends Fragment {
             fibre += ingredient.getFibre();
         }
 
-        prot = valueCalcul(prot,quantity);
-        carb = valueCalcul(carb,quantity);
-        sugar = valueCalcul(sugar,quantity);
-        fat = valueCalcul(fat,quantity);
-        sf = valueCalcul(sf,quantity);
-        fibre = valueCalcul(fibre,quantity);
+        prot = valueCalcul(prot);
+        carb = valueCalcul(carb);
+        sugar = valueCalcul(sugar);
+        fat = valueCalcul(fat);
+        sf = valueCalcul(sf);
+        fibre = valueCalcul(fibre);
 
-        proteinesProgressBar.setProgress(percent(prot, 100));
-        proteinesPctTextView.setText(""+prot);
+        proteinesProgressBar.setProgress(percent(prot, goal.getProtein()));
+        proteinesPctTextView.setText(prot+" / "+goal.getProtein());
 
         glucidesProgressBar.setProgress(percent(carb, 100));
-        glucidesPctTextView.setText(""+carb);
+        glucidesPctTextView.setText(""+carb+" / "+goal.getCarbohydrate());
 
         sucreProgressBar.setProgress(percent(sugar, 100));
 
         lipidesProgressBar.setProgress(percent(fat, 100));
-        lipidesPctTextView.setText(""+fat);
+        lipidesPctTextView.setText(""+fat+" / "+goal.getFat());
 
         agsProgressBar.setProgress(percent(sf, 100));
 
         fibresProgressBar.setProgress(percent(fibre, 100));
-        fibresPctTextView.setText(""+fibre);
+        fibresPctTextView.setText(""+fibre+" / "+goal.getFibre());
+
+        //PROTEINES
+        showValueBar(proteinesProgressBar, proteinesPctTextView, prot, goal.getProtein());
+
+        //GLUCIDES
+        showValueBar(glucidesProgressBar, glucidesPctTextView, carb, goal.getCarbohydrate());
+
+        //SUCRE
+        showValueBar(sucreProgressBar, null, sugar, goal.getSugar());
+
+        //LIPIDES
+        showValueBar(lipidesProgressBar, lipidesPctTextView, fat, goal.getFat());
+
+        //AGS
+        showValueBar(agsProgressBar, null, sf, goal.getSaturatedFat());
+
+        //FIBRES
+        showValueBar(fibresProgressBar, fibresPctTextView, fibre, goal.getFibre());
+
+    }
+
+
+
+    private void showValueBar(ProgressBar bar, TextView view, float val, float obj) {
+        val = valueCalcul(val);
+        bar.setProgress(percent(val, obj));
+        if (view != null) view.setText(val + " / "+obj);
     }
 
     private static int percent(float val, float obj){
+        if (obj == 0) return Math.round(val*100);
+
         float result = (val/obj)*100;
         return Math.round(result);
     }
 
-    private static int valueCalcul(float val, float quantity){
+    private static int valueCalcul(float val){
         float result = val*quantity/100;
         return Math.round(result);
     }

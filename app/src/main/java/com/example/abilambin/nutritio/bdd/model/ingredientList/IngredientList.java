@@ -45,4 +45,8 @@ public class IngredientList implements Serializable {
     public void setIngredientEntries(List<IngredientEntry> ingredientEntries) {
         this.ingredientEntries = ingredientEntries;
     }
+
+    public void add(IngredientEntry ingredientEntry) {
+        ingredientEntries.add(ingredientEntry);
+    }
 }

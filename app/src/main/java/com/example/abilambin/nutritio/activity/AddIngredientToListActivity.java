@@ -37,9 +37,7 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
 
     IngredientRestCaller ingredientRestCaller = new IngredientRestCaller();
 
-    private DatabaseHelper databaseHelper;
-
-    private List<Ingredient> ingredients;
+    //private List<Ingredient> ingredients;
     private AddIngredientToListAdapter adapter;
 
     @Override
@@ -88,12 +86,5 @@ public class AddIngredientToListActivity<T extends IngredientList> extends AppCo
             adapter = new AddIngredientToListAdapter(this, ingredients);
             lvIngredients.setAdapter(adapter);
         }
-    }
-
-    protected DatabaseHelper getHelper(){
-        if(databaseHelper == null){
-            databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
-        }
-        return databaseHelper;
     }
 }
