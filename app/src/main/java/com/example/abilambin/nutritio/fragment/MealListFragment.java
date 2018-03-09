@@ -13,6 +13,7 @@ package com.example.abilambin.nutritio.fragment;
 
         import com.example.abilambin.nutritio.R;
         import com.example.abilambin.nutritio.activity.RecipeActivity;
+        import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
         import com.example.abilambin.nutritio.bdd.model.Meal;
         import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
         import com.example.abilambin.nutritio.exception.WebServiceCallException;
@@ -38,6 +39,7 @@ public class MealListFragment extends AbstractListFragment<Meal> {
 
     @BindView(R.id.addRecipeToMealButton)
     FloatingActionButton addRecipeToMealButton;
+
 
 
     @Override
@@ -96,68 +98,17 @@ public class MealListFragment extends AbstractListFragment<Meal> {
             hourMealTV.setText(s);
         }
 
-        /*
-        addIngredientButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getActivity(), AddIngredientToListActivity.class);
-                startActivity(intent);
+        String text = "";
+        TextView ingredientTitleTextView = vi.findViewById(R.id.ingredientTitleTextView);
+
+        if (meal.getRecipe() != null) {
+
+            for (IngredientEntry ingredientEntry : meal.getRecipe().getIngredientEntries()) {
+                text += ingredientEntry.getIngredient().getName() + " : " + ingredientEntry.getAmount() + " " +ingredientEntry.getUnitSmallText() + "\n";
             }
-        });*/
+        }
 
-        /*final Ingredient ingredient = entry.getIngredient();
-        String brand = ingredient.getBrand();
-        brand = (brand == null)?"":brand+", ";
-
-        TextView ingredientName = vi.findViewById(R.id.list_ingredient_name);
-        TextView ingredientBrand = vi.findViewById(R.id.list_ingredient_brand);
-        TextView ingredientQuantity = vi.findViewById(R.id.list_ingredient_quantity);
-
-        ingredientName.setText(Html.fromHtml("<b>"+ingredient.getName()+"</b>"));
-        ingredientBrand.setText(brand);
-        ingredientQuantity.setText(entry.getAmount() + entry.getUnitSmallText());
-
-
-        // On récupère le layout de l'ingrédient
-        ll = vi.findViewById(R.id.ingredientContainer);
-
-        // ON CLICK -> READ
-        ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), IngredientActivity.class);
-
-                // On appelle l'activité de visualisation de l'ingrédient concerné
-                intent.putExtra("ingredient", ingredient);
-                startActivity(intent);
-
-            }
-        });
-
-        // ON LONG CLICK -> UPDATE, DELETE
-        ll.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                // Génération d'un retour haptique
-                ll.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                //TODO : Changer le style de l'élément sélectionné
-                ll.setBackgroundColor(222222);
-
-
-                // On génère la barre de modification de l'ingrédient
-                ActionBarCallBack bar = new ActionBarCallBack();
-
-                // On ajoute l'id de la vue de l'ingrédient à la barre
-                bar.setSelectedItemId(v.getId());
-                bar.setSelectedEntry(entry);
-
-                mActionMode = getActivity().startActionMode(bar);
-                Object[] tags = new Object[2];
-                tags[0] = v.getRootView().getContext();
-                mActionMode.setTag(tags);
-                return true;
-            }
-        });*/
+        ingredientTitleTextView.setText(text);
 
         TextView nameMealTV = vi.findViewById(R.id.mealItemNameTextView);
         nameMealTV.setText(meal.getName());
@@ -172,11 +123,11 @@ public class MealListFragment extends AbstractListFragment<Meal> {
         ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RecipeActivity.class);
+                //Intent intent = new Intent(getActivity(), RecipeActivity.class);
 
-                intent.putExtra("name", meal.getName());
-                intent.putExtra("description", meal.getRecipe());
-                startActivity(intent);
+                //intent.putExtra("name", meal.getName());
+                //intent.putExtra("description", meal.getRecipe());
+                //startActivity(intent);
 
             }
         });
