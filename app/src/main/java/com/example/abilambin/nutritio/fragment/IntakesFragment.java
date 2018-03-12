@@ -16,6 +16,7 @@ import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.utils.Intakes;
 import com.example.abilambin.nutritio.utils.PersonalGoal;
 
 import java.util.ArrayList;
@@ -127,31 +128,36 @@ public class IntakesFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         int userId = Integer.parseInt(prefs.getString("id", null));
 
-        IntakesLoader loader = new IntakesLoader(
-                this.getActivity(),
-                userId,
-                proteinesProgressBar,
-                proteinesPctTextView,
-                glucidesProgressBar,
-                glucidesPctTextView,
-                sucreProgressBar,
-                lipidesProgressBar,
-                lipidesPctTextView,
-                agsProgressBar,
-                fibresProgressBar,
-                fibresPctTextView);
+        IntakesLoader loader = new IntakesLoader( userId);
 
         if(mode == 3){
             loader.execute(3);      // 3 i.e. Mode tous les repas
             try {
-                ingredients = loader.get();
-                generateIntakes();
+                this.setIntakes(loader.get());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void setIntakes(Intakes intakes){
+        proteinesProgressBar.setProgress(percent(intakes.getProtein() / 100, goal.getProtein()));
+        proteinesPctTextView.setText(intakes.getProtein()  / 100+" / "+goal.getProtein());
+
+        glucidesProgressBar.setProgress(percent(intakes.getCarbohydrate()  / 100, 100));
+        glucidesPctTextView.setText(intakes.getCarbohydrate()  / 100+" / "+goal.getCarbohydrate());
+
+        sucreProgressBar.setProgress(percent(intakes.getSugar()  / 100, 100));
+
+        lipidesProgressBar.setProgress(percent(intakes.getFat()  / 100, 100));
+        lipidesPctTextView.setText(intakes.getFat()  / 100+" / "+goal.getFat());
+
+        agsProgressBar.setProgress(percent(intakes.getSaturatedFat()  / 100, 100));
+
+        fibresProgressBar.setProgress(percent(intakes.getFibre()  / 100, 100));
+        fibresPctTextView.setText(intakes.getFibre()  / 100+" / "+goal.getFibre());
     }
 
     public void generateIntakes() {
