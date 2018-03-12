@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.HeaderRecipeFragment;
 import com.example.abilambin.nutritio.fragment.IngredientListFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
@@ -12,13 +13,21 @@ import com.example.abilambin.nutritio.fragment.MealIngredientListFragment;
 
 public class RecipeActivity extends AppCompatActivity {
 
+    Recipe recipe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
+        Bundle bundle = getIntent().getExtras();
+        recipe = (Recipe) bundle.get("recipes");
+
         addFragment(new IntakesFragment());
-        addFragment(new MealIngredientListFragment());
+
+        Fragment fragment = new MealIngredientListFragment();
+        fragment.setArguments(bundle);
+        addFragment(fragment);
     }
 
     /**

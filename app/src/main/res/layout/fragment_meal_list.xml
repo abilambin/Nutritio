@@ -30,14 +30,11 @@
             android:layout_marginRight="@dimen/fragment_line_margin_right"
             android:background="#000000" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/fragmentList"
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        </LinearLayout>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

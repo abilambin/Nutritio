@@ -8,6 +8,11 @@ import com.example.abilambin.nutritio.restApi.specific.StockRestCaller;
 public class StockFragment extends IngredientListFragment<Stock> {
 
     @Override
+    protected int getItem() {
+        return 0;
+    }
+
+    @Override
     protected int getListLayout() {
         return R.layout.fragment_stock;
     }

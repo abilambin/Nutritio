@@ -4,6 +4,7 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Meal implements Serializable{
     private Date date;
 
     @DatabaseField
-    private Recipe recipe;
+    private ArrayList<Recipe> recipes;
 
     @DatabaseField
     private Person person;
@@ -66,11 +67,11 @@ public class Meal implements Serializable{
         this.person = person;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public ArrayList<Recipe> getRecipes() {
+        return recipes;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipe(ArrayList<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

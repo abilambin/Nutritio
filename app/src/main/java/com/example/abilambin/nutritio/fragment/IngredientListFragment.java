@@ -67,7 +67,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
     @Override
     protected int getListLayout() {
-        return R.layout.fragment_groceries;
+        return R.layout.fragment_ingredient_list;
     }
 
     public abstract Class getAddIngredientActivity();
@@ -119,7 +119,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
      * @param inflater
      * @return
      */
-    @Override
+
     protected View createElementView(final IngredientEntry entry, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.list_ingredient, null);
 

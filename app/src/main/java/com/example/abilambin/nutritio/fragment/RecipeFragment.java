@@ -41,6 +41,10 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
     private ActionMode mActionMode;
 
 
+    @Override
+    protected int getItem() {
+        return 0;
+    }
 
     @Override
     protected int getListLayout() {
@@ -84,7 +88,6 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
      * @param inflater
      * @return
      */
-    @Override
     protected View createElementView(final Recipe recipe, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.list_recipe, null);
 
