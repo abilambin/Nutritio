@@ -22,9 +22,9 @@ public class IngredientEntryViewHolder extends GenericViewHolder<IngredientEntry
         super(itemView);
     }
 
+
     @Override
     public void bind(IngredientEntry entry) {
-
 
         final Ingredient ingredient = entry.getIngredient();
 

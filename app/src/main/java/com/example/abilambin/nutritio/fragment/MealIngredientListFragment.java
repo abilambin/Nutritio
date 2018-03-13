@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import viewHolder.GenericViewHolder;
 
 public class MealIngredientListFragment extends AbstractListFragment<IngredientEntry>{
 
@@ -50,6 +51,11 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
         recipe = (Recipe) bundle.get("recipe");
 
         return recipe.getIngredientEntries();
+    }
+
+    @Override
+    protected GenericViewHolder getViewHolder(View view) {
+        return null;
     }
 
 
@@ -86,7 +92,7 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
 
 
                 // On génère la barre de modification de l'ingrédient
-                ActionBarCallBack bar = new ActionBarCallBack();
+                IngredientEntryActionBarCallBack bar = new IngredientEntryActionBarCallBack();
 
                 // On ajoute l'id de la vue de l'ingrédient à la barre
                 bar.setSelectedEntry(ingredientEntry);

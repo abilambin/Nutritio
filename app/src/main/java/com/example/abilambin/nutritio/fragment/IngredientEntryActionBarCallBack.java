@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutionException;
  * Created by abilambin on 06/03/2018.
  */
 
-class ActionBarCallBack implements ActionMode.Callback {
+public class IngredientEntryActionBarCallBack implements ActionMode.Callback {
 
     private IngredientEntry selectedEntry;
 

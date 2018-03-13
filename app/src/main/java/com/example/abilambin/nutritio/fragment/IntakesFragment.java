@@ -128,7 +128,7 @@ public class IntakesFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         int userId = Integer.parseInt(prefs.getString("id", null));
 
-        IntakesLoader loader = new IntakesLoader( userId);
+        IntakesLoader loader = new IntakesLoader(userId);
 
         if(mode == 3){
             loader.execute(3);      // 3 i.e. Mode tous les repas
@@ -143,6 +143,8 @@ public class IntakesFragment extends Fragment {
     }
 
     private void setIntakes(Intakes intakes){
+        if (intakes==null) return;
+
         proteinesProgressBar.setProgress(percent(intakes.getProtein() / 100, goal.getProtein()));
         proteinesPctTextView.setText(intakes.getProtein()  / 100+" / "+goal.getProtein());
 

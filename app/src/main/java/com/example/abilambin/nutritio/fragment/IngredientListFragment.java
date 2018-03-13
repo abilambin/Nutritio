@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
+import viewHolder.GenericViewHolder;
+import viewHolder.IngredientEntryViewHolder;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
@@ -153,7 +155,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
 
                 // On génère la barre de modification de l'ingrédient
-                ActionBarCallBack bar = new ActionBarCallBack();
+                IngredientEntryActionBarCallBack bar = new IngredientEntryActionBarCallBack();
 
                 // On ajoute l'id de la vue de l'ingrédient à la barre
                 bar.setSelectedEntry(entry);
@@ -170,6 +172,12 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
         return vi;
     }
+
+    @Override
+    protected GenericViewHolder getViewHolder(View view) {
+        return new IngredientEntryViewHolder(view);
+    }
+
 
     public void onStop() {
         if (mActionMode != null) mActionMode.finish();

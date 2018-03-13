@@ -1,5 +1,6 @@
 package com.example.abilambin.nutritio.fragment;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
+import viewHolder.GenericViewHolder;
 import viewHolder.MealViewHolder;
 
 public class MealListFragment extends AbstractListFragment<Meal> {
@@ -23,6 +25,10 @@ public class MealListFragment extends AbstractListFragment<Meal> {
     MealRestCaller mealRestCaller = new MealRestCaller();
 
     MealViewHolder mealViewHolder;
+
+    public MealViewHolder getMealViewHolder() {
+        return mealViewHolder;
+    }
 
     private int item = R.layout.item_meal;
 
@@ -47,28 +53,29 @@ public class MealListFragment extends AbstractListFragment<Meal> {
             return list;
 
         } catch (WebServiceCallException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les plats :");
             e.printStackTrace();
             return new ArrayList<>();
         } catch (InterruptedException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les plats :");
             e.printStackTrace();
             return new ArrayList<>();
         } catch (ExecutionException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les plats :");
             e.printStackTrace();
             return new ArrayList<>();
         } catch (CannotAuthenticateUserException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les ingrplatsédients :");
             e.printStackTrace();
             return new ArrayList<>();
         }
 
     }
 
-
-
-
+    @Override
+    protected GenericViewHolder getViewHolder(View view) {
+        return new MealViewHolder(view);
+    }
 
 
 }
