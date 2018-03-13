@@ -28,27 +28,29 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
+import viewHolder.RecipeViewHolder;
 
 public class RecipeFragment extends AbstractListFragment<Recipe> {
 
     LinearLayout ll;
 
-    @BindView(R.id.mealListFragmentTitle)
+    @BindView(R.id.title)
     protected TextView title;
 
     RecipeRestCaller recipeRestCaller = new RecipeRestCaller();
 
     private ActionMode mActionMode;
+    RecipeViewHolder recipeViewHolder;
 
 
     @Override
     protected int getItem() {
-        return 0;
+        return R.layout.item_recipe;
     }
 
     @Override
     protected int getListLayout() {
-        return R.layout.fragment_recipe;
+        return R.layout.list_recipe;
     }
 
     @Override
@@ -92,19 +94,10 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
         View vi = inflater.inflate(R.layout.list_recipe, null);
 
 
-
-
-        TextView nameMealTV = vi.findViewById(R.id.recipeItemNameTextView);
-        TextView ingredientTitleTextView = vi.findViewById(R.id.ingredientTitleTextView);
-
-        if (recipe != null) {
-            nameMealTV.setText(recipe.getName());
-        }
         String text = Html.fromHtml("<b> Ingrédients : </b>") +"\n";
         for (IngredientEntry ingredientEntry : recipe.getIngredientEntries()) {
             text += ingredientEntry.getIngredient().getName() + " : " + ingredientEntry.getAmount() + " " +ingredientEntry.getUnitSmallText() + "\n";
         }
-        ingredientTitleTextView.setText(text);
 
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -128,23 +121,7 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
         return vi;
     }
 
-    @NonNull
-    private String formate(Date mealDate) {
-        String s;
 
-        int h = mealDate.getHours();
-        int m = mealDate.getMinutes();
-
-        s = ((h < 10)?"0":"") + h + "H" + ((m < 10)?"0":"") + m;
-
-        return s;
-    }
-
-    public void onStop() {
-        if (mActionMode != null) mActionMode.finish();
-
-        super.onStop();
-    }
 
 
 

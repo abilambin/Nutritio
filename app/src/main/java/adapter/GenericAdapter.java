@@ -5,12 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 
 import java.util.List;
 
 import viewHolder.GenericViewHolder;
+import viewHolder.IngredientEntryViewHolder;
 import viewHolder.MealViewHolder;
+import viewHolder.RecipeViewHolder;
 
 /**
  * Created by abilambin on 12/03/2018.
@@ -30,8 +35,13 @@ public class GenericAdapter<T> extends RecyclerView.Adapter<GenericViewHolder> {
     public GenericViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view  = LayoutInflater.from(parent.getContext()).inflate(simple_list_item,parent,false);
 
-        if (list.get(0) instanceof Meal) {
+        T element = list.get(0);
+        if (element instanceof Meal) {
             return new MealViewHolder(view);
+        } else if (element instanceof IngredientEntry) {
+            return new IngredientEntryViewHolder(view);
+        } else if (element instanceof Recipe) {
+            return new RecipeViewHolder(view);
         }
 
         return new GenericViewHolder<T>(view);

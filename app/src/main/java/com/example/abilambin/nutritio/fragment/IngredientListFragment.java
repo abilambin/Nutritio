@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.text.Html;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.activity.IngredientActivity;
@@ -67,8 +65,11 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
     @Override
     protected int getListLayout() {
-        return R.layout.fragment_ingredient_list;
+        return R.layout.list_ingredient;
     }
+
+    @Override
+    protected int getItem() { return R.layout.item_ingredient; }
 
     public abstract Class getAddIngredientActivity();
 
@@ -121,20 +122,9 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
      */
 
     protected View createElementView(final IngredientEntry entry, LayoutInflater inflater) {
-        View vi = inflater.inflate(R.layout.list_ingredient, null);
+        View vi = inflater.inflate(R.layout.item_ingredient, null);
 
         final Ingredient ingredient = entry.getIngredient();
-        String brand = ingredient.getBrand();
-        brand = (brand == null)?"":brand+", ";
-
-        TextView ingredientName = vi.findViewById(R.id.list_ingredient_name);
-        TextView ingredientBrand = vi.findViewById(R.id.list_ingredient_brand);
-        TextView ingredientQuantity = vi.findViewById(R.id.list_ingredient_quantity);
-
-        ingredientName.setText(Html.fromHtml("<b>"+ingredient.getName()+"</b>"));
-        ingredientBrand.setText(brand);
-        ingredientQuantity.setText(entry.getAmount() + entry.getUnitSmallText());
-
 
         // On récupère le layout de l'ingrédient
         ll = vi.findViewById(R.id.ingredientContainer);

@@ -8,16 +8,6 @@ import com.example.abilambin.nutritio.restApi.specific.GrocerieRestCaller;
 public class GroceriesFragment extends IngredientListFragment<Grocerie> {
 
     @Override
-    protected int getItem() {
-        return 0;
-    }
-
-    @Override
-    protected int getListLayout() {
-        return R.layout.fragment_ingredient_list;
-    }
-
-    @Override
     public Class getAddIngredientActivity() {
         return AddIngredientToGrocerieActivity.class;
     }

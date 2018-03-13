@@ -1,11 +1,5 @@
 package com.example.abilambin.nutritio.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.util.Log;
-import android.view.ActionMode;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
@@ -15,7 +9,6 @@ import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -24,22 +17,22 @@ import viewHolder.MealViewHolder;
 
 public class MealListFragment extends AbstractListFragment<Meal> {
 
-    @BindView(R.id.mealListFragmentTitle)
+    @BindView(R.id.title)
     protected TextView title;
 
     MealRestCaller mealRestCaller = new MealRestCaller();
 
     MealViewHolder mealViewHolder;
 
-    private int item = R.layout.list_meal;
+    private int item = R.layout.item_meal;
 
 
     @Override
-    protected int getItem() { return R.layout.list_meal; }
+    protected int getItem() { return R.layout.item_meal; }
 
     @Override
     protected int getListLayout() {
-        return R.layout.fragment_meal_list;
+        return R.layout.list_meal;
     }
 
     @Override
