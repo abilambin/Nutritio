@@ -58,8 +58,8 @@ public class GenericAdapter<T extends Serializable> extends RecyclerView.Adapter
     @Override
     public void onBindViewHolder(GenericViewHolder holder, int position) {
         T element = list.get(position);
+        holder.setPosition(position);
         holder.bind(element);
-        holder.itemView.setLongClickable(true);
     }
 
     @Override

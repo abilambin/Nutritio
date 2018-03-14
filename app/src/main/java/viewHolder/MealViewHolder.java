@@ -6,7 +6,10 @@ import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
+import com.example.abilambin.nutritio.fragment.MealActionBarCallBack;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,6 +24,9 @@ public class MealViewHolder extends GenericViewHolder<Meal> {
 
     @Override
     public void bind(Meal meal) {
+        super.bind(meal);
+
+
         TextView hour = itemView.findViewById(R.id.mealHour);
         hour.setText(formate(meal.getDate()));
 
@@ -29,17 +35,19 @@ public class MealViewHolder extends GenericViewHolder<Meal> {
 
     }
 
+    @Override
+    public AbstractActionBarCallBack getActionBarCallBack() {
+        MealActionBarCallBack bar = new MealActionBarCallBack();
+        bar.setSelectedEntry(getElement());
+        bar.setContext(itemView.getContext());
+        return bar;
+    }
 
 
     @NonNull
     private String formate(Date mealDate) {
-        String s;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
-        int h = mealDate.getHours();
-        int m = mealDate.getMinutes();
-
-        s = ((h < 10)?"0":"") + h + "H" + ((m < 10)?"0":"") + m;
-
-        return s;
+        return dateFormat.format(mealDate);
     }
 }

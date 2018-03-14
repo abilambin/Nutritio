@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,12 +19,14 @@ import com.example.abilambin.nutritio.fragment.SetGoalFragment;
 import com.example.abilambin.nutritio.fragment.RecipeFragment;
 import com.example.abilambin.nutritio.fragment.StockFragment;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import butterknife.ButterKnife;
 
 public class DashBoard extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     protected BottomNavigationView navigationView;
-
     protected int id;
 
     public static Goal goal = new Goal();
@@ -39,7 +42,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
         if (liste != null) id = liste.getInt("listeId");
 
         ButterKnife.bind(this);
-        setContentView(R.layout.activity_dash_board);
+        setContentView(R.layout.activity_dashboard);
 
         navigationView = findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
@@ -119,7 +122,10 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
             addFragment(new EnergyFragment());
             addFragment(intakesFragment);
-            addFragment(new MealListFragment());
+
+            MealListFragment mealListFragment = new MealListFragment();
+            mealListFragment.initDates(new Date() ,null);
+            addFragment(mealListFragment);
 
         } else if (itemId == R.id.stocks) {
 
@@ -132,10 +138,16 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         } else if (itemId == R.id.planning) {
 
-            Fragment fragment = new MealListFragment();
-
             addFragment(new SetGoalFragment());
-            addFragment(fragment);
+
+            MealListFragment mealListFragment = new MealListFragment();
+
+            // Date de fin : dans 7 jours
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.DAY_OF_MONTH,7);
+
+            mealListFragment.initDates(new Date() , c.getTime());
+            addFragment(mealListFragment);
 
         } else if(itemId == R.id.recipes){
 

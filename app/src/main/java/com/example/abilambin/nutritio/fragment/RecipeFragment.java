@@ -84,12 +84,6 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
         }
 
     }
-
-    @Override
-    protected GenericViewHolder getViewHolder(View view) {
-        return new RecipeViewHolder(view);
-    }
-
     /**
      * Génère la vue de l'ingrédient en paramètre (y ajoute les listener d'évênements)
      * @param recipe le plat à afficher

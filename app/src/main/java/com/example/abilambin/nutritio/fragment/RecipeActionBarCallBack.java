@@ -2,24 +2,17 @@ package com.example.abilambin.nutritio.fragment;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.DashBoard;
-import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
-import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
+import com.example.abilambin.nutritio.restApi.specific.RecipeRestCaller;
 
 import java.util.concurrent.ExecutionException;
 
@@ -27,9 +20,9 @@ import java.util.concurrent.ExecutionException;
  * Created by abilambin on 06/03/2018.
  */
 
-public class MealActionBarCallBack extends AbstractActionBarCallBack {
+public class RecipeActionBarCallBack extends AbstractActionBarCallBack {
 
-    private Meal selectedEntry;
+    private Recipe selectedEntry;
 
     private Context context;
 
@@ -53,7 +46,7 @@ public class MealActionBarCallBack extends AbstractActionBarCallBack {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GenericRestCaller<Meal> restCaller = new MealRestCaller();
+                GenericRestCaller<Recipe> restCaller = new RecipeRestCaller();
 
                 try {
                     restCaller.delete(selectedEntry.getId());
@@ -87,7 +80,7 @@ public class MealActionBarCallBack extends AbstractActionBarCallBack {
 
     }
 
-    public void setSelectedEntry(Meal selectedEntry) {
+    public void setSelectedEntry(Recipe selectedEntry) {
         this.selectedEntry = selectedEntry;
     }
 }

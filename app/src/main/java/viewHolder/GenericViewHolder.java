@@ -1,35 +1,53 @@
 package viewHolder;
 
-import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
-import com.example.abilambin.nutritio.activity.IngredientActivity;
-import com.example.abilambin.nutritio.fragment.IngredientEntryActionBarCallBack;
+import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
 
 import java.io.Serializable;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by abilambin on 12/03/2018.
  */
 
-public class GenericViewHolder<T extends Serializable> extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-
-
-    private ActionMode mActionMode;
+public abstract class GenericViewHolder<T extends Serializable> extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     private T element;
+
+    Integer selectedItem;
+    Integer position;
+
+    LinearLayout layout;
+    private ActionMode mActionMode;
+
+    public void selectItem(Integer item) {
+        if (selectedItem == null || !selectedItem.equals(item)) {
+            selectedItem = item;
+            layout.setBackgroundColor(Color.LTGRAY);
+        } else {
+            selectedItem = null;
+            layout.setBackgroundColor(Color.WHITE);
+        }
+    }
+
+    public T getElement(){
+        return element;
+    }
+
     public GenericViewHolder(View itemView) {
 
         super(itemView);
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
+        layout = itemView.findViewById(R.id.linearLayout);
     }
 
     public void bind(T element) {
@@ -39,30 +57,31 @@ public class GenericViewHolder<T extends Serializable> extends RecyclerView.View
     @Override
     public void onClick(View itemView) {
 
-        Log.d(TAG, "onClick " + getItemId() + " " + itemView);
-
-        Intent intent = new Intent(itemView.getContext(), IngredientActivity.class);
-
-        // On appelle l'activité de visualisation de l'ingrédient concerné
-        intent.putExtra("ingredient", element);
-        //startActivity(intent);
     }
 
+    public abstract AbstractActionBarCallBack getActionBarCallBack();
+    
     @Override
     public boolean onLongClick(View itemView) {
 
-        Log.d(TAG, "onLONGClick " + getItemId() + " " + itemView);
-
-        Toast.makeText(itemView.getContext(), "Long press on position :"+getPosition(),
-                Toast.LENGTH_LONG).show();
-
-
         itemView.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-        //TODO : Changer le style de l'élément sélectionné
-        itemView.setBackgroundColor(222222);
+
+        selectItem(position);
+        
+        ActionMode.Callback bar = getActionBarCallBack();
+
+        mActionMode = itemView.startActionMode(bar);
+
+        Object[] tags = new Object[2];
+        tags[0] = itemView.getContext();
+        mActionMode.setTag(tags);
+        itemView.setSelected(true);
 
         return true;
-
     }
 
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

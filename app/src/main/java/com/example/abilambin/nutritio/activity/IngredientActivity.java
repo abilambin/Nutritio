@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +45,7 @@ public class IngredientActivity extends AppCompatActivity {
         super.onStart();
 
         Bundle bundle = getIntent().getExtras();
-        Ingredient ingredient = (Ingredient) bundle.get("ingredient");
+        Ingredient ingredient = ((IngredientEntry) bundle.get("ingredient")).getIngredient();
 
         title.setText(ingredient.getName());
         category.setText(ingredient.getCategoryText());

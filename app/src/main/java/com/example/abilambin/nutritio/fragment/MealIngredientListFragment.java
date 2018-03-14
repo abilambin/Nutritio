@@ -53,12 +53,6 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
         return recipe.getIngredientEntries();
     }
 
-    @Override
-    protected GenericViewHolder getViewHolder(View view) {
-        return null;
-    }
-
-
     protected View createElementView(final IngredientEntry ingredientEntry, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.item_ingredient, null);
 
@@ -75,7 +69,7 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
                 Intent intent = new Intent(getActivity(), IngredientActivity.class);
 
                 // On appelle l'activité de visualisation de l'ingrédient concerné
-                intent.putExtra("ingredient", ingredient);
+                intent.putExtra("entry", ingredientEntry);
                 startActivity(intent);
 
             }

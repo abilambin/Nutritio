@@ -20,4 +20,6 @@ public class GroceriesFragment extends IngredientListFragment<Grocerie> {
     public GroceriesFragment(){
         this.restCaller = new GrocerieRestCaller();
     }
+
+
 }

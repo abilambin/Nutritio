@@ -33,13 +33,9 @@ import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAM
 
 public abstract class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
 
-    LinearLayout ll;
-
     GenericRestCaller<T> restCaller;
 
     private String typeName;
-
-    private ActionMode mActionMode;
 
     @BindView(R.id.addIngredientButton)
     FloatingActionButton addIngredientButton;
@@ -52,6 +48,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
         typeName = (String) getArguments().get("typeName");
         View v = super.onCreateView(inflater, container, savedInstanceState);
+
         addIngredientButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -83,6 +80,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
             //Si elle est null, alors on en crée une vide
             if (list == null) return new ArrayList<>();
+
 
             //si la quantité est égale à 0, on affiche pas l'ingrédient
             List<IngredientEntry> entries = new ArrayList<>();
@@ -116,74 +114,6 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
     }
 
-    /**
-     * Génère la vue de l'ingrédient en paramètre (y ajoute les listener d'évênements)
-     * @param entry l'entrée Ingrédient/Quantité à afficher
-     * @param inflater
-     * @return
-     */
-
-    protected View createElementView(final IngredientEntry entry, LayoutInflater inflater) {
-        View vi = inflater.inflate(R.layout.item_ingredient, null);
-
-        final Ingredient ingredient = entry.getIngredient();
-
-        // On récupère le layout de l'ingrédient
-        ll = vi.findViewById(R.id.ingredientContainer);
-
-        // ON CLICK -> READ
-        ll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), IngredientActivity.class);
-
-                // On appelle l'activité de visualisation de l'ingrédient concerné
-                intent.putExtra("ingredient", ingredient);
-                startActivity(intent);
-
-            }
-        });
-
-        // ON LONG CLICK -> UPDATE, DELETE
-        ll.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                // Génération d'un retour haptique
-                ll.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                //TODO : Changer le style de l'élément sélectionné
-                ll.setBackgroundColor(222222);
-
-
-                // On génère la barre de modification de l'ingrédient
-                IngredientEntryActionBarCallBack bar = new IngredientEntryActionBarCallBack();
-
-                // On ajoute l'id de la vue de l'ingrédient à la barre
-                bar.setSelectedEntry(entry);
-                bar.setContext(v.getContext());
-
-                mActionMode = getActivity().startActionMode(bar);
-                Object[] tags = new Object[2];
-                tags[0] = v.getRootView().getContext();
-                mActionMode.setTag(tags);
-                return true;
-            }
-        });
-
-
-        return vi;
-    }
-
-    @Override
-    protected GenericViewHolder getViewHolder(View view) {
-        return new IngredientEntryViewHolder(view);
-    }
-
-
-    public void onStop() {
-        if (mActionMode != null) mActionMode.finish();
-
-        super.onStop();
-    }
 
 
 
