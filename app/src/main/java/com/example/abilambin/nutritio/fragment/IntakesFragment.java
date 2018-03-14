@@ -23,7 +23,6 @@ import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,7 +124,7 @@ public class IntakesFragment extends Fragment {
         // Récupération de l'id utilisateur
         SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         int userId = Integer.parseInt(prefs.getString("id", null));
-        
+
         IntakesLoader loader = new IntakesLoader(
                 userId,
                 proteinesProgressBar, proteinesPctTextView,

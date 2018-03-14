@@ -10,6 +10,7 @@ import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.RestCallerConstant;
 import com.example.abilambin.nutritio.utils.Intakes;
+import com.example.abilambin.nutritio.utils.PersonSession;
 import com.example.abilambin.nutritio.utils.PersonalGoal;
 import com.example.abilambin.nutritio.utils.Utils;
 import com.google.gson.Gson;
@@ -120,18 +121,26 @@ public class IntakesLoader extends AsyncTask<Integer, Void, Intakes> {
                     }*/
                     break;
                 case 3:     // Mode tous les repas
-                    Request getIntakes = new Request.Builder()
-                            .url(RestCallerConstant.SERVER_ADDR + "/api/people/"+ this.userId +"/getTodayIntakes")
-                            .header("Authorization", AuthenticateUser.getInstance().getAuthToken())
-                            .build();
+                    // Donnée utilisateur
+                    PersonSession session = PersonSession.getInstance();
 
-                    httpClient = new OkHttpClient();
+                    if(session.getGlobalIntake() == null) {
+                        Request getIntakes = new Request.Builder()
+                                .url(RestCallerConstant.SERVER_ADDR + "/api/people/" + this.userId + "/getTodayIntakes")
+                                .header("Authorization", AuthenticateUser.getInstance().getAuthToken())
+                                .build();
 
-                    response = httpClient.newCall(getIntakes).execute();
-                    if(response.code() == 200){
-                        intakes = new Gson().fromJson(response.body().string(), new TypeToken<Intakes>(){}.getType());
+                        httpClient = new OkHttpClient();
+
+                        response = httpClient.newCall(getIntakes).execute();
+                        if (response.code() == 200) {
+                            intakes = new Gson().fromJson(response.body().string(), new TypeToken<Intakes>() {}.getType());
+                            session.setGlobalIntake(intakes);
+                        } else {
+                            throw new NetworkErrorException("Unable to load user intakes information : " + response.code());
+                        }
                     }else{
-                        throw new NetworkErrorException("Unable to load user intakes information : " + response.code());
+                        intakes = session.getGlobalIntake();
                     }
                     break;
             }
