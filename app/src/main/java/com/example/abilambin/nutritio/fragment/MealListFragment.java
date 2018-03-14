@@ -45,6 +45,11 @@ public class MealListFragment extends AbstractListFragment<Meal> {
 
 
     @Override
+    public String getTitle() {
+        return "Repas";
+    }
+
+    @Override
     protected int getItem() { return R.layout.item_meal; }
 
     @Override
@@ -101,7 +106,10 @@ public class MealListFragment extends AbstractListFragment<Meal> {
     public void initDates(Date start, Date end) {
 
         Calendar calendar = new GregorianCalendar();
-        calendar.setTime(start);
+
+        //Si un début est défini, on le set, sinon, on le set à aujourd'hui
+        if (start == null) calendar = Calendar.getInstance();
+        else calendar.setTime(start);
 
         calendar.set(Calendar.MILLISECOND, 0);
         calendar.set(Calendar.SECOND, 0);

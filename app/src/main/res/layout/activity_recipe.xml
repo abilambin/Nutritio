@@ -25,14 +25,6 @@
             app:layout_constraintRight_toRightOf="parent"
             tools:context="com.example.abilambin.nutritio.activity.RecipeActivity">
 
-            <fragment
-                android:id="@+id/fragment1"
-                android:name="com.example.abilambin.nutritio.fragment.HeaderRecipeFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                tools:layout="@layout/fragment_header_recipe" />
-
 
         </LinearLayout>
 

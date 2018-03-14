@@ -1,6 +1,5 @@
 package com.example.abilambin.nutritio.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -72,7 +71,7 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         id = (int) bundle.get("typeId");
 
         final IntakesFragment fg = new IntakesFragment();
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        ArrayList<IngredientEntry> entries = new ArrayList<>();
 
         quantity.addTextChangedListener(new TextWatcher() {
 
@@ -99,8 +98,13 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
             }
         });
 
-        ingredients.add(ingredient);
-        fg.setIngredients(ingredients);
+
+        final T type = getType();
+        final IngredientEntry newIngredientEntry = createEntry(ingredient, type);
+
+        entries.add(newIngredientEntry);
+        fg.setIngredientEntries(entries);
+
 
         getFragmentManager()
                 .beginTransaction()
@@ -112,8 +116,6 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
 
             @Override
             public void onClick(View v) {
-                T type = getType();
-                IngredientEntry newIngredientEntry = createEntry(ingredient, type);
                 if(type != null){
                     updateType(newIngredientEntry, type);
                 }

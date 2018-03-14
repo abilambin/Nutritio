@@ -45,6 +45,11 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
 
 
     @Override
+    public String getTitle() {
+        return "Recettes";
+    }
+
+    @Override
     protected int getItem() {
         return R.layout.item_recipe;
     }

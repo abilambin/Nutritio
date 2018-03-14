@@ -25,10 +25,6 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
 
     LinearLayout ll;
 
-    ArrayList<IngredientEntry> ingredientEntries;
-
-    private String typeName;
-
     private ActionMode mActionMode;
 
     @BindView(R.id.addIngredientButton)
@@ -37,8 +33,13 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
     private Recipe recipe;
 
     @Override
+    public String getTitle() {
+        return "Ingrédients";
+    }
+
+    @Override
     protected int getItem() {
-        return 0;
+        return R.layout.item_ingredient;
     }
 
     protected int getListLayout() {
@@ -102,13 +103,5 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
 
 
         return vi;
-    }
-
-    public Class getAddIngredientActivity() {
-        return null;
-    }
-
-    public MealIngredientListFragment(){
-
     }
 }

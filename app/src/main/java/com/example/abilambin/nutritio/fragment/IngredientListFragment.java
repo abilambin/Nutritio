@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.AddIngredientToGrocerieActivity;
 import com.example.abilambin.nutritio.activity.IngredientActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
@@ -31,7 +32,7 @@ import viewHolder.IngredientEntryViewHolder;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
 
-public abstract class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
+public class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
 
     GenericRestCaller<T> restCaller;
 
@@ -40,8 +41,13 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     @BindView(R.id.addIngredientButton)
     FloatingActionButton addIngredientButton;
 
+    @Override
+    public String getTitle() {
+        return "Ingrédients";
+    }
+
     public View onCreateView(LayoutInflater inflater,
-                              ViewGroup container, Bundle savedInstanceState) {
+                             ViewGroup container, Bundle savedInstanceState) {
 
         SharedPreferences prefs = getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         final Integer listeId = prefs.getInt("listId", 2);
@@ -70,12 +76,15 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     @Override
     protected int getItem() { return R.layout.item_ingredient; }
 
-    public abstract Class getAddIngredientActivity();
+    public Class getAddIngredientActivity() {
+        return AddIngredientToGrocerieActivity.class;
+    }
 
     @Override
     public List<IngredientEntry> getList(){
         try {
             //On récupère la liste des ingrédients récupéré par appel rest
+            //TODO
             T list = restCaller.get(2);
 
             //Si elle est null, alors on en crée une vide

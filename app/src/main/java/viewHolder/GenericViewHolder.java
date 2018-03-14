@@ -55,9 +55,7 @@ public abstract class GenericViewHolder<T extends Serializable> extends Recycler
     }
 
     @Override
-    public void onClick(View itemView) {
-
-    }
+    public abstract void onClick(View itemView);
 
     public abstract AbstractActionBarCallBack getActionBarCallBack();
     

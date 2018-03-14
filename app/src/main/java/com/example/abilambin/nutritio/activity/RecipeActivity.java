@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.HeaderRecipeFragment;
-import com.example.abilambin.nutritio.fragment.IngredientListFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealIngredientListFragment;
 
@@ -21,13 +20,15 @@ public class RecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe);
 
         Bundle bundle = getIntent().getExtras();
-        recipe = (Recipe) bundle.get("recipes");
+        recipe = (Recipe) bundle.get("recipe");
 
-        addFragment(new IntakesFragment());
+        addFragment(new HeaderRecipeFragment());
+        final IntakesFragment fg = new IntakesFragment();
+        fg.setIngredientEntries(recipe.getIngredientEntries());
+        addFragment(fg);
+        addFragment(new MealIngredientListFragment());
 
-        Fragment fragment = new MealIngredientListFragment();
-        fragment.setArguments(bundle);
-        addFragment(fragment);
+
     }
 
     /**
@@ -38,7 +39,11 @@ public class RecipeActivity extends AppCompatActivity {
         getFragmentManager()
                 .beginTransaction()
                 .add(R.id.container,fragment)
-                .addToBackStack("frag")
                 .commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

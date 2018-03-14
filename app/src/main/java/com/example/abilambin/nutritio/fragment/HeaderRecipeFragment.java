@@ -1,15 +1,16 @@
 package com.example.abilambin.nutritio.fragment;
 
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import butterknife.BindView;
@@ -27,11 +28,6 @@ public class HeaderRecipeFragment extends Fragment {
     @BindView(R.id.headerRecipeFragmentPreparationBakingTime)
     TextView tempsPreparation;
 
-    public HeaderRecipeFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -40,11 +36,12 @@ public class HeaderRecipeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_header_recipe, container, false);
         ButterKnife.bind(this, view);
 
-        Intent intent = getActivity().getIntent();
+        Bundle bundle = getActivity().getIntent().getExtras();
+        Recipe recipe = (Recipe) bundle.get("recipe");
 
-        title.setText(intent.getStringExtra("name"));
-        tempsPreparation.setText("Préparation : "+intent.getIntExtra("tempsPreparation", 0) +" min. "
-                + " Cuisson : "+intent.getIntExtra("tempsCuisson", 0) +" min.");
+        title.setText(recipe.getName());
+        tempsPreparation.setText("Préparation : 15 min. "
+                + " Cuisson : 10 min.");
 
         return view;
     }

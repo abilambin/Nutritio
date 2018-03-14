@@ -21,5 +21,8 @@ public class GroceriesFragment extends IngredientListFragment<Grocerie> {
         this.restCaller = new GrocerieRestCaller();
     }
 
-
+    @Override
+    public String getTitle() {
+        return "Courses";
+    }
 }

@@ -21,4 +21,9 @@ public class StockFragment extends IngredientListFragment<Stock> {
         this.restCaller = new StockRestCaller();
     }
 
+    @Override
+    public String getTitle() {
+        return "Stock";
+    }
+
 }
