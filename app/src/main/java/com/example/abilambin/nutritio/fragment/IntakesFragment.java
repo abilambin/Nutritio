@@ -15,6 +15,7 @@ import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.utils.Intakes;
 import com.example.abilambin.nutritio.utils.PersonalGoal;
@@ -38,7 +39,7 @@ public class IntakesFragment extends Fragment {
 
     public static int energy = 76;
 
-    protected List<Ingredient> ingredients;
+    protected List<IngredientEntry> ingredientEntries;
 
     protected ArrayList<Meal> meals;
 
@@ -78,12 +79,12 @@ public class IntakesFragment extends Fragment {
     private Goal goal;
 
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public List<IngredientEntry> getIngredientEntries() {
+        return ingredientEntries;
     }
 
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredientEntries(List<IngredientEntry> ingredientEntries) {
+        this.ingredientEntries = ingredientEntries;
     }
 
     public ArrayList<Meal> getMeals() {
@@ -124,7 +125,7 @@ public class IntakesFragment extends Fragment {
         // Récupération de l'id utilisateur
         SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         int userId = Integer.parseInt(prefs.getString("id", null));
-
+        
         IntakesLoader loader = new IntakesLoader(
                 userId,
                 proteinesProgressBar, proteinesPctTextView,
@@ -158,12 +159,12 @@ public class IntakesFragment extends Fragment {
     }
 
     public void generateIntakes() {
-        if (ingredients != null  && !ingredients.isEmpty()){
-            setIntakes(ingredients);
+        if (ingredientEntries != null  && !ingredientEntries.isEmpty()){
+            setIntakes(ingredientEntries);
         }
     }
 
-    private void setIntakes(List<Ingredient> ingredients) {
+    private void setIntakes(List<IngredientEntry> ingredientEntries) {
 
         float prot=0;
         float carb=0;
@@ -174,15 +175,17 @@ public class IntakesFragment extends Fragment {
         int energys = 0;
 
 
+        Ingredient ingredient;
+        for (IngredientEntry entry : ingredientEntries) {
+            ingredient = entry.getIngredient();
 
-        for (Ingredient ingredient : ingredients) {
-            prot += ingredient.getProtein();
-            carb += ingredient.getCarbohydrate();
-            sugar += ingredient.getSugar();
-            fat += ingredient.getFat();
-            sf += ingredient.getSaturatedFat();
-            fibre += ingredient.getFibre();
-            energys += ingredient.getEnergy();
+            prot += ingredient.getProtein() * entry.getAmount();
+            carb += ingredient.getCarbohydrate() * entry.getAmount();
+            sugar += ingredient.getSugar() * entry.getAmount();
+            fat += ingredient.getFat() * entry.getAmount();
+            sf += ingredient.getSaturatedFat() * entry.getAmount();
+            fibre += ingredient.getFibre() * entry.getAmount();
+            energys += ingredient.getEnergy() * entry.getAmount();
         }
 
         energy = Utils.percent(energys, goal.getEnergy());
@@ -223,7 +226,10 @@ public class IntakesFragment extends Fragment {
 
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 
     private void showValueBar(ProgressBar bar, TextView view, float val, float obj) {
         val = valueCalcul(val);

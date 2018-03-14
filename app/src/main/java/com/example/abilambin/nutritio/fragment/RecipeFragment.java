@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
+import viewHolder.GenericViewHolder;
 import viewHolder.RecipeViewHolder;
 
 public class RecipeFragment extends AbstractListFragment<Recipe> {
@@ -42,6 +43,11 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
     private ActionMode mActionMode;
     RecipeViewHolder recipeViewHolder;
 
+
+    @Override
+    public String getTitle() {
+        return "Recettes";
+    }
 
     @Override
     protected int getItem() {
@@ -65,25 +71,24 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
             return list;
 
         } catch (WebServiceCallException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les recettes :");
             e.printStackTrace();
             return new ArrayList<>();
         } catch (InterruptedException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les recettes :");
             e.printStackTrace();
             return new ArrayList<>();
         } catch (ExecutionException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les recettes :");
             e.printStackTrace();
             return new ArrayList<>();
         } catch (CannotAuthenticateUserException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            System.out.println("##### ERROR - Impossible de récupérer les recettes :");
             e.printStackTrace();
             return new ArrayList<>();
         }
 
     }
-
     /**
      * Génère la vue de l'ingrédient en paramètre (y ajoute les listener d'évênements)
      * @param recipe le plat à afficher

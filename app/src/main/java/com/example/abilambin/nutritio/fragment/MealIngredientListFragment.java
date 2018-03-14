@@ -19,14 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import viewHolder.GenericViewHolder;
 
 public class MealIngredientListFragment extends AbstractListFragment<IngredientEntry>{
 
     LinearLayout ll;
-
-    ArrayList<IngredientEntry> ingredientEntries;
-
-    private String typeName;
 
     private ActionMode mActionMode;
 
@@ -36,8 +33,13 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
     private Recipe recipe;
 
     @Override
+    public String getTitle() {
+        return "Ingrédients";
+    }
+
+    @Override
     protected int getItem() {
-        return 0;
+        return R.layout.item_ingredient;
     }
 
     protected int getListLayout() {
@@ -51,7 +53,6 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
 
         return recipe.getIngredientEntries();
     }
-
 
     protected View createElementView(final IngredientEntry ingredientEntry, LayoutInflater inflater) {
         View vi = inflater.inflate(R.layout.item_ingredient, null);
@@ -69,7 +70,7 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
                 Intent intent = new Intent(getActivity(), IngredientActivity.class);
 
                 // On appelle l'activité de visualisation de l'ingrédient concerné
-                intent.putExtra("ingredient", ingredient);
+                intent.putExtra("entry", ingredientEntry);
                 startActivity(intent);
 
             }
@@ -86,7 +87,7 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
 
 
                 // On génère la barre de modification de l'ingrédient
-                ActionBarCallBack bar = new ActionBarCallBack();
+                IngredientEntryActionBarCallBack bar = new IngredientEntryActionBarCallBack();
 
                 // On ajoute l'id de la vue de l'ingrédient à la barre
                 bar.setSelectedEntry(ingredientEntry);
@@ -102,13 +103,5 @@ public class MealIngredientListFragment extends AbstractListFragment<IngredientE
 
 
         return vi;
-    }
-
-    public Class getAddIngredientActivity() {
-        return null;
-    }
-
-    public MealIngredientListFragment(){
-
     }
 }

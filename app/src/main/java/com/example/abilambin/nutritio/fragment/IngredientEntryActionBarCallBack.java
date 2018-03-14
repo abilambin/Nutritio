@@ -25,37 +25,21 @@ import java.util.concurrent.ExecutionException;
  * Created by abilambin on 06/03/2018.
  */
 
-class ActionBarCallBack implements ActionMode.Callback {
+public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack {
 
     private IngredientEntry selectedEntry;
 
-    private Context context;
 
-    public void setContext(Context context) {
-        this.context = context;
+    @Override
+    protected void addTo() {
+
     }
 
     @Override
-    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_delete:
-                delete();
-                mode.finish();
-                return true;
-            case R.id.item_edit:
-                edit();
-                mode.finish();
-                return true;
-            //case R.id.item_addTo:
-              //  return true;
-        }
-
-        return false;
-    }
-
-    private void delete() {
+    protected void delete() {
         //Message de confirmation
-        final Dialog dialog = new Dialog(context);
+        final Dialog dialog = new Dialog(getContext());
+
         dialog.setContentView(R.layout.confirmation_dialog);
         // Puis, si oui, on retire selectedEntry de la liste concernée (courses ou stock)
         Button yes = dialog.findViewById(R.id.yes);
@@ -89,9 +73,9 @@ class ActionBarCallBack implements ActionMode.Callback {
         dialog.show();
     }
 
-
-    private void edit() {
-        final Dialog dialog = new Dialog(context);
+    @Override
+    protected void edit() {
+        final Dialog dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.edit_ingredient_dialog);
 
         final EditText editText = dialog.findViewById(R.id.ingredientQuantity);
@@ -100,7 +84,7 @@ class ActionBarCallBack implements ActionMode.Callback {
         final Spinner spinner = dialog.findViewById(R.id.spinner);
 
         String compareValue = getCompareValue(selectedEntry);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context, R.array.units, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.units, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         if (compareValue != null) {
@@ -144,6 +128,8 @@ class ActionBarCallBack implements ActionMode.Callback {
 
     }
 
+
+
     private String getCompareValue(IngredientEntry entry) {
         String s = entry.getUnitText();
         s = (s.charAt(0) + "").toUpperCase() + s.substring(1);
@@ -153,25 +139,6 @@ class ActionBarCallBack implements ActionMode.Callback {
         return s;
     }
 
-    @Override
-    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-        // TODO Auto-generated method stub
-        mode.getMenuInflater().inflate(R.menu.contextual_menu, menu);
-        return true;
-    }
-
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-
-    }
-
-    @Override
-    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-        // TODO Auto-generated method stub
-
-        mode.setTitle("");
-        return false;
-    }
 
     public void setSelectedEntry(IngredientEntry selectedEntry) {
         this.selectedEntry = selectedEntry;
