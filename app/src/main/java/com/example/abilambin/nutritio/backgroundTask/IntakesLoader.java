@@ -2,11 +2,16 @@ package com.example.abilambin.nutritio.backgroundTask;
 
 import android.accounts.NetworkErrorException;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.RestCallerConstant;
 import com.example.abilambin.nutritio.utils.Intakes;
+import com.example.abilambin.nutritio.utils.PersonalGoal;
+import com.example.abilambin.nutritio.utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,10 +27,30 @@ import okhttp3.Response;
 
 public class IntakesLoader extends AsyncTask<Integer, Void, Intakes> {
     private int userId;
+    private ProgressBar proteinesProgressBar;
+    private TextView proteinesPctTextView;
+    private ProgressBar glucidesProgressBar;
+    private TextView glucidesPctTextView;
+    private ProgressBar sucreProgressBar;
+    private ProgressBar lipidesProgressBar;
+    private TextView lipidesPctTextView;
+    private ProgressBar agsProgressBar;
+    private ProgressBar fibresProgressBar;
+    private TextView fibresPctTextView;
 
-    public IntakesLoader(int userId) {
+    public IntakesLoader(int userId, ProgressBar proteinesProgressBar, TextView proteinesPctTextView, ProgressBar glucidesProgressBar, TextView glucidesPctTextView, ProgressBar sucreProgressBar, ProgressBar lipidesProgressBar, TextView lipidesPctTextView, ProgressBar agsProgressBar, ProgressBar fibresProgressBar, TextView fibresPctTextView) {
         this.userId = userId;
-       }
+        this.proteinesProgressBar = proteinesProgressBar;
+        this.proteinesPctTextView = proteinesPctTextView;
+        this.glucidesProgressBar = glucidesProgressBar;
+        this.glucidesPctTextView = glucidesPctTextView;
+        this.sucreProgressBar = sucreProgressBar;
+        this.lipidesProgressBar = lipidesProgressBar;
+        this.lipidesPctTextView = lipidesPctTextView;
+        this.agsProgressBar = agsProgressBar;
+        this.fibresProgressBar = fibresProgressBar;
+        this.fibresPctTextView = fibresPctTextView;
+    }
 
     @Override
     protected Intakes doInBackground(Integer... mode) {
@@ -133,5 +158,27 @@ public class IntakesLoader extends AsyncTask<Integer, Void, Intakes> {
             */
         //}
         return intakes;
+    }
+
+    @Override
+    protected void onPostExecute(Intakes intakes) {
+        super.onPostExecute(intakes);
+        Goal goal = PersonalGoal.getInstance().getGoal();
+
+        proteinesProgressBar.setProgress(Utils.percent(intakes.getProtein() / 100, goal.getProtein()));
+        proteinesPctTextView.setText(intakes.getProtein()  / 100+" / "+goal.getProtein());
+
+        glucidesProgressBar.setProgress(Utils.percent(intakes.getCarbohydrate()  / 100, 100));
+        glucidesPctTextView.setText(intakes.getCarbohydrate()  / 100+" / "+goal.getCarbohydrate());
+
+        sucreProgressBar.setProgress(Utils.percent(intakes.getSugar()  / 100, 100));
+
+        lipidesProgressBar.setProgress(Utils.percent(intakes.getFat()  / 100, 100));
+        lipidesPctTextView.setText(intakes.getFat()  / 100+" / "+goal.getFat());
+
+        agsProgressBar.setProgress(Utils.percent(intakes.getSaturatedFat()  / 100, 100));
+
+        fibresProgressBar.setProgress(Utils.percent(intakes.getFibre()  / 100, 100));
+        fibresPctTextView.setText(intakes.getFibre()  / 100+" / "+goal.getFibre());
     }
 }

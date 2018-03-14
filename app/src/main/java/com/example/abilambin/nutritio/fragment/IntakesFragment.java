@@ -1,10 +1,10 @@
 package com.example.abilambin.nutritio.fragment;
 
 
-import android.content.SharedPreferences;
-import android.content.Context;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +18,7 @@ import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.utils.Intakes;
 import com.example.abilambin.nutritio.utils.PersonalGoal;
+import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,10 +114,6 @@ public class IntakesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_intakes, container, false);
         ButterKnife.bind(this, view);
 
-
-
-
-
         return view;
     }
 
@@ -128,35 +125,35 @@ public class IntakesFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
         int userId = Integer.parseInt(prefs.getString("id", null));
 
-        IntakesLoader loader = new IntakesLoader( userId);
+        IntakesLoader loader = new IntakesLoader(
+                userId,
+                proteinesProgressBar, proteinesPctTextView,
+                glucidesProgressBar, glucidesPctTextView,
+                sucreProgressBar,
+                lipidesProgressBar, lipidesPctTextView,
+                agsProgressBar,
+                fibresProgressBar, fibresPctTextView);
 
         if(mode == 3){
             loader.execute(3);      // 3 i.e. Mode tous les repas
-            try {
-                this.setIntakes(loader.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
         }
     }
 
     private void setIntakes(Intakes intakes){
-        proteinesProgressBar.setProgress(percent(intakes.getProtein() / 100, goal.getProtein()));
+        proteinesProgressBar.setProgress(Utils.percent(intakes.getProtein() / 100, goal.getProtein()));
         proteinesPctTextView.setText(intakes.getProtein()  / 100+" / "+goal.getProtein());
 
-        glucidesProgressBar.setProgress(percent(intakes.getCarbohydrate()  / 100, 100));
+        glucidesProgressBar.setProgress(Utils.percent(intakes.getCarbohydrate()  / 100, 100));
         glucidesPctTextView.setText(intakes.getCarbohydrate()  / 100+" / "+goal.getCarbohydrate());
 
-        sucreProgressBar.setProgress(percent(intakes.getSugar()  / 100, 100));
+        sucreProgressBar.setProgress(Utils.percent(intakes.getSugar()  / 100, 100));
 
-        lipidesProgressBar.setProgress(percent(intakes.getFat()  / 100, 100));
+        lipidesProgressBar.setProgress(Utils.percent(intakes.getFat()  / 100, 100));
         lipidesPctTextView.setText(intakes.getFat()  / 100+" / "+goal.getFat());
 
-        agsProgressBar.setProgress(percent(intakes.getSaturatedFat()  / 100, 100));
+        agsProgressBar.setProgress(Utils.percent(intakes.getSaturatedFat()  / 100, 100));
 
-        fibresProgressBar.setProgress(percent(intakes.getFibre()  / 100, 100));
+        fibresProgressBar.setProgress(Utils.percent(intakes.getFibre()  / 100, 100));
         fibresPctTextView.setText(intakes.getFibre()  / 100+" / "+goal.getFibre());
     }
 
@@ -188,22 +185,22 @@ public class IntakesFragment extends Fragment {
             energys += ingredient.getEnergy();
         }
 
-        energy = percent(energys, goal.getEnergy());
+        energy = Utils.percent(energys, goal.getEnergy());
 
-        proteinesProgressBar.setProgress(percent(prot, goal.getProtein()));
+        proteinesProgressBar.setProgress(Utils.percent(prot, goal.getProtein()));
         proteinesPctTextView.setText(prot+" / "+goal.getProtein());
 
-        glucidesProgressBar.setProgress(percent(carb, 100));
+        glucidesProgressBar.setProgress(Utils.percent(carb, 100));
         glucidesPctTextView.setText(""+carb+" / "+goal.getCarbohydrate());
 
-        sucreProgressBar.setProgress(percent(sugar, 100));
+        sucreProgressBar.setProgress(Utils.percent(sugar, 100));
 
-        lipidesProgressBar.setProgress(percent(fat, 100));
+        lipidesProgressBar.setProgress(Utils.percent(fat, 100));
         lipidesPctTextView.setText(""+fat+" / "+goal.getFat());
 
-        agsProgressBar.setProgress(percent(sf, 100));
+        agsProgressBar.setProgress(Utils.percent(sf, 100));
 
-        fibresProgressBar.setProgress(percent(fibre, 100));
+        fibresProgressBar.setProgress(Utils.percent(fibre, 100));
         fibresPctTextView.setText(""+fibre+" / "+goal.getFibre());
 
         //PROTEINES
@@ -230,15 +227,8 @@ public class IntakesFragment extends Fragment {
 
     private void showValueBar(ProgressBar bar, TextView view, float val, float obj) {
         val = valueCalcul(val);
-        bar.setProgress(percent(val, obj));
+        bar.setProgress(Utils.percent(val, obj));
         if (view != null) view.setText(val + " / "+obj);
-    }
-
-    private static int percent(float val, float obj){
-        if (obj == 0) return Math.round(val*100);
-
-        float result = (val/obj)*100;
-        return Math.round(result);
     }
 
     private static int valueCalcul(float val){
