@@ -89,6 +89,7 @@ public class RecipeFragment extends AbstractListFragment<ScoredRecipe> {
         } catch (InterruptedException e) {
             System.out.println("##### ERROR - Impossible de récupérer les recettes :");
             e.printStackTrace();
+            Thread.currentThread().interrupt();
             return new ArrayList<>();
         } catch (ExecutionException e) {
             System.out.println("##### ERROR - Impossible de récupérer les recettes :");

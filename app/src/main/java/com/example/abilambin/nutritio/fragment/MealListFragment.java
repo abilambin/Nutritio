@@ -10,6 +10,7 @@ import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
 import com.example.abilambin.nutritio.utils.PersonSession;
+import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,12 +62,11 @@ public class MealListFragment extends AbstractListFragment<Meal> {
     @Override
     public List<Meal> getList(){
         try {
-
             initDates(debut, fin);
 
             List<Meal> list = PersonSession.getInstance().getMeals();
             if(list == null){
-                list = (List<Meal>) mealRestCaller.getAllOf(37);
+                list = (List<Meal>) mealRestCaller.getAllOf(Utils.getUserId(this.getActivity()));
                 PersonSession.getInstance().setMeals(list);
             }
             //Between(37, debut, fin);
@@ -94,6 +94,7 @@ public class MealListFragment extends AbstractListFragment<Meal> {
         } catch (InterruptedException e) {
             System.out.println("##### ERROR - Impossible de récupérer les plats :");
             e.printStackTrace();
+            Thread.currentThread().interrupt();
             return new ArrayList<>();
         } catch (ExecutionException e) {
             System.out.println("##### ERROR - Impossible de récupérer les plats :");

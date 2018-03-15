@@ -6,19 +6,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
-import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.RecipeRestCaller;
 
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by abilambin on 06/03/2018.
- */
 
 public class RecipeActionBarCallBack extends AbstractActionBarCallBack {
 
@@ -55,6 +50,7 @@ public class RecipeActionBarCallBack extends AbstractActionBarCallBack {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 } catch (WebServiceCallException e) {
                     e.printStackTrace();
                 } catch (CannotAuthenticateUserException e) {
