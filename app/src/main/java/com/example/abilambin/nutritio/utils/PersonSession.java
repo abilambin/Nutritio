@@ -1,5 +1,10 @@
 package com.example.abilambin.nutritio.utils;
 
+import com.example.abilambin.nutritio.bdd.model.Goal;
+import com.example.abilambin.nutritio.bdd.model.Meal;
+
+import java.util.List;
+
 /**
  * Created by Matthieu on 14/03/2018.
  */
@@ -8,12 +13,14 @@ public class PersonSession {
     private static PersonSession personSession;
 
     private Intakes globalIntake;
+    private List<Meal> meals;
+    private Goal goal;
 
     private PersonSession(){
         this.invalidateData();
     }
 
-    public static PersonSession getInstance(){
+    public synchronized static PersonSession getInstance(){
         if(personSession != null){
            return personSession;
         }
@@ -23,15 +30,37 @@ public class PersonSession {
         return personSession;
     }
 
-    public void invalidateData(){
+    // Invalidate method
+
+    public synchronized void invalidateData(){
+        this.globalIntake = null;
+        this.meals = null;
+    }
+
+    public synchronized void invalidateIntakes(){
         this.globalIntake = null;
     }
 
-    public Intakes getGlobalIntake() {
+    public synchronized  void invalidateMeals(){
+        this.meals = null;
+    }
+
+
+    // Getter Setter
+
+    public synchronized Intakes getGlobalIntake() {
         return globalIntake;
     }
 
-    public void setGlobalIntake(Intakes globalIntake) {
+    public synchronized void setGlobalIntake(Intakes globalIntake) {
         this.globalIntake = globalIntake;
+    }
+
+    public List<Meal> getMeals() {
+        return meals;
+    }
+
+    public void setMeals(List<Meal> meals) {
+        this.meals = meals;
     }
 }

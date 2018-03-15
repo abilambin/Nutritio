@@ -126,7 +126,7 @@ public class IntakesFragment extends Fragment {
         int userId = Integer.parseInt(prefs.getString("id", null));
 
         IntakesLoader loader = new IntakesLoader(
-                userId,
+                this.getActivity(),
                 proteinesProgressBar, proteinesPctTextView,
                 glucidesProgressBar, glucidesPctTextView,
                 sucreProgressBar,

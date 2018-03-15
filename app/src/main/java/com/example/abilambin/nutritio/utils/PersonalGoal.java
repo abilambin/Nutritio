@@ -17,7 +17,7 @@ public class PersonalGoal {
     private final int sucreNeeds = 30;
     private final int fibreNeeds = 30;
     private final int agsNeeds = 10;
-    private final int energy = 1900;
+    private final int energy = 2500;
 
     public PersonalGoal(){
         this.goal = new Goal();

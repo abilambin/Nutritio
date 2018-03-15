@@ -9,6 +9,7 @@ import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
+import com.example.abilambin.nutritio.utils.PersonSession;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -63,7 +64,11 @@ public class MealListFragment extends AbstractListFragment<Meal> {
 
             initDates(debut, fin);
 
-            List<Meal> list = (List<Meal>) mealRestCaller.getAllOf(37);
+            List<Meal> list = PersonSession.getInstance().getMeals();
+            if(list == null){
+                list = (List<Meal>) mealRestCaller.getAllOf(37);
+                PersonSession.getInstance().setMeals(list);
+            }
             //Between(37, debut, fin);
 
             //Si elle est null, alors on en crée une vide

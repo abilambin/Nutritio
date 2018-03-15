@@ -13,6 +13,7 @@ import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.RestCallerConstant;
 import com.example.abilambin.nutritio.utils.BackgroundRestCaller;
+import com.example.abilambin.nutritio.utils.PersonSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import butterknife.BindView;
@@ -32,16 +33,16 @@ public class EnergyFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_energy, container, false);
         ButterKnife.bind(this, view);
 
-        energyProgressText.setText(IntakesFragment.energy + "%");
+        IntakesLoader loader = new IntakesLoader(this.getActivity(), circularProgressBar, energyProgressText);
+        loader.execute(3);
+        /*energyProgressText.setText("42%");
         int animationDuration = 1500;
-        circularProgressBar.setProgressWithAnimation(IntakesFragment.energy, animationDuration);
+        circularProgressBar.setProgressWithAnimation(42, animationDuration);*/
 
         return view;
     }
