@@ -72,6 +72,7 @@ public class RecipeFragment extends AbstractListFragment<ScoredRecipe> {
                 list = session.getRecipe();
             }
 
+            // Tri la liste pas score décroissant
             list.sort(new Comparator<ScoredRecipe>() {
                 @Override
                 public int compare(ScoredRecipe recipe, ScoredRecipe t1) {
