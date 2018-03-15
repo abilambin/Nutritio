@@ -2,9 +2,6 @@ package com.example.abilambin.nutritio.utils;
 
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 
-/**
- * Created by Matthieu on 12/03/2018.
- */
 
 public class Intakes {
     private long protein;

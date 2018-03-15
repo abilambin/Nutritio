@@ -6,7 +6,6 @@ import com.example.abilambin.nutritio.utils.BackgroundRestCaller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,9 +14,6 @@ import java.util.concurrent.ExecutionException;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-/**
- * Created by bellamy on 15/02/18.
- */
 
 public class GenericRestCaller<T> implements RestCallerInterface<T>  {
     protected TypeToken<List<T>> listTypeToken;

@@ -10,9 +10,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by bellamy on 16/02/18.
- */
 
 public class BackgroundRestCaller extends AsyncTask<Request, Integer, String> {
     private int responseCode;

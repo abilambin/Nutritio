@@ -6,14 +6,15 @@ import android.content.SharedPreferences;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
 
-/**
- * Created by Matthieu on 14/03/2018.
- */
 
 public class Utils {
 
-    public static final int ALL_MEALS = 3;
-
+    /**
+     * Renvoi un porcentage
+     * @param val valeur a évaluer
+     * @param obj valeur équivalente à 100%
+     * @return
+     */
     public static int percent(float val, float obj){
         if (obj == 0) return Math.round(val*100);
 

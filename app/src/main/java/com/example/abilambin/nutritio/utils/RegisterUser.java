@@ -6,9 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.CreateAccountActivity;
 import com.example.abilambin.nutritio.exception.CannotCreateUserException;
-import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.RestCallerConstant;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -24,9 +22,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-/**
- * Created by bellamy on 08/03/18.
- */
 
 public class RegisterUser extends AsyncTask<Void, Void, Boolean> {
     private Context context;

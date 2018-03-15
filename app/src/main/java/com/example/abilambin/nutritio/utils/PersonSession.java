@@ -2,14 +2,10 @@ package com.example.abilambin.nutritio.utils;
 
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Meal;
-import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.ScoredRecipe;
 
 import java.util.List;
 
-/**
- * Created by Matthieu on 14/03/2018.
- */
 
 public class PersonSession {
     private static PersonSession personSession;
