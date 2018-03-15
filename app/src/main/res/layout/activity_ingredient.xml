@@ -6,87 +6,70 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:context="com.example.abilambin.nutritio.activity.IngredientActivity">
-
-
-        <TextView
-            android:id="@+id/ingredientTitle"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/fragment_margin_bottom"
-            android:layout_marginEnd="@dimen/fragment_margin_right"
+            android:layout_height="match_parent">
 
-            android:layout_marginLeft="@dimen/fragment_margin_left"
-            android:layout_marginRight="@dimen/fragment_margin_right"
-            android:layout_marginStart="@dimen/fragment_margin_left"
-            android:layout_marginTop="@dimen/fragment_margin_top"
-            android:textSize="@dimen/fragment_title_text_size" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_marginLeft="@dimen/fragment_line_margin_left"
-            android:layout_marginRight="@dimen/fragment_line_margin_right"
-            android:layout_height="@dimen/fragment_line_size"
-            android:layout_gravity="center_horizontal"
-            android:background="#000000" />
-
-        <TextView
-            android:id="@+id/ingredientBrand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="@dimen/fragment_margin_left"
-            android:layout_marginRight="@dimen/fragment_margin_right"
-            android:layout_marginStart="@dimen/fragment_margin_left"
-            android:layout_marginTop="@dimen/fragment_margin_top"
-            android:textSize="@dimen/fragment_title2_text_size"/>
-
-        <TextView
-            android:id="@+id/ingredientCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="@dimen/fragment_margin_left"
-            android:layout_marginRight="@dimen/fragment_margin_right"
-            android:layout_marginStart="@dimen/fragment_margin_left"
-            android:layout_marginTop="@dimen/fragment_margin_top"
-            android:textSize="@dimen/fragment_title2_text_size"/>
+            <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:context="com.example.abilambin.nutritio.activity.CreateIngredientEntryActivity">
 
 
+                <TextView
+                    android:id="@+id/ingredientTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/fragment_margin_bottom"
+                    android:layout_marginEnd="@dimen/fragment_margin_right"
+
+                    android:layout_marginLeft="@dimen/fragment_margin_left"
+                    android:layout_marginRight="@dimen/fragment_margin_right"
+                    android:layout_marginStart="@dimen/fragment_margin_left"
+                    android:layout_marginTop="@dimen/fragment_margin_top"
+                    android:textSize="@dimen/fragment_title_text_size" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_marginLeft="@dimen/fragment_line_margin_left"
+                    android:layout_marginRight="@dimen/fragment_line_margin_right"
+                    android:layout_height="@dimen/fragment_line_size"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#000000" />
+
+                <TextView
+                    android:id="@+id/ingredientBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="@dimen/fragment_margin_left"
+                    android:layout_marginRight="@dimen/fragment_margin_right"
+                    android:layout_marginStart="@dimen/fragment_margin_left"
+                    android:layout_marginTop="@dimen/fragment_margin_top"
+                    android:textSize="@dimen/fragment_title2_text_size"/>
+
+                <TextView
+                    android:id="@+id/ingredientCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="@dimen/fragment_margin_left"
+                    android:layout_marginRight="@dimen/fragment_margin_right"
+                    android:layout_marginStart="@dimen/fragment_margin_left"
+                    android:layout_marginTop="@dimen/fragment_margin_top"
+                    android:textSize="@dimen/fragment_title2_text_size"/>
 
 
-        <fragment
-            android:id="@+id/fragment2"
-            android:name="com.example.abilambin.nutritio.fragment.IntakesFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:layout="@layout/fragment_intakes" />
+            </LinearLayout>
 
-
-
-    </LinearLayout>
-
-</ScrollView>
+        </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

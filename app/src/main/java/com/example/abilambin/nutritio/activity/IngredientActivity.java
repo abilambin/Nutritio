@@ -1,24 +1,25 @@
 package com.example.abilambin.nutritio.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.text.Html;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
+import com.example.abilambin.nutritio.fragment.IntakesValuesFragment;
+import com.example.abilambin.nutritio.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class IngredientActivity extends AppCompatActivity {
 
+    private IngredientEntry ingredientEntry;
 
     @BindView(R.id.ingredientTitle)
     TextView title;
@@ -28,6 +29,8 @@ public class IngredientActivity extends AppCompatActivity {
 
     @BindView(R.id.ingredientBrand)
     TextView brand;
+
+
 
 
     @Override
@@ -45,11 +48,37 @@ public class IngredientActivity extends AppCompatActivity {
         super.onStart();
 
         Bundle bundle = getIntent().getExtras();
-        Ingredient ingredient = ((IngredientEntry) bundle.get("ingredient")).getIngredient();
+        this.ingredientEntry = (IngredientEntry) bundle.get("ingredient");
+
+        Ingredient ingredient = ingredientEntry.getIngredient();
 
         title.setText(ingredient.getName());
-        category.setText(ingredient.getCategoryText());
-        brand.setText(ingredient.getBrand());
+        category.setText(Html.fromHtml("<b>Catégorie : </b>" +ingredient.getCategoryText()));
+        String marque = ingredient.getBrand();
+        if (marque != null) {
+            brand.setText(Html.fromHtml("<b>Marque : </b>"+marque));
+        }
+
+        // ON AJOUTE LE FRAGMENT INTAKES_VALUES
+        IntakesValuesFragment fg = new IntakesValuesFragment();
+        List<IngredientEntry> entries = new ArrayList<>();
+        entries.add(ingredientEntry);
+        fg.setIngredientEntries(entries);
+        Utils.addFragment(fg, getFragmentManager());
+
     }
+
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+
+
+
+
+
+
 
 }

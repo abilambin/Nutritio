@@ -4,13 +4,13 @@ import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 
 
 public class Intakes {
-    private long protein;
-    private long carbohydrate;
-    private long sugar;
-    private long fat;
-    private long saturatedFat;
-    private long fibre;
-    private long energy;
+    private int protein;
+    private int carbohydrate;
+    private int sugar;
+    private int fat;
+    private int saturatedFat;
+    private int fibre;
+    private int energy;
 
     public Intakes() {
         this.protein = 0;
@@ -22,87 +22,99 @@ public class Intakes {
         this.energy = 0;
     }
 
+    public void addMoreIntakes(IngredientEntry entry) {
+        addEnergy(entry);
+
+        addProtein(entry);
+        addCarbohydrate(entry);
+        addFat(entry);
+        addFibre(entry);
+        addSaturatedFat(entry);
+        addSugar(entry);
+
+    }
+
     public void addProtein(IngredientEntry entry) {
         this.protein += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
     public void addCarbohydrate(IngredientEntry entry) {
-        this.carbohydrate += entry.getIngredient().getProtein() * entry.getAmount();
+        this.carbohydrate += entry.getIngredient().getCarbohydrate() * entry.getAmount();
     }
 
     public void addSugar(IngredientEntry entry){
-        this.sugar += entry.getIngredient().getProtein() * entry.getAmount();
+        this.sugar += entry.getIngredient().getSugar() * entry.getAmount();
     }
 
     public void addFat(IngredientEntry entry) {
-        this.fat += entry.getIngredient().getProtein() * entry.getAmount();
+        this.fat += entry.getIngredient().getFat() * entry.getAmount();
     }
 
     public void addSaturatedFat(IngredientEntry entry) {
-        this.saturatedFat += entry.getIngredient().getProtein() * entry.getAmount();
+        this.saturatedFat += entry.getIngredient().getSaturatedFat() * entry.getAmount();
     }
 
     public void addFibre(IngredientEntry entry) {
-        this.fibre += entry.getIngredient().getProtein() * entry.getAmount();
+        this.fibre += entry.getIngredient().getFibre() * entry.getAmount();
     }
 
     public void addEnergy(IngredientEntry entry) {
-        this.energy += entry.getIngredient().getProtein() * entry.getAmount();
+        this.energy += entry.getIngredient().getEnergy() * entry.getAmount();
     }
 
-    public long getProtein() {
+    public int getProtein() {
         return protein;
     }
 
-    public void setProtein(long protein) {
+    public void setProtein(int protein) {
         this.protein = protein;
     }
 
-    public long getCarbohydrate() {
+    public int getCarbohydrate() {
         return carbohydrate;
     }
 
-    public void setCarbohydrate(long carbohydrate) {
+    public void setCarbohydrate(int carbohydrate) {
         this.carbohydrate = carbohydrate;
     }
 
-    public long getSugar() {
+    public int getSugar() {
         return sugar;
     }
 
-    public void setSugar(long sugar) {
+    public void setSugar(int sugar) {
         this.sugar = sugar;
     }
 
-    public long getFat() {
+    public int getFat() {
         return fat;
     }
 
-    public void setFat(long fat) {
+    public void setFat(int fat) {
         this.fat = fat;
     }
 
-    public long getSaturatedFat() {
+    public int getSaturatedFat() {
         return saturatedFat;
     }
 
-    public void setSaturatedFat(long saturatedFat) {
+    public void setSaturatedFat(int saturatedFat) {
         this.saturatedFat = saturatedFat;
     }
 
-    public long getFibre() {
+    public int getFibre() {
         return fibre;
     }
 
-    public void setFibre(long fibre) {
+    public void setFibre(int fibre) {
         this.fibre = fibre;
     }
 
-    public long getEnergy() {
+    public int getEnergy() {
         return energy;
     }
 
-    public void setEnergy(long energy) {
+    public void setEnergy(int energy) {
         this.energy = energy;
     }
 

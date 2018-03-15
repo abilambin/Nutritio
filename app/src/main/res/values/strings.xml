@@ -21,7 +21,7 @@
 
     <!-- Titles 2 -->
     <string name="energy">Énergie</string>
-    <string name="intake">Apports</string>
+    <string name="intake">Apports journaliers</string>
     <string name="vitamins">Vitamines</string>
     <string name="title_activity_stock">StockActivity</string>
     <string name="title_dashboard">Dashboard</string>
@@ -69,6 +69,7 @@
     <string name="unit">Unité</string>
     <string name="quantity">Quantité</string>
     <string name="cancel">Annuler</string>
+    <string name="title_activity_recipe">Recipe</string>
     <string-array name="units">
         <item>Grammes (g)</item>
         <item>Millilitres (ml)</item>

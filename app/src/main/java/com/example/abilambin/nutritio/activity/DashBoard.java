@@ -18,6 +18,7 @@ import com.example.abilambin.nutritio.fragment.MealListFragment;
 import com.example.abilambin.nutritio.fragment.SetGoalFragment;
 import com.example.abilambin.nutritio.fragment.RecipeFragment;
 import com.example.abilambin.nutritio.fragment.StockFragment;
+import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -47,19 +48,6 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
         navigationView = findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
 
-    }
-
-
-    /**
-     * Ajoute le fragment en paramètre à la vue en cours (à la suite des autres fragments déjà présents)
-     * @param fragment le fragment à ajouter
-     */
-    public void addFragment(Fragment fragment) {
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.container,fragment)
-                .addToBackStack("frag")
-                .commit();
     }
 
     /**
@@ -120,12 +108,12 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             IntakesFragment intakesFragment = new IntakesFragment();
             intakesFragment.setMode(3);
 
-            addFragment(new EnergyFragment());
-            addFragment(intakesFragment);
+            Utils.addFragment(new EnergyFragment(), getFragmentManager());
+            Utils.addFragment(intakesFragment, getFragmentManager());
 
             MealListFragment mealListFragment = new MealListFragment();
             mealListFragment.initDates(new Date() ,null);
-            addFragment(mealListFragment);
+            Utils.addFragment(mealListFragment, getFragmentManager());
 
         } else if (itemId == R.id.stocks) {
 
@@ -134,11 +122,11 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
             Fragment fragment = new StockFragment();
             fragment.setArguments(bundle);
-            addFragment(fragment);
+            Utils.addFragment(fragment, getFragmentManager());
 
         } else if (itemId == R.id.planning) {
 
-            addFragment(new SetGoalFragment());
+            Utils.addFragment(new SetGoalFragment(), getFragmentManager());
 
             MealListFragment mealListFragment = new MealListFragment();
 
@@ -147,7 +135,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             c.add(Calendar.DAY_OF_MONTH,7);
 
             mealListFragment.initDates(new Date() , c.getTime());
-            addFragment(mealListFragment);
+            Utils.addFragment(mealListFragment, getFragmentManager());
 
         } else if(itemId == R.id.recipes){
 
@@ -156,7 +144,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
             Fragment fragment = new RecipeFragment();
             fragment.setArguments(bundle);
-            addFragment(fragment);
+            Utils.addFragment(fragment, getFragmentManager());
 
         } else if(itemId == R.id.groceries){
             bundle = new Bundle();
@@ -164,7 +152,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
             Fragment fragment = new GroceriesFragment();
             fragment.setArguments(bundle);
-            addFragment(fragment);
+            Utils.addFragment(fragment, getFragmentManager());
 
         }
 

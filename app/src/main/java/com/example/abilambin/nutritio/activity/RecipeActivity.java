@@ -8,7 +8,9 @@ import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.HeaderRecipeFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
+import com.example.abilambin.nutritio.fragment.IntakesValuesFragment;
 import com.example.abilambin.nutritio.fragment.RecipeIngredientListFragment;
+import com.example.abilambin.nutritio.utils.Utils;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -22,24 +24,15 @@ public class RecipeActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         recipe = (Recipe) bundle.get("recipe");
 
-        addFragment(new HeaderRecipeFragment());
-        final IntakesFragment fg = new IntakesFragment();
+        // ON AJOUTE LES FRAGMENTS
+        Utils.addFragment(new HeaderRecipeFragment(), getFragmentManager());
+
+        IntakesValuesFragment fg = new IntakesValuesFragment();
         fg.setIngredientEntries(recipe.getIngredientEntries());
-        addFragment(fg);
-        addFragment(new RecipeIngredientListFragment());
+        Utils.addFragment(fg, getFragmentManager());
+        Utils.addFragment(new RecipeIngredientListFragment(), getFragmentManager());
 
 
-    }
-
-    /**
-     * Ajoute le fragment en paramètre à la vue en cours (à la suite des autres fragments déjà présents)
-     * @param fragment le fragment à ajouter
-     */
-    private void addFragment(Fragment fragment) {
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.container,fragment)
-                .commit();
     }
 
     @Override

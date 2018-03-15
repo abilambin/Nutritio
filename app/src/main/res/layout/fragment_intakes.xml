@@ -7,6 +7,7 @@
     tools:context="com.example.abilambin.nutritio.fragment.IntakesFragment">
 
     <TextView
+        android:id="@+id/intakesTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/fragment_margin_bottom"

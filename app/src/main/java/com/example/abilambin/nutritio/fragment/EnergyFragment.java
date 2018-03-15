@@ -39,10 +39,7 @@ public class EnergyFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         IntakesLoader loader = new IntakesLoader(this.getActivity(), circularProgressBar, energyProgressText);
-        loader.execute(3);
-        /*energyProgressText.setText("42%");
-        int animationDuration = 1500;
-        circularProgressBar.setProgressWithAnimation(42, animationDuration);*/
+        loader.execute();
 
         return view;
     }

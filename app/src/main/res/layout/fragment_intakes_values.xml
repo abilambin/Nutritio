@@ -1,0 +1,122 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context="com.example.abilambin.nutritio.fragment.IntakesValuesFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/fragment_margin_bottom"
+        android:layout_marginEnd="@dimen/fragment_margin_right"
+
+        android:layout_marginLeft="@dimen/fragment_margin_left"
+        android:layout_marginRight="@dimen/fragment_margin_right"
+        android:layout_marginStart="@dimen/fragment_margin_left"
+        android:layout_marginTop="@dimen/fragment_margin_top"
+        android:textSize="@dimen/fragment_title_text_size"
+        android:text="Apports (pour 100g)"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="@dimen/fragment_line_margin_left"
+        android:layout_marginRight="@dimen/fragment_line_margin_right"
+        android:layout_height="@dimen/fragment_line_size"
+        android:layout_gravity="center_horizontal"
+        android:background="#000000" />
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginLeft="@dimen/fragment_line_margin_left"
+        android:layout_marginRight="@dimen/fragment_line_margin_right"
+        android:layout_marginBottom="@dimen/fragment_margin_bottom"
+        android:layout_marginTop="@dimen/fragment_margin_top"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
+
+        <TableRow
+            style="@style/rowStyle">
+            <TextView
+                android:text="Energy :"
+                style="@style/rowIntakesNameStyle"
+                />
+
+            <TextView
+                android:id="@+id/energy"
+                style="@style/rowIntakesValueStyle" />
+        </TableRow>
+
+        <TableRow
+            style="@style/rowStyle">
+            <TextView
+                android:text="Protéines :"
+                style="@style/rowIntakesNameStyle"/>
+            <TextView
+                android:id="@+id/proteins"
+                style="@style/rowIntakesValueStyle"/>
+        </TableRow>
+
+        <TableRow
+            style="@style/rowStyle">
+            <TextView
+                android:text="Glucides :"
+                style="@style/rowIntakesNameStyle"/>
+            <TextView
+                android:id="@+id/carbs"
+                style="@style/rowIntakesValueStyle"/>
+        </TableRow>
+
+        <TableRow
+            style="@style/rowStyle">
+            <TextView
+                android:text="Sucre :"
+                style="@style/rowIntakesNameStyle"/>
+            <TextView
+                android:id="@+id/sugar"
+                style="@style/rowIntakesValueStyle"/>
+        </TableRow>
+
+        <TableRow
+            style="@style/rowStyle">
+            <TextView
+                android:text="Lipides :"
+                style="@style/rowIntakesNameStyle"/>
+            <TextView
+                android:id="@+id/fat"
+                style="@style/rowIntakesValueStyle"/>
+        </TableRow>
+
+        <TableRow
+            style="@style/rowStyle">
+
+            <TextView
+                android:text="Acides gras saturés :"
+                style="@style/rowIntakesNameStyle" />
+
+            <TextView
+                android:id="@+id/saturatedFat"
+                style="@style/rowIntakesValueStyle" />
+        </TableRow>
+
+        <TableRow
+            style="@style/rowStyle">
+
+            <TextView
+                android:text="Fibres :"
+                style="@style/rowIntakesNameStyle"/>
+
+            <TextView
+                android:id="@+id/fibres"
+                style="@style/rowIntakesValueStyle" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>

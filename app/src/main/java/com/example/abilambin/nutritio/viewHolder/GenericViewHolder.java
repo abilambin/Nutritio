@@ -29,10 +29,10 @@ public abstract class GenericViewHolder<T extends Serializable> extends Recycler
     public void selectItem(Integer item) {
         if (selectedItem == null || !selectedItem.equals(item)) {
             selectedItem = item;
-            layout.setBackgroundColor(Color.LTGRAY);
+            layout.setBackgroundColor(R.drawable.list_meal_element_background_selected);
         } else {
             selectedItem = null;
-            layout.setBackgroundColor(Color.WHITE);
+            layout.setBackgroundColor(R.drawable.list_meal_element_background);
         }
     }
 

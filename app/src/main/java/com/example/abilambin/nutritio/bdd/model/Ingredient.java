@@ -29,22 +29,22 @@ public class Ingredient implements Serializable {
     private int energy;
 
     @DatabaseField
-    private float protein;
+    private int protein;
 
     @DatabaseField
-    private float carbohydrate;
+    private int carbohydrate;
 
     @DatabaseField
-    private float sugar;
+    private int sugar;
 
     @DatabaseField
-    private float fat;
+    private int fat;
 
     @DatabaseField
-    private float saturatedFat;
+    private int saturatedFat;
 
     @DatabaseField
-    private float fibre;
+    private int fibre;
 
 
     public Ingredient() {
@@ -56,7 +56,7 @@ public class Ingredient implements Serializable {
         this.brand = brand;
     }
 
-    public Ingredient(String name, String brand, int energy, float protein, float carbohydrate, float sugar, float fat, float saturatedFat, float fibre) {
+    public Ingredient(String name, String brand, int energy, int protein, int carbohydrate, int sugar, int fat, int saturatedFat, int fibre) {
 
         this.name = name;
         this.brand = brand;
@@ -141,58 +141,58 @@ public class Ingredient implements Serializable {
     }
 
     public int getEnergy() {
-        return energy/1000;
+        return energy;
     }
 
     public void setEnergy(int energy) {
         this.energy = energy;
     }
 
-    public float getProtein() {
-        return protein/1000;
+    public int getProtein() {
+        return protein;
     }
 
-    public void setProtein(float protein) {
+    public void setProtein(int protein) {
         this.protein = protein;
     }
 
-    public float getCarbohydrate() {
-        return carbohydrate/1000;
+    public int getCarbohydrate() {
+        return carbohydrate;
     }
 
-    public void setCarbohydrate(float carbohydrate) {
+    public void setCarbohydrate(int carbohydrate) {
         this.carbohydrate = carbohydrate;
     }
 
-    public float getSugar() {
-        return sugar/1000;
+    public int getSugar() {
+        return sugar;
     }
 
-    public void setSugar(float sugar) {
+    public void setSugar(int sugar) {
         this.sugar = sugar;
     }
 
-    public float getFat() {
-        return fat/1000;
+    public int getFat() {
+        return fat;
     }
 
-    public void setFat(float fat) {
+    public void setFat(int fat) {
         this.fat = fat;
     }
 
-    public float getSaturatedFat() {
-        return saturatedFat/1000;
+    public int getSaturatedFat() {
+        return saturatedFat;
     }
 
-    public void setSaturatedFat(float saturatedFat) {
+    public void setSaturatedFat(int saturatedFat) {
         this.saturatedFat = saturatedFat;
     }
 
-    public float getFibre() {
-        return fibre/1000;
+    public int getFibre() {
+        return fibre;
     }
 
-    public void setFibre(float fibre) {
+    public void setFibre(int fibre) {
         this.fibre = fibre;
     }
 
