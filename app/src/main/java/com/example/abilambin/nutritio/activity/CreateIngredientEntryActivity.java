@@ -20,6 +20,9 @@ import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
 
+import org.w3c.dom.Text;
+
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -53,9 +56,28 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
     @BindView(R.id.spinner)
     Spinner unit;
 
+
+    // INTAKES
+    @BindView(R.id.energy)
+    TextView energy;
+
+    @BindView(R.id.proteins)
+    TextView proteins;
+    @BindView(R.id.carbs)
+    TextView carbs;
+    @BindView(R.id.sugar)
+    TextView sugar;
+    @BindView(R.id.fat)
+    TextView fat;
+    @BindView(R.id.saturatedFat)
+    TextView saturatedFat;
+    @BindView(R.id.fibres)
+    TextView fibres;
+
+
+    // BUTTONS
     @BindView(R.id.submit)
     Button submit;
-
     @BindView(R.id.cancel)
     Button cancel;
 
@@ -73,9 +95,6 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         final Ingredient ingredient = (Ingredient) bundle.get("ingredient");
         id = (int) bundle.get("typeId");
 
-        final IntakesFragment fg = new IntakesFragment();
-        ArrayList<IngredientEntry> entries = new ArrayList<>();
-
         quantity.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -88,38 +107,19 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
 
             @Override
             public void afterTextChanged(Editable s) {
-                int q = 0;
-                // Si la quantité n'est pas inscrite, on considère zéro
-                try {
-                    q = Integer.parseInt(s.toString());
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                } finally {
                     ingredientEntry = createEntry(ingredient, getType());
-
-                    List<IngredientEntry> ie = new ArrayList<>();
-                    ie.add(ingredientEntry);
-                    fg.setIngredientEntries(ie);
-                }
             }
         });
 
         ingredientEntry = createEntry(ingredient, getType());
-
-        entries.add(ingredientEntry);
-
-        getFragmentManager()
-                .beginTransaction()
-                .add(R.id.intakesContainer,fg)
-                .addToBackStack("frag")
-                .commit();
+        showAllIntakes();
 
 
         submit.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                submit(ingredientEntry);
+                submit();
                 finish();
             }
         });
@@ -133,9 +133,31 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
 
     }
 
-    private void submit(IngredientEntry entry) {
+    private void showAllIntakes() {
+        Ingredient ingredient = ingredientEntry.getIngredient();
+
+        showOneIntakes(ingredient.getEnergy(), energy, "kcal");
+
+        showOneIntakes(ingredient.getProtein(), proteins, "g");
+        showOneIntakes(ingredient.getCarbohydrate(), carbs, "g");
+        showOneIntakes(ingredient.getSugar(), sugar, "g");
+        showOneIntakes(ingredient.getFat(), fat, "g");
+        showOneIntakes(ingredient.getSaturatedFat(), saturatedFat, "g");
+        showOneIntakes(ingredient.getFibre(), fibres, "g");
+
+    }
+
+    private void showOneIntakes(float intake, TextView textView, String unit) {
+        final NumberFormat instance = NumberFormat.getNumberInstance();
+        instance.setMinimumFractionDigits(0);
+        instance.setMaximumFractionDigits(2);
+
+        textView.setText(instance.format(intake)+unit);
+    }
+
+    private void submit() {
         if(getType() != null){
-            updateType(entry, getType());
+            updateType(this.ingredientEntry, getType());
         }
     }
 

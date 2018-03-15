@@ -67,6 +67,8 @@
                 android:textSize="@dimen/fragment_title2_text_size"/>
 
             <LinearLayout
+
+                android:layout_marginLeft="@dimen/fragment_line_margin_left"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
@@ -88,41 +90,131 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/intakesContainer"
+            <TableLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+
+                android:layout_marginLeft="@dimen/fragment_line_margin_left"
+                android:layout_marginRight="@dimen/fragment_line_margin_right"
+                android:layout_marginBottom="@dimen/fragment_margin_bottom"
+                android:layout_marginTop="@dimen/fragment_margin_top"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    style="@style/rowStyle" >
+                    <TextView
+                        style="@style/rowIntakesValueStyle"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/fragment_margin_top"
+                        android:textStyle="bold"
+                        android:text="Valeurs nutritionnelles pour 100g"
+                        android:gravity="center"
+                        android:layout_span="6"></TextView>
+                </TableRow>
+
+                <TableRow
+                    style="@style/rowStyle">
+                    <TextView
+                        android:text="Energy :"
+                        style="@style/rowIntakesNameStyle"
+                        />
+
+                    <TextView
+                        android:id="@+id/energy"
+                        style="@style/rowIntakesValueStyle" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/rowStyle">
+                    <TextView
+                        android:text="Protéines :"
+                        style="@style/rowIntakesNameStyle"/>
+                    <TextView
+                        android:id="@+id/proteins"
+                        style="@style/rowIntakesValueStyle"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/rowStyle">
+                    <TextView
+                        android:text="Glucides :"
+                        style="@style/rowIntakesNameStyle"/>
+                    <TextView
+                        android:id="@+id/carbs"
+                        style="@style/rowIntakesValueStyle"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/rowStyle">
+                    <TextView
+                        android:text="Sucre :"
+                        style="@style/rowIntakesNameStyle"/>
+                    <TextView
+                        android:id="@+id/sugar"
+                        style="@style/rowIntakesValueStyle"/>
+                    </TableRow>
+
+                <TableRow
+                    style="@style/rowStyle">
+                    <TextView
+                        android:text="Lipides :"
+                        style="@style/rowIntakesNameStyle"/>
+                    <TextView
+                        android:id="@+id/fat"
+                        style="@style/rowIntakesValueStyle"/>
+                </TableRow>
+
+                <TableRow
+                    style="@style/rowStyle">
+
+                    <TextView
+                        android:text="Acides gras saturés :"
+                        style="@style/rowIntakesNameStyle" />
+
+                    <TextView
+                        android:id="@+id/saturatedFat"
+                        style="@style/rowIntakesValueStyle" />
+                </TableRow>
+
+                <TableRow
+                    style="@style/rowStyle">
+
+                    <TextView
+                        android:text="Fibres :"
+                        style="@style/rowIntakesNameStyle"/>
+
+                    <TextView
+                        android:id="@+id/fibres"
+                        style="@style/rowIntakesValueStyle" />
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/fragment_line_margin_left"
+                android:layout_marginRight="@dimen/fragment_line_margin_right"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ajouter"/>
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/cancel"/>
             </LinearLayout>
 
-            <RelativeLayout
-                app:layout_constraintStart_toEndOf="@+id/intakesContainer"
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="ObsoleteLayoutParam">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <Button
-                        android:id="@+id/submit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Ajouter"/>
-
-                    <Button
-                        android:id="@+id/cancel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/cancel"/>
-                </LinearLayout>
-
-            </RelativeLayout>
 
 
 

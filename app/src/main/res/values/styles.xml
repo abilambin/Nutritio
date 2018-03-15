@@ -16,4 +16,26 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+
+    <style name="rowStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/intakes_text_margin</item>
+        <item name="android:layout_marginRight">0dp</item>
+    </style>
+
+    <style name="rowIntakesNameStyle">
+        <item name="android:textSize">@dimen/intakes_text_size</item>
+    </style>
+
+    <style name="rowIntakesValueStyle">
+        <item name="android:textSize">@dimen/intakes_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">right</item>
+
+    </style>
+
+
 </resources>
