@@ -3,6 +3,7 @@ package com.example.abilambin.nutritio.utils;
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.ScoredRecipe;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class PersonSession {
     private Intakes globalIntake;
     private List<Meal> meals;
     private Goal goal;
-    private List<Recipe> recipe;
+    private List<ScoredRecipe> recipe;
 
     private PersonSession(){
         this.invalidateData();
@@ -70,11 +71,11 @@ public class PersonSession {
         this.meals = meals;
     }
 
-    public void setRecipe(List<Recipe> recipe) {
+    public void setRecipe(List<ScoredRecipe> recipe) {
         this.recipe = recipe;
     }
 
-    public List<Recipe> getRecipe() {
+    public List<ScoredRecipe> getRecipe() {
         return recipe;
     }
 }

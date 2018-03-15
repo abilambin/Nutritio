@@ -11,26 +11,30 @@ import android.widget.TextView;
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.ScoredRecipe;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.RecipeRestCaller;
+import com.example.abilambin.nutritio.restApi.specific.ScoredRecipeRestCaller;
 import com.example.abilambin.nutritio.utils.PersonSession;
+import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import viewHolder.RecipeViewHolder;
 
-public class RecipeFragment extends AbstractListFragment<Recipe> {
+public class RecipeFragment extends AbstractListFragment<ScoredRecipe> {
 
     LinearLayout ll;
 
     @BindView(R.id.title)
     protected TextView title;
 
-    RecipeRestCaller recipeRestCaller = new RecipeRestCaller();
+    ScoredRecipeRestCaller recipeRestCaller = new ScoredRecipeRestCaller();
 
     private ActionMode mActionMode;
     RecipeViewHolder recipeViewHolder;
@@ -52,14 +56,14 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
     }
 
     @Override
-    public List<Recipe> getList(){
+    public List<ScoredRecipe> getList(){
         try {
             PersonSession session = PersonSession.getInstance();
-            List<Recipe> list = null;
+            List<ScoredRecipe> list = null;
 
             //On récupère la liste des ingrédients récupéré par appel rest
             if(session.getRecipe() == null) {
-                list = (List<Recipe>) recipeRestCaller.getAll();
+                list = recipeRestCaller.getScoredRecipe(Utils.getUserId(this.getActivity()));
                 session.setRecipe(list);
 
                 //Si elle est null, alors on en crée une vide
@@ -67,6 +71,13 @@ public class RecipeFragment extends AbstractListFragment<Recipe> {
             }else{
                 list = session.getRecipe();
             }
+
+            list.sort(new Comparator<ScoredRecipe>() {
+                @Override
+                public int compare(ScoredRecipe recipe, ScoredRecipe t1) {
+                    return t1.getScore() - recipe.getScore();
+                }
+            });
 
             return list;
 
