@@ -22,10 +22,12 @@ public class GenericAdapter<T extends Serializable> extends RecyclerView.Adapter
 
     List<T> list;
     private int simple_list_item;
+    private int currentFragment;
 
-    public GenericAdapter(List<T> list, int simple_list_item) {
+    public GenericAdapter(List<T> list, int simple_list_item, int currentFragment) {
         this.list = list;
         this.simple_list_item = simple_list_item;
+        this.currentFragment = currentFragment;
     }
 
     @Override
@@ -36,18 +38,20 @@ public class GenericAdapter<T extends Serializable> extends RecyclerView.Adapter
     }
 
     private GenericViewHolder getViewHolder(View view) {
-        T elem = list.get(0);
+        if(list != null) {
+            T elem = list.get(0);
 
-        if (elem instanceof Meal) {
-            return new MealViewHolder(view);
-        }
+            if (elem instanceof Meal) {
+                return new MealViewHolder(view);
+            }
 
-        if (elem instanceof IngredientEntry) {
-            return new IngredientEntryViewHolder(view);
-        }
+            if (elem instanceof IngredientEntry) {
+                return new IngredientEntryViewHolder(view, currentFragment);
+            }
 
-        if (elem instanceof Recipe) {
-            return new RecipeViewHolder(view);
+            if (elem instanceof Recipe) {
+                return new RecipeViewHolder(view);
+            }
         }
 
         return null;

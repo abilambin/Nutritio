@@ -15,7 +15,6 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
-import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ import butterknife.BindView;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
 
-public class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
+public abstract class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
 
     GenericRestCaller<T> restCaller;
 
@@ -62,6 +61,8 @@ public class IngredientListFragment<T extends IngredientList> extends AbstractLi
         return v;
     }
 
+    public abstract int getListId();
+
     @Override
     protected int getListLayout() {
         return R.layout.list_ingredient;
@@ -69,6 +70,11 @@ public class IngredientListFragment<T extends IngredientList> extends AbstractLi
 
     @Override
     protected int getItem() { return R.layout.item_ingredient; }
+
+    @Override
+    protected int getCurrentFragment() {
+        return -1;
+    }
 
     public Class getAddIngredientActivity() {
         return AddIngredientToGrocerieActivity.class;
@@ -79,13 +85,22 @@ public class IngredientListFragment<T extends IngredientList> extends AbstractLi
         try {
             //On récupère la liste des ingrédients récupéré par appel rest
             //TODO
-            T list = restCaller.get(Utils.getUserId(this.getActivity()));
+            T list = restCaller.get(getListId());
+
 
             //Si elle est null, alors on en crée une vide
-            if (list == null) return new ArrayList<>();
+            if (list == null) {
+                return new ArrayList<>();
+            }
 
-            //si la quantité est égale à 0, on affiche pas l'ingrédient
-            return removeIngredientWithoutQuantity(list.getIngredientEntries());
+            List<IngredientEntry> entries = new ArrayList<>();
+            if(list.getIngredientEntries() != null && !list.getIngredientEntries().isEmpty()) {
+                for (IngredientEntry ingredientEntry : list.getIngredientEntries()) {
+                    entries.add(ingredientEntry);
+                }
+            }
+
+            return entries;
 
         } catch (WebServiceCallException e) {
             System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
@@ -107,9 +122,5 @@ public class IngredientListFragment<T extends IngredientList> extends AbstractLi
         }
 
     }
-
-
-
-
 
 }

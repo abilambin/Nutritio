@@ -1,6 +1,5 @@
 package viewHolder;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,6 @@ import java.util.Date;
 import java.util.List;
 
 import adapter.GenericAdapter;
-import butterknife.ButterKnife;
 
 /**
  * Created by abilambin on 13/03/2018.
@@ -59,7 +57,7 @@ public class MealViewHolder extends GenericViewHolder<Meal> {
 
         if (!isExtended) {
             recyclerView.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
-            recyclerView.setAdapter(new GenericAdapter<>(recipes, R.layout.item_recipe));
+            recyclerView.setAdapter(new GenericAdapter<>(recipes, R.layout.item_recipe, -1));
             isExtended = true;
         } else {
             recyclerView.setAdapter(null);

@@ -1,25 +1,15 @@
 package com.example.abilambin.nutritio.fragment;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.AddIngredientToGrocerieActivity;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
-import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 
 import java.util.List;
 
 import butterknife.BindView;
-
-import static android.content.Context.MODE_PRIVATE;
-import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
 
 public class RecipeIngredientListFragment extends AbstractListFragment<IngredientEntry>{
 
@@ -64,6 +54,11 @@ public class RecipeIngredientListFragment extends AbstractListFragment<Ingredien
     @Override
     protected int getItem() {
         return R.layout.item_ingredient;
+    }
+
+    @Override
+    protected int getCurrentFragment() {
+        return -1;
     }
 
     protected int getListLayout() {

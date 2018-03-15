@@ -48,12 +48,14 @@ public abstract class AbstractListFragment<T extends Serializable> extends Fragm
         recyclerView = view.findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new GenericAdapter<>(elements, getItem()));
+        recyclerView.setAdapter(new GenericAdapter<>(elements, getItem(), getCurrentFragment()));
 
         return view;
     }
 
     protected abstract int getItem();
+
+    protected abstract int getCurrentFragment();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

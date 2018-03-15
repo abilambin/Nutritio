@@ -14,7 +14,6 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.ScoredRecipe;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
-import com.example.abilambin.nutritio.restApi.specific.RecipeRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.ScoredRecipeRestCaller;
 import com.example.abilambin.nutritio.utils.PersonSession;
 import com.example.abilambin.nutritio.utils.Utils;
@@ -48,6 +47,11 @@ public class RecipeFragment extends AbstractListFragment<ScoredRecipe> {
     @Override
     protected int getItem() {
         return R.layout.item_recipe;
+    }
+
+    @Override
+    protected int getCurrentFragment() {
+        return -1;
     }
 
     @Override

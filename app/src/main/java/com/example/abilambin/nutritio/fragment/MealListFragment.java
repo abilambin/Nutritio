@@ -1,7 +1,6 @@
 package com.example.abilambin.nutritio.fragment;
 
 import android.os.Build;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
@@ -21,7 +20,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
-import viewHolder.GenericViewHolder;
 import viewHolder.MealViewHolder;
 
 public class MealListFragment extends AbstractListFragment<Meal> {
@@ -53,6 +51,11 @@ public class MealListFragment extends AbstractListFragment<Meal> {
 
     @Override
     protected int getItem() { return R.layout.item_meal; }
+
+    @Override
+    protected int getCurrentFragment() {
+        return -1;
+    }
 
     @Override
     protected int getListLayout() {

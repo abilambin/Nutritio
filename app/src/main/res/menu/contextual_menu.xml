@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    <!--item
+    <item
         android:id="@+id/item_addTo"
         android:icon="@android:drawable/ic_menu_add"
         android:title="AddTo"
@@ -20,7 +20,7 @@
                 android:title="Add 2" />
         </menu>
 
-    </item-->
+    </item>
 
     <item
         android:id="@+id/item_edit"

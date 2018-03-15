@@ -1,14 +1,11 @@
 package com.example.abilambin.nutritio.fragment;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.abilambin.nutritio.R;
-
-import java.util.ArrayList;
 
 /**
  * Created by abilambin on 14/03/2018.
@@ -52,10 +49,10 @@ public abstract class AbstractActionBarCallBack implements ActionMode.Callback  
                 edit();
                 mode.finish();
                 return true;
-            /*case R.id.item_addTo:
+            case R.id.item_addTo:
                 addTo();
                 mode.finish();
-                return true;*/
+                return true;
         }
 
         return false;

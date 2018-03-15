@@ -1,30 +1,116 @@
 package com.example.abilambin.nutritio.fragment;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
+import com.example.abilambin.nutritio.bdd.model.Person;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
+import com.example.abilambin.nutritio.restApi.specific.GrocerieRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
+import com.example.abilambin.nutritio.restApi.specific.PersonRestCaller;
+import com.example.abilambin.nutritio.restApi.specific.StockRestCaller;
+import com.example.abilambin.nutritio.utils.NConstants;
+import com.example.abilambin.nutritio.utils.Utils;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
 public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack {
 
     private IngredientEntry selectedEntry;
-
+    private int currentFragment;
 
     @Override
     protected void addTo() {
+        int userId = Utils.getUserId((Activity) getContext());
+        PersonRestCaller personRestCaller = new PersonRestCaller();
+        Person user = null;
+        try {
+            user = (Person) personRestCaller.get(userId);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (WebServiceCallException e) {
+            e.printStackTrace();
+        } catch (CannotAuthenticateUserException e) {
+            e.printStackTrace();
+        }
 
+        if (user != null) {
+            if (currentFragment == NConstants.COURSES_FRAGMENT) {
+                user.getStock().getIngredientEntries().add(selectedEntry);
+                int index = getIngredientEntryIndex(selectedEntry, user.getGrocerie().getIngredientEntries());
+                if(index != -1) {
+                    user.getGrocerie().getIngredientEntries().remove(index);
+                }
+                updateGroceries(user.getGrocerie());
+                updateStock(user.getStock());
+            } else if (currentFragment == NConstants.STOCK_FRAGMENT) {
+                user.getGrocerie().getIngredientEntries().add(selectedEntry);
+                int index = getIngredientEntryIndex(selectedEntry, user.getStock().getIngredientEntries());
+                if(index != -1) {
+                    user.getStock().getIngredientEntries().remove(index);
+                }
+                updateGroceries(user.getGrocerie());
+                updateStock(user.getStock());
+            }
+        }
+    }
+
+    public int getIngredientEntryIndex(IngredientEntry entry, List<IngredientEntry> list){
+        int i = 0;
+        for(IngredientEntry entry1 : list){
+            if(entry.getId().equals(entry1.getId())){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+
+    }
+
+    private void updateStock(Stock stock) {
+        StockRestCaller stockRestCaller = new StockRestCaller();
+        try {
+            stockRestCaller.update(stock);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (WebServiceCallException e) {
+            e.printStackTrace();
+        } catch (CannotAuthenticateUserException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateGroceries(Grocerie grocerie){
+        GrocerieRestCaller restCaller = new GrocerieRestCaller();
+        try {
+            restCaller.update(grocerie);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (WebServiceCallException e) {
+            e.printStackTrace();
+        } catch (CannotAuthenticateUserException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -38,19 +124,42 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectedEntry.setAmount(0);
-                GenericRestCaller<IngredientEntry> restCaller = new IngredientEntryRestCaller();
-                try {
-                    restCaller.update(selectedEntry);
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    Thread.currentThread().interrupt();
-                } catch (WebServiceCallException e) {
-                    e.printStackTrace();
-                } catch (CannotAuthenticateUserException e) {
-                    e.printStackTrace();
+                GenericRestCaller restCaller = null;
+                if(currentFragment == NConstants.STOCK_FRAGMENT) {
+                    restCaller = new StockRestCaller();
+                } else if (currentFragment == NConstants.COURSES_FRAGMENT){
+                    restCaller = new GrocerieRestCaller();
+                }
+                if (restCaller != null) {
+                    Person user = null;
+                    try {
+                        user = (Person) new PersonRestCaller().get(Utils.getUserId((Activity) getContext()));
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (WebServiceCallException e) {
+                        e.printStackTrace();
+                    } catch (CannotAuthenticateUserException e) {
+                        e.printStackTrace();
+                    }
+                    if(user != null) {
+                        if (currentFragment == NConstants.COURSES_FRAGMENT) {
+                            int index = getIngredientEntryIndex(selectedEntry, user.getGrocerie().getIngredientEntries());
+                            if(index != -1) {
+                                user.getGrocerie().getIngredientEntries().remove(index);
+                            }
+                            updateGroceries(user.getGrocerie());
+                        } else if (currentFragment == NConstants.STOCK_FRAGMENT) {
+                            int index = getIngredientEntryIndex(selectedEntry, user.getStock().getIngredientEntries());
+                            if(index != -1) {
+                                user.getStock().getIngredientEntries().remove(index);
+                            }
+                            updateStock(user.getStock());
+                        }
+                    }
+                    Toast.makeText(getContext(), "Suppression confirmée", Toast.LENGTH_LONG).show();
+
                 }
                 dialog.cancel();
             }
@@ -122,8 +231,6 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
 
     }
 
-
-
     private String getCompareValue(IngredientEntry entry) {
         String s = entry.getUnitText();
         s = (s.charAt(0) + "").toUpperCase() + s.substring(1);
@@ -133,8 +240,11 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
         return s;
     }
 
-
     public void setSelectedEntry(IngredientEntry selectedEntry) {
         this.selectedEntry = selectedEntry;
+    }
+
+    public void setCurrentFragment(int currentFragment){
+        this.currentFragment = currentFragment;
     }
 }

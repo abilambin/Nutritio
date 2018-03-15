@@ -1,23 +1,17 @@
 package viewHolder;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.text.Html;
 import android.view.ActionMode;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.DashBoard;
 import com.example.abilambin.nutritio.activity.IngredientActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
-import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
 import com.example.abilambin.nutritio.fragment.IngredientEntryActionBarCallBack;
-import com.example.abilambin.nutritio.fragment.IngredientListFragment;
-
-import java.util.Date;
 
 /**
  * Created by abilambin on 13/03/2018.
@@ -27,9 +21,11 @@ public class IngredientEntryViewHolder extends GenericViewHolder<IngredientEntry
 
 
     protected ActionMode mActionMode;
+    private int currentFragment;
 
-    public IngredientEntryViewHolder(View itemView) {
+    public IngredientEntryViewHolder(View itemView, int currentFragment) {
         super(itemView);
+        this.currentFragment = currentFragment;
     }
 
 
@@ -70,6 +66,7 @@ public class IngredientEntryViewHolder extends GenericViewHolder<IngredientEntry
         IngredientEntryActionBarCallBack bar = new IngredientEntryActionBarCallBack();
         bar.setSelectedEntry(getElement());
         bar.setContext(itemView.getContext());
+        bar.setCurrentFragment(this.currentFragment);
         return bar;
     }
 
