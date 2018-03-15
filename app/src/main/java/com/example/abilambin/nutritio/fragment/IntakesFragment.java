@@ -16,12 +16,10 @@ import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
-import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.utils.Intakes;
 import com.example.abilambin.nutritio.utils.PersonalGoal;
 import com.example.abilambin.nutritio.utils.Utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,18 +29,11 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class IntakesFragment extends Fragment {
 
-    public static int energy = 76;
+    private List<IngredientEntry> ingredientEntries;
 
-    protected List<IngredientEntry> ingredientEntries;
-
-    protected ArrayList<Meal> meals;
-
-    protected static int quantity = 100;
+    private static int quantity = 100;
 
     private int mode = 3;
 
@@ -84,22 +75,6 @@ public class IntakesFragment extends Fragment {
 
     public void setIngredientEntries(List<IngredientEntry> ingredientEntries) {
         this.ingredientEntries = ingredientEntries;
-    }
-
-    public ArrayList<Meal> getMeals() {
-        return meals;
-    }
-
-    public void setMeals(ArrayList<Meal> meals) {
-        this.meals = meals;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public IntakesFragment() {
@@ -171,7 +146,6 @@ public class IntakesFragment extends Fragment {
         float fat=0;
         float sf=0;
         float fibre = 0;
-        int energys = 0;
 
 
         Ingredient ingredient;
@@ -184,10 +158,7 @@ public class IntakesFragment extends Fragment {
             fat += ingredient.getFat() * entry.getAmount();
             sf += ingredient.getSaturatedFat() * entry.getAmount();
             fibre += ingredient.getFibre() * entry.getAmount();
-            energys += ingredient.getEnergy() * entry.getAmount();
         }
-
-        energy = Utils.percent(energys, goal.getEnergy());
 
         proteinesProgressBar.setProgress(Utils.percent(prot, goal.getProtein()));
         proteinesPctTextView.setText(prot+" / "+goal.getProtein());
@@ -231,9 +202,9 @@ public class IntakesFragment extends Fragment {
     }
 
     private void showValueBar(ProgressBar bar, TextView view, float val, float obj) {
-        val = valueCalcul(val);
-        bar.setProgress(Utils.percent(val, obj));
-        if (view != null) view.setText(val + " / "+obj);
+        int value = valueCalcul(val);
+        bar.setProgress(Utils.percent(value, obj));
+        if (view != null) view.setText(value + " / "+obj);
     }
 
     private static int valueCalcul(float val){
