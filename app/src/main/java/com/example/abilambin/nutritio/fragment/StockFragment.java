@@ -8,22 +8,20 @@ import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.PersonRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.StockRestCaller;
 import com.example.abilambin.nutritio.utils.NConstants;
+import com.example.abilambin.nutritio.utils.PersonSession;
 import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.concurrent.ExecutionException;
 
 public class StockFragment extends IngredientListFragment<Stock> {
 
+    public StockFragment(){
+        this.restCaller = new StockRestCaller();
+    }
+
     @Override
     public Class getAddIngredientActivity() {
         return AddIngredientToStockActivity.class;
-
-
-    }
-
-
-    public StockFragment(){
-        this.restCaller = new StockRestCaller();
     }
 
     @Override
@@ -40,17 +38,38 @@ public class StockFragment extends IngredientListFragment<Stock> {
     public int getListId() {
         PersonRestCaller restCaller = new PersonRestCaller();
         try {
-            Person p = (Person) restCaller.get(Utils.getUserId(getActivity()));
-            return p.getStock().getId();
+            PersonSession session = PersonSession.getInstance();
+
+            // Récupération du cache
+            if(session.getPerson() == null){
+                Person p = (Person) restCaller.get(Utils.getUserId(getActivity()));
+                return p.getStock().getId();
+            }else{
+                return session.getPerson().getStock().getId();
+            }
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         } catch (WebServiceCallException e) {
             e.printStackTrace();
         } catch (CannotAuthenticateUserException e) {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    public Stock getData() throws InterruptedException, ExecutionException, CannotAuthenticateUserException, WebServiceCallException {
+        PersonSession session = PersonSession.getInstance();
+        if(session.getStock() == null){
+            Stock s = restCaller.get(getListId());
+            session.setStock(s);
+            return s;
+        }else{
+            return session.getStock();
+        }
+
     }
 }

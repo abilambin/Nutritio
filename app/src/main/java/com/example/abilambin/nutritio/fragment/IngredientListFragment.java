@@ -62,6 +62,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     }
 
     public abstract int getListId();
+    public abstract T getData() throws InterruptedException, ExecutionException, CannotAuthenticateUserException, WebServiceCallException;
 
     @Override
     protected int getListLayout() {
@@ -82,44 +83,25 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
 
     @Override
     public List<IngredientEntry> getList(){
+        //On récupère la liste des ingrédients récupéré par appel rest
+        T list = null;
         try {
-            //On récupère la liste des ingrédients récupéré par appel rest
-            //TODO
-            T list = restCaller.get(getListId());
-
-
-            //Si elle est null, alors on en crée une vide
-            if (list == null) {
-                return new ArrayList<>();
-            }
-
-            List<IngredientEntry> entries = new ArrayList<>();
-            if(list.getIngredientEntries() != null && !list.getIngredientEntries().isEmpty()) {
-                for (IngredientEntry ingredientEntry : list.getIngredientEntries()) {
-                    entries.add(ingredientEntry);
-                }
-            }
-
-            return entries;
-
-        } catch (WebServiceCallException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
-            e.printStackTrace();
-            return new ArrayList<>();
-        } catch (InterruptedException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
-            e.printStackTrace();
-            Thread.currentThread().interrupt();
-            return new ArrayList<>();
-        } catch (ExecutionException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
-            e.printStackTrace();
-            return new ArrayList<>();
-        } catch (CannotAuthenticateUserException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
+            list = getData();
+        } catch (InterruptedException | ExecutionException | CannotAuthenticateUserException | WebServiceCallException e) {
             e.printStackTrace();
             return new ArrayList<>();
         }
+
+        List<IngredientEntry> entries = new ArrayList<>();
+        if(list.getIngredientEntries() != null && !list.getIngredientEntries().isEmpty()) {
+            for (IngredientEntry ingredientEntry : list.getIngredientEntries()) {
+                entries.add(ingredientEntry);
+            }
+        }
+
+        return entries;
+
+
 
     }
 

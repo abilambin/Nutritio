@@ -2,7 +2,10 @@ package com.example.abilambin.nutritio.utils;
 
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.bdd.model.Person;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.ScoredRecipe;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 
 import java.util.List;
 
@@ -14,6 +17,9 @@ public class PersonSession {
     private List<Meal> meals;
     private Goal goal;
     private List<ScoredRecipe> recipe;
+    private Person person;
+    private Stock stock;
+    private Grocerie grocerie;
 
     private PersonSession(){
         this.invalidateData();
@@ -35,18 +41,28 @@ public class PersonSession {
         this.globalIntake = null;
         this.meals = null;
         this.recipe = null;
+        this.stock = null;
+        this.grocerie = null;
     }
 
     public synchronized void invalidateIntakes(){
         this.globalIntake = null;
     }
 
-    public synchronized  void invalidateMeals(){
+    public synchronized void invalidateMeals(){
         this.meals = null;
     }
 
     public synchronized void invalidateRecipe() {
         this.recipe = null;
+    }
+
+    public synchronized void invalidateStock() {
+        this.stock = null;
+    }
+
+    public synchronized  void invalidateGrocerie() {
+        this.grocerie = null;
     }
 
     // Getter Setter
@@ -73,5 +89,29 @@ public class PersonSession {
 
     public List<ScoredRecipe> getRecipe() {
         return recipe;
+    }
+
+    public synchronized Person getPerson() {
+        return person;
+    }
+
+    public synchronized void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public synchronized void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public synchronized Stock getStock() {
+        return this.stock;
+    }
+
+    public Grocerie getGrocerie() {
+        return grocerie;
+    }
+
+    public void setGrocerie(Grocerie grocerie) {
+        this.grocerie = grocerie;
     }
 }
