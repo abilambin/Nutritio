@@ -75,6 +75,7 @@ public abstract class AddIngredientToListActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (CannotAuthenticateUserException e) {

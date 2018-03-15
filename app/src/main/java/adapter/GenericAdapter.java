@@ -17,9 +17,6 @@ import viewHolder.IngredientEntryViewHolder;
 import viewHolder.MealViewHolder;
 import viewHolder.RecipeViewHolder;
 
-/**
- * Created by abilambin on 12/03/2018.
- */
 
 public class GenericAdapter<T extends Serializable> extends RecyclerView.Adapter<GenericViewHolder> {
 
@@ -40,17 +37,19 @@ public class GenericAdapter<T extends Serializable> extends RecyclerView.Adapter
 
     private GenericViewHolder getViewHolder(View view) {
         T elem = list.get(0);
-        if (list != null) {
-            if (elem instanceof Meal) {
-                return new MealViewHolder(view);
-            }
-            if (elem instanceof IngredientEntry) {
-                return new IngredientEntryViewHolder(view);
-            }
-            if (elem instanceof Recipe) {
-                return new RecipeViewHolder(view);
-            }
+
+        if (elem instanceof Meal) {
+            return new MealViewHolder(view);
         }
+
+        if (elem instanceof IngredientEntry) {
+            return new IngredientEntryViewHolder(view);
+        }
+
+        if (elem instanceof Recipe) {
+            return new RecipeViewHolder(view);
+        }
+
         return null;
 
     }
@@ -66,7 +65,5 @@ public class GenericAdapter<T extends Serializable> extends RecyclerView.Adapter
     public int getItemCount() {
         return list.size();
     }
-
-
 
 }

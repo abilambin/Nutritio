@@ -159,6 +159,7 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         } catch (WebServiceCallException e) {
             e.printStackTrace();
         } catch (CannotAuthenticateUserException e) {
@@ -176,6 +177,7 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         } catch (WebServiceCallException e) {
             e.printStackTrace();
         } catch (CannotAuthenticateUserException e) {
@@ -191,6 +193,7 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         } catch (WebServiceCallException e) {
             e.printStackTrace();
         } catch (CannotAuthenticateUserException e) {

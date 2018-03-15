@@ -5,13 +5,14 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.j256.ormlite.field.DatabaseField;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by bellamy on 23/02/18.
  */
 
-public class Person {
+public class Person implements Serializable{
 
     private static long serialVersionUID = 1L;
 

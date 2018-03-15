@@ -13,6 +13,10 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "2.6.1"
+}
+
 allprojects {
     repositories {
         jcenter()
@@ -20,8 +24,16 @@ allprojects {
         maven { url 'https://maven.google.com' }
         google()
     }
+    sonarqube {
+        properties {
+            property "sonar.language", "java"
+            property "sonar.sources", "src/main"
+        }
+    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+

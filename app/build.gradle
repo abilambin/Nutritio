@@ -20,6 +20,13 @@ android {
     }
 }
 
+sonarqube {
+    properties {
+        property "sonar.java.binaries", "build/intermediates/classes/debug"
+        property "sonar.jacoco.reportPath","build/outputs/code-coverage/connected/coverage.ec"
+    }
+}
+
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -46,9 +53,12 @@ dependencies {
     compile 'com.mikhaellopez:circularprogressbar:1.1.1'
     //gson
     compile 'com.google.code.gson:gson:2.8.0'
-
+    // OkHttp3
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.2.0'
 
-
+    // Test
     testCompile 'junit:junit:4.12'
+
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.android.support.test:runner:0.4.1'
 }
