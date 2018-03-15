@@ -12,6 +12,8 @@ import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAM
 
 public class Utils {
 
+    public static final int ALL_MEALS = 3;
+
     public static int percent(float val, float obj){
         if (obj == 0) return Math.round(val*100);
 

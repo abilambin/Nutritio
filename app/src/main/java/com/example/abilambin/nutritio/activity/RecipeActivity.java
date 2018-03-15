@@ -8,7 +8,7 @@ import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.HeaderRecipeFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
-import com.example.abilambin.nutritio.fragment.MealIngredientListFragment;
+import com.example.abilambin.nutritio.fragment.RecipeIngredientListFragment;
 
 public class RecipeActivity extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class RecipeActivity extends AppCompatActivity {
         final IntakesFragment fg = new IntakesFragment();
         fg.setIngredientEntries(recipe.getIngredientEntries());
         addFragment(fg);
-        addFragment(new MealIngredientListFragment());
+        addFragment(new RecipeIngredientListFragment());
 
 
     }

@@ -90,18 +90,8 @@ public class IngredientListFragment<T extends IngredientList> extends AbstractLi
             //Si elle est null, alors on en crée une vide
             if (list == null) return new ArrayList<>();
 
-
             //si la quantité est égale à 0, on affiche pas l'ingrédient
-            List<IngredientEntry> entries = new ArrayList<>();
-            if(list.getIngredientEntries() != null && !list.getIngredientEntries().isEmpty()) {
-                for (IngredientEntry ingredientEntry : list.getIngredientEntries()) {
-                    if(ingredientEntry.getAmount() != 0){
-                        entries.add(ingredientEntry);
-                    }
-                }
-            }
-
-            return entries;
+            return removeIngredientWithoutQuantity(list.getIngredientEntries());
 
         } catch (WebServiceCallException e) {
             System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");

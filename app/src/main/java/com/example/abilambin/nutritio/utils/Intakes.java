@@ -1,5 +1,7 @@
 package com.example.abilambin.nutritio.utils;
 
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
+
 /**
  * Created by Matthieu on 12/03/2018.
  */
@@ -23,32 +25,32 @@ public class Intakes {
         this.energy = 0;
     }
 
-    public void addProtein(long amount) {
-        this.protein += amount;
+    public void addProtein(IngredientEntry entry) {
+        this.protein += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
-    public void addCarbohydrate(long amount) {
-        this.carbohydrate += amount;
+    public void addCarbohydrate(IngredientEntry entry) {
+        this.carbohydrate += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
-    public void addSugar(long amount){
-        this.sugar += amount;
+    public void addSugar(IngredientEntry entry){
+        this.sugar += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
-    public void addFat(long amount) {
-        this.fat += amount;
+    public void addFat(IngredientEntry entry) {
+        this.fat += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
-    public void addSaturatedFat(long amount) {
-        this.saturatedFat += amount;
+    public void addSaturatedFat(IngredientEntry entry) {
+        this.saturatedFat += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
-    public void addFibre(long amount) {
-        this.fibre += amount;
+    public void addFibre(IngredientEntry entry) {
+        this.fibre += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
-    public void addEnergy(long amount) {
-        this.energy += amount;
+    public void addEnergy(IngredientEntry entry) {
+        this.energy += entry.getIngredient().getProtein() * entry.getAmount();
     }
 
     public long getProtein() {

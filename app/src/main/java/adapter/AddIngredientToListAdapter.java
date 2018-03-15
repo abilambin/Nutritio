@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.activity.CreateIngredientEntryActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 
@@ -17,13 +18,19 @@ import java.util.List;
  * Created by serial on 23/02/2018.
  */
 
-public abstract class AddIngredientToListAdapter<T extends IngredientList> extends AbstractListAdapter<Ingredient> {
+public class AddIngredientToListAdapter extends AbstractListAdapter<Ingredient> {
 
-    public AddIngredientToListAdapter(Context context, List<Ingredient> items){
-        super(context, items);
+    protected Class createActivityClass;
+
+    public Class getCreateActivityClass() {
+        return createActivityClass;
     }
 
-    public abstract Class getCreateActivity();
+    public AddIngredientToListAdapter(Context context, List<Ingredient> items, Class createActivityClass){
+        super(context, items);
+        this.createActivityClass = createActivityClass;
+    }
+
 
     private int typeId;
 
@@ -68,7 +75,7 @@ public abstract class AddIngredientToListAdapter<T extends IngredientList> exten
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), getCreateActivity());
+                Intent intent = new Intent(v.getContext(), getCreateActivityClass());
 
                 // On appelle l'activité de visualisation de l'ingrédient concerné
                 intent.putExtra("ingredient", ingredient);

@@ -7,7 +7,6 @@ import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import java.util.List;
 
 import adapter.AddIngredientToListAdapter;
-import adapter.AddIngredientToStockAdapter;
 
 /**
  * Created by serial on 09/03/2018.
@@ -16,6 +15,6 @@ import adapter.AddIngredientToStockAdapter;
 public class AddIngredientToStockActivity extends AddIngredientToListActivity {
     @Override
     public AddIngredientToListAdapter getAdapter(Context ctx, List<Ingredient> ingredients) {
-        return new AddIngredientToStockAdapter(ctx, ingredients);
+        return new AddIngredientToListAdapter(ctx, ingredients, CreateIngredientEntryStockActivity.class);
     }
 }

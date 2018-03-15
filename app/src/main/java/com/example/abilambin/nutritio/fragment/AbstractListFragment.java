@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import adapter.GenericAdapter;
@@ -61,6 +63,21 @@ public abstract class AbstractListFragment<T extends Serializable> extends Fragm
     protected abstract int getListLayout();
 
     protected abstract List<T> getList();
+
+    public List<IngredientEntry> removeIngredientWithoutQuantity(List<IngredientEntry> list) {
+        List<IngredientEntry> entries = new ArrayList<>();
+
+        if(list != null && !list.isEmpty()) {
+            for (IngredientEntry ingredientEntry : list) {
+                if(ingredientEntry.getAmount() != 0){
+                    entries.add(ingredientEntry);
+                }
+            }
+        }
+
+        return entries;
+
+    }
 
 
 

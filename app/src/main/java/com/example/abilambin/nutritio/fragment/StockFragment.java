@@ -14,6 +14,8 @@ public class StockFragment extends IngredientListFragment<Stock> {
     @Override
     public Class getAddIngredientActivity() {
         return AddIngredientToStockActivity.class;
+
+
     }
 
 

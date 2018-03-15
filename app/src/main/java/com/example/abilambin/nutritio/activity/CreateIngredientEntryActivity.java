@@ -21,6 +21,7 @@ import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
@@ -29,6 +30,8 @@ import butterknife.ButterKnife;
 public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity {
 
     private int id;
+
+    private IngredientEntry ingredientEntry;
 
     public void setId(int id){
         this.id = id;
@@ -92,19 +95,18 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 } finally {
-                    fg.setQuantity(q);
-                    fg.generateIntakes();
+                    ingredientEntry = createEntry(ingredient, getType());
+
+                    List<IngredientEntry> ie = new ArrayList<>();
+                    ie.add(ingredientEntry);
+                    fg.setIngredientEntries(ie);
                 }
             }
         });
 
+        ingredientEntry = createEntry(ingredient, getType());
 
-        final T type = getType();
-        final IngredientEntry newIngredientEntry = createEntry(ingredient, type);
-
-        entries.add(newIngredientEntry);
-        fg.setIngredientEntries(entries);
-
+        entries.add(ingredientEntry);
 
         getFragmentManager()
                 .beginTransaction()
@@ -112,14 +114,12 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
                 .addToBackStack("frag")
                 .commit();
 
+
         submit.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if(type != null){
-                    updateType(newIngredientEntry, type);
-                }
-
+                submit(ingredientEntry);
                 finish();
             }
         });
@@ -133,18 +133,28 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
 
     }
 
+    private void submit(IngredientEntry entry) {
+        if(getType() != null){
+            updateType(entry, getType());
+        }
+    }
+
     private IngredientEntry createEntry(Ingredient ingredient, T type) {
-        IngredientEntry newIngredientEntry = new IngredientEntry();
-        newIngredientEntry = addTypeToEntry(newIngredientEntry, type);
-        newIngredientEntry.setAmount(Integer.parseInt(quantity.getText().toString()));
-        newIngredientEntry.setUnit(IngredientEntry.getUnitFromText(unit.getSelectedItem().toString()));
-        newIngredientEntry.setIngredient(ingredient);
-        newIngredientEntry.setId(null);
+        IngredientEntry entry = new IngredientEntry();
+
+        String q = quantity.getText().toString();
+        if (q == null || q.equals("")) q = "100";
+
+        entry = addTypeToEntry(entry, type);
+        entry.setAmount(Integer.parseInt(q));
+        entry.setUnit(IngredientEntry.getUnitFromText(unit.getSelectedItem().toString()));
+        entry.setIngredient(ingredient);
+        entry.setId(null);
 
         GenericRestCaller<IngredientEntry> ingredientEntryGenericRestCaller = new IngredientEntryRestCaller();
         IngredientEntry newEntry = null;
         try {
-            newEntry = ingredientEntryGenericRestCaller.create(newIngredientEntry);
+            newEntry = ingredientEntryGenericRestCaller.create(entry);
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

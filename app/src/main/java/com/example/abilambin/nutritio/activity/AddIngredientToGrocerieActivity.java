@@ -6,7 +6,6 @@ import com.example.abilambin.nutritio.bdd.model.Ingredient;
 
 import java.util.List;
 
-import adapter.AddIngredientToGrocerieAdapter;
 import adapter.AddIngredientToListAdapter;
 
 /**
@@ -16,6 +15,6 @@ import adapter.AddIngredientToListAdapter;
 public class AddIngredientToGrocerieActivity extends AddIngredientToListActivity {
     @Override
     public AddIngredientToListAdapter getAdapter(Context ctx, List<Ingredient> ingredientList) {
-        return new AddIngredientToGrocerieAdapter(ctx, ingredientList);
+        return new AddIngredientToListAdapter(ctx, ingredientList, CreateIngredientEntryGrocerieActivity.class);
     }
 }
