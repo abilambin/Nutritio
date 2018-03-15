@@ -4,17 +4,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.view.ActionMode;
-import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.activity.AddIngredientToGrocerieActivity;
-import com.example.abilambin.nutritio.activity.IngredientActivity;
-import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
@@ -27,8 +22,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
-import viewHolder.GenericViewHolder;
-import viewHolder.IngredientEntryViewHolder;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
