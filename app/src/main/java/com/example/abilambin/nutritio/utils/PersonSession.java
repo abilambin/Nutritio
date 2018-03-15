@@ -2,6 +2,7 @@ package com.example.abilambin.nutritio.utils;
 
 import com.example.abilambin.nutritio.bdd.model.Goal;
 import com.example.abilambin.nutritio.bdd.model.Meal;
+import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class PersonSession {
     private Intakes globalIntake;
     private List<Meal> meals;
     private Goal goal;
+    private List<Recipe> recipe;
 
     private PersonSession(){
         this.invalidateData();
@@ -35,6 +37,7 @@ public class PersonSession {
     public synchronized void invalidateData(){
         this.globalIntake = null;
         this.meals = null;
+        this.recipe = null;
     }
 
     public synchronized void invalidateIntakes(){
@@ -45,6 +48,9 @@ public class PersonSession {
         this.meals = null;
     }
 
+    public synchronized void invalidateRecipe() {
+        this.recipe = null;
+    }
 
     // Getter Setter
 
@@ -62,5 +68,13 @@ public class PersonSession {
 
     public void setMeals(List<Meal> meals) {
         this.meals = meals;
+    }
+
+    public void setRecipe(List<Recipe> recipe) {
+        this.recipe = recipe;
+    }
+
+    public List<Recipe> getRecipe() {
+        return recipe;
     }
 }

@@ -20,6 +20,7 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
+import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +86,7 @@ public class IngredientListFragment<T extends IngredientList> extends AbstractLi
         try {
             //On récupère la liste des ingrédients récupéré par appel rest
             //TODO
-            T list = restCaller.get(2);
+            T list = restCaller.get(Utils.getUserId(this.getActivity()));
 
             //Si elle est null, alors on en crée une vide
             if (list == null) return new ArrayList<>();
