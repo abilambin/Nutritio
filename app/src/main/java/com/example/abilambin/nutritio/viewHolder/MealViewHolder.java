@@ -1,4 +1,4 @@
-package viewHolder;
+package com.example.abilambin.nutritio.viewHolder;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.adapter.GenericAdapter;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
@@ -15,8 +16,6 @@ import com.example.abilambin.nutritio.fragment.MealActionBarCallBack;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import adapter.GenericAdapter;
 
 /**
  * Created by abilambin on 13/03/2018.

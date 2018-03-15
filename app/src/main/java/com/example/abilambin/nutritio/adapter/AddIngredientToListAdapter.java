@@ -1,4 +1,4 @@
-package adapter;
+package com.example.abilambin.nutritio.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.CreateIngredientEntryActivity;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
-import com.example.abilambin.nutritio.bdd.model.ingredientList.IngredientList;
 
 import java.util.List;
 

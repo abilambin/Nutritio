@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.adapter.GenericAdapter;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.GenericAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

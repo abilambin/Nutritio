@@ -1,4 +1,4 @@
-package adapter;
+package com.example.abilambin.nutritio.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

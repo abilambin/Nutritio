@@ -1,4 +1,4 @@
-package adapter;
+package com.example.abilambin.nutritio.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,14 +8,13 @@ import android.view.ViewGroup;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.bdd.model.Meal;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
+import com.example.abilambin.nutritio.viewHolder.GenericViewHolder;
+import com.example.abilambin.nutritio.viewHolder.IngredientEntryViewHolder;
+import com.example.abilambin.nutritio.viewHolder.MealViewHolder;
+import com.example.abilambin.nutritio.viewHolder.RecipeViewHolder;
 
 import java.io.Serializable;
 import java.util.List;
-
-import viewHolder.GenericViewHolder;
-import viewHolder.IngredientEntryViewHolder;
-import viewHolder.MealViewHolder;
-import viewHolder.RecipeViewHolder;
 
 
 public class GenericAdapter<T extends Serializable> extends RecyclerView.Adapter<GenericViewHolder> {

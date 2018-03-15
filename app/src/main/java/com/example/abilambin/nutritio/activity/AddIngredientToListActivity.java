@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.abilambin.nutritio.R;
+import com.example.abilambin.nutritio.adapter.AddIngredientToListAdapter;
 import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import adapter.AddIngredientToListAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

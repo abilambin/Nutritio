@@ -1,4 +1,4 @@
-package viewHolder;
+package com.example.abilambin.nutritio.viewHolder;
 
 import android.content.Intent;
 import android.text.Html;

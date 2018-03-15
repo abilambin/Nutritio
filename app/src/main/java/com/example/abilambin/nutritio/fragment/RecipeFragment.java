@@ -17,6 +17,7 @@ import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.ScoredRecipeRestCaller;
 import com.example.abilambin.nutritio.utils.PersonSession;
 import com.example.abilambin.nutritio.utils.Utils;
+import com.example.abilambin.nutritio.viewHolder.RecipeViewHolder;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,7 +25,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
-import viewHolder.RecipeViewHolder;
 
 public class RecipeFragment extends AbstractListFragment<ScoredRecipe> {
 

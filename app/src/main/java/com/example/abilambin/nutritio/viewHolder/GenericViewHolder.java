@@ -1,8 +1,6 @@
-package viewHolder;
+package com.example.abilambin.nutritio.viewHolder;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;

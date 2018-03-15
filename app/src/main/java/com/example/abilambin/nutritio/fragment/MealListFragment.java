@@ -10,6 +10,7 @@ import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.MealRestCaller;
 import com.example.abilambin.nutritio.utils.PersonSession;
 import com.example.abilambin.nutritio.utils.Utils;
+import com.example.abilambin.nutritio.viewHolder.MealViewHolder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,7 +21,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
-import viewHolder.MealViewHolder;
 
 public class MealListFragment extends AbstractListFragment<Meal> {
 

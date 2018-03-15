@@ -1,15 +1,13 @@
-package viewHolder;
+package com.example.abilambin.nutritio.viewHolder;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.IngredientActivity;
 import com.example.abilambin.nutritio.activity.RecipeActivity;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
-import com.example.abilambin.nutritio.fragment.MealActionBarCallBack;
 import com.example.abilambin.nutritio.fragment.RecipeActionBarCallBack;
 
 /**
