@@ -22,6 +22,7 @@ import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller
 import com.example.abilambin.nutritio.restApi.specific.PersonRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.StockRestCaller;
 import com.example.abilambin.nutritio.utils.NConstants;
+import com.example.abilambin.nutritio.utils.PersonSession;
 import com.example.abilambin.nutritio.utils.Utils;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
 
     private IngredientEntry selectedEntry;
     private int currentFragment;
+    private PersonSession session = PersonSession.getInstance();
 
     @Override
     protected void addTo() {
@@ -40,14 +42,11 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
         Person user = null;
         try {
             user = (Person) personRestCaller.get(userId);
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
 
         if (user != null) {
@@ -57,6 +56,8 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
                 if(index != -1) {
                     user.getGrocerie().getIngredientEntries().remove(index);
                 }
+                session.invalidateGrocerie();
+                session.invalidateStock();
                 updateGroceries(user.getGrocerie());
                 updateStock(user.getStock());
             } else if (currentFragment == NConstants.STOCK_FRAGMENT) {
@@ -65,13 +66,15 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
                 if(index != -1) {
                     user.getStock().getIngredientEntries().remove(index);
                 }
+                session.invalidateGrocerie();
+                session.invalidateStock();
                 updateGroceries(user.getGrocerie());
                 updateStock(user.getStock());
             }
         }
     }
 
-    public int getIngredientEntryIndex(IngredientEntry entry, List<IngredientEntry> list){
+    private int getIngredientEntryIndex(IngredientEntry entry, List<IngredientEntry> list){
         int i = 0;
         for(IngredientEntry entry1 : list){
             if(entry.getId().equals(entry1.getId())){
@@ -87,28 +90,22 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
         StockRestCaller stockRestCaller = new StockRestCaller();
         try {
             stockRestCaller.update(stock);
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
+            Thread.currentThread().interrupt();
             e.printStackTrace();
         }
     }
 
-    public void updateGroceries(Grocerie grocerie){
+    private void updateGroceries(Grocerie grocerie){
         GrocerieRestCaller restCaller = new GrocerieRestCaller();
         try {
             restCaller.update(grocerie);
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
+            Thread.currentThread().interrupt();
             e.printStackTrace();
         }
     }
@@ -134,27 +131,27 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
                     Person user = null;
                     try {
                         user = (Person) new PersonRestCaller().get(Utils.getUserId((Activity) getContext()));
-                    } catch (ExecutionException e) {
+                    } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (WebServiceCallException e) {
-                        e.printStackTrace();
-                    } catch (CannotAuthenticateUserException e) {
+                        Thread.currentThread().interrupt();
                         e.printStackTrace();
                     }
+
                     if(user != null) {
                         if (currentFragment == NConstants.COURSES_FRAGMENT) {
                             int index = getIngredientEntryIndex(selectedEntry, user.getGrocerie().getIngredientEntries());
                             if(index != -1) {
                                 user.getGrocerie().getIngredientEntries().remove(index);
                             }
+                            session.invalidateGrocerie();
                             updateGroceries(user.getGrocerie());
                         } else if (currentFragment == NConstants.STOCK_FRAGMENT) {
                             int index = getIngredientEntryIndex(selectedEntry, user.getStock().getIngredientEntries());
                             if(index != -1) {
                                 user.getStock().getIngredientEntries().remove(index);
                             }
+                            session.invalidateStock();
                             updateStock(user.getStock());
                         }
                     }
@@ -201,18 +198,20 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
                 selectedEntry.setAmount(Integer.parseInt(editText.getText().toString()));
                 selectedEntry.setUnit(IngredientEntry.getUnitFromText(spinner.getSelectedItem().toString()));
 
-                GenericRestCaller<IngredientEntry> restCaller = new IngredientEntryRestCaller();
+                if(currentFragment == NConstants.COURSES_FRAGMENT){
+                    session.invalidateGrocerie();
+                } else if (currentFragment == NConstants.STOCK_FRAGMENT){
+                    session.invalidateStock();
+                }
+
+                IngredientEntryRestCaller restCaller = new IngredientEntryRestCaller();
                 try {
                     restCaller.update(selectedEntry);
-                } catch (ExecutionException e) {
+                } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     Thread.currentThread().interrupt();
-                } catch (WebServiceCallException e) {
-                    e.printStackTrace();
-                } catch (CannotAuthenticateUserException e) {
-                    e.printStackTrace();
                 }
 
                 dialog.cancel();

@@ -19,6 +19,7 @@ import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
+import com.example.abilambin.nutritio.utils.PersonSession;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +36,8 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
     private int id;
 
     private IngredientEntry ingredientEntry;
+
+    private PersonSession session = PersonSession.getInstance();
 
     public void setId(int id){
         this.id = id;
@@ -156,6 +159,9 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
     }
 
     private void submit() {
+        //on refresh le cache des listes d'ingrédients possibles
+        session.invalidateStock();
+        session.invalidateGrocerie();
         if(getType() != null){
             updateType(this.ingredientEntry, getType());
         }
@@ -165,7 +171,9 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         IngredientEntry entry = new IngredientEntry();
 
         String q = quantity.getText().toString();
-        if (q == null || q.equals("")) q = "100";
+        if (q.equals("")) {
+            q = "100";
+        }
 
         entry = addTypeToEntry(entry, type);
         entry.setAmount(Integer.parseInt(q));
@@ -173,19 +181,15 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         entry.setIngredient(ingredient);
         entry.setId(null);
 
-        GenericRestCaller<IngredientEntry> ingredientEntryGenericRestCaller = new IngredientEntryRestCaller();
+        IngredientEntryRestCaller ingredientEntryGenericRestCaller = new IngredientEntryRestCaller();
         IngredientEntry newEntry = null;
         try {
-            newEntry = ingredientEntryGenericRestCaller.create(entry);
-        } catch (ExecutionException e) {
+            newEntry = (IngredientEntry) ingredientEntryGenericRestCaller.create(entry);
+        } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
-            e.printStackTrace();
         }
 
         return newEntry;
@@ -195,15 +199,11 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         type = addEntryToType(entry, type);
         try {
             tGenericRestCaller.update(type);
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
-            e.printStackTrace();
         }
     }
 
@@ -211,15 +211,11 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         T type = null;
         try {
             type = tGenericRestCaller.get(id);
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
-            e.printStackTrace();
         }
         return type;
     }
