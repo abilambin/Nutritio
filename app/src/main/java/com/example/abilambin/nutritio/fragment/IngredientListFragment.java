@@ -101,6 +101,7 @@ public class IngredientListFragment<T extends IngredientList> extends AbstractLi
         } catch (InterruptedException e) {
             System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");
             e.printStackTrace();
+            Thread.currentThread().interrupt();
             return new ArrayList<>();
         } catch (ExecutionException e) {
             System.out.println("##### ERROR - Impossible de récupérer les ingrédients :");

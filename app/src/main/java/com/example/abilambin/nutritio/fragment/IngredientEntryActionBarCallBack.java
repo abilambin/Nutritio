@@ -1,10 +1,6 @@
 package com.example.abilambin.nutritio.fragment;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.activity.DashBoard;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
@@ -21,9 +16,6 @@ import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller
 
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by abilambin on 06/03/2018.
- */
 
 public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack {
 
@@ -54,6 +46,7 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 } catch (WebServiceCallException e) {
                     e.printStackTrace();
                 } catch (CannotAuthenticateUserException e) {
@@ -106,6 +99,7 @@ public class IngredientEntryActionBarCallBack extends AbstractActionBarCallBack 
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    Thread.currentThread().interrupt();
                 } catch (WebServiceCallException e) {
                     e.printStackTrace();
                 } catch (CannotAuthenticateUserException e) {
