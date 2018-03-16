@@ -1,13 +1,12 @@
 package com.example.abilambin.nutritio.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.bdd.model.Person;
 import com.example.abilambin.nutritio.utils.PersonalGoal;
 
 import butterknife.BindView;

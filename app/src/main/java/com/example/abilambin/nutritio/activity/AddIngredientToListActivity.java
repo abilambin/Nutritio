@@ -71,15 +71,11 @@ public abstract class AddIngredientToListActivity extends AppCompatActivity {
 
         try{
             ingredients = ingredientRestCaller.getAll();
-        } catch (WebServiceCallException e) {
+        } catch (WebServiceCallException | ExecutionException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
-            e.printStackTrace();
         } finally {
             adapter = getAdapter(this, ingredients);
             String typeName = (String) bundle.get("typeName");
@@ -87,6 +83,7 @@ public abstract class AddIngredientToListActivity extends AppCompatActivity {
             lvIngredients.setAdapter(adapter);
         }
     }
+
 
     public abstract AddIngredientToListAdapter getAdapter(Context ctx, List<Ingredient> ingredients);
 }

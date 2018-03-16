@@ -16,16 +16,11 @@ import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
-import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.IngredientEntryRestCaller;
 import com.example.abilambin.nutritio.utils.PersonSession;
 
-import org.w3c.dom.Text;
-
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
@@ -86,6 +81,10 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
 
     GenericRestCaller<T> tGenericRestCaller;
 
+    public abstract T addEntryToType(IngredientEntry entry, T type);
+    public abstract GenericRestCaller<T> getRestCaller();
+    public abstract IngredientEntry addTypeToEntry(IngredientEntry entry, T type);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,7 +139,6 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         Ingredient ingredient = ingredientEntry.getIngredient();
 
         showOneIntakes(ingredient.getEnergy(), energy, "kcal");
-
         showOneIntakes(ingredient.getProtein(), proteins, "g");
         showOneIntakes(ingredient.getCarbohydrate(), carbs, "g");
         showOneIntakes(ingredient.getSugar(), sugar, "g");
@@ -219,12 +217,6 @@ public abstract class CreateIngredientEntryActivity<T> extends AppCompatActivity
         }
         return type;
     }
-
-    public abstract T addEntryToType(IngredientEntry entry, T type);
-
-    public abstract GenericRestCaller<T> getRestCaller();
-
-    public abstract IngredientEntry addTypeToEntry(IngredientEntry entry, T type);
 
     @Override
     protected void onStart() {

@@ -5,9 +5,6 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.GrocerieRestCaller;
 
-/**
- * Created by serial on 09/03/2018.
- */
 
 public class CreateIngredientEntryGrocerieActivity extends CreateIngredientEntryActivity<Grocerie> {
 

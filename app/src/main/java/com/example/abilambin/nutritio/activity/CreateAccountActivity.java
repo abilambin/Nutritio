@@ -1,32 +1,16 @@
 package com.example.abilambin.nutritio.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.abilambin.nutritio.R;
-import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
-import com.example.abilambin.nutritio.exception.CannotCreateUserException;
-import com.example.abilambin.nutritio.restApi.AuthenticateUser;
-import com.example.abilambin.nutritio.restApi.RestCallerConstant;
-import com.example.abilambin.nutritio.utils.BackgroundRestCaller;
 import com.example.abilambin.nutritio.utils.RegisterUser;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import java.sql.SQLOutput;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.new_email) TextView email;

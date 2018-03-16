@@ -2,8 +2,8 @@ package com.example.abilambin.nutritio.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +13,6 @@ import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.restApi.AuthenticateUser;
 import com.example.abilambin.nutritio.restApi.RestCallerConstant;
 import com.example.abilambin.nutritio.utils.BackgroundRestCaller;
-import com.example.abilambin.nutritio.utils.PersonSession;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

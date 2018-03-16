@@ -5,9 +5,6 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.StockRestCaller;
 
-/**
- * Created by serial on 09/03/2018.
- */
 
 public class CreateIngredientEntryStockActivity extends CreateIngredientEntryActivity<Stock> {
 

@@ -7,9 +7,6 @@ import com.example.abilambin.nutritio.bdd.model.Ingredient;
 
 import java.util.List;
 
-/**
- * Created by serial on 09/03/2018.
- */
 
 public class AddIngredientToGrocerieActivity extends AddIngredientToListActivity {
     @Override

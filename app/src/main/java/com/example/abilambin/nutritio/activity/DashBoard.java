@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,8 +14,8 @@ import com.example.abilambin.nutritio.fragment.EnergyFragment;
 import com.example.abilambin.nutritio.fragment.GroceriesFragment;
 import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.MealListFragment;
-import com.example.abilambin.nutritio.fragment.SetGoalFragment;
 import com.example.abilambin.nutritio.fragment.RecipeFragment;
+import com.example.abilambin.nutritio.fragment.SetGoalFragment;
 import com.example.abilambin.nutritio.fragment.StockFragment;
 import com.example.abilambin.nutritio.utils.Utils;
 
@@ -30,7 +29,6 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
     protected BottomNavigationView navigationView;
     protected int id;
 
-    public static Goal goal = new Goal();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,10 +99,9 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
     public void updateFragments(Integer itemId) {
         clearStack();
 
-
         Bundle bundle;
 
-        if (itemId == R.id.dashboard) {
+        if (itemId == R.id.dashboard) {                 // Onglet Accueil
             IntakesFragment intakesFragment = new IntakesFragment();
             intakesFragment.setMode(3);
 
@@ -115,7 +112,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             mealListFragment.initDates(new Date() ,null);
             Utils.addFragment(mealListFragment, getFragmentManager());
 
-        } else if (itemId == R.id.stocks) {
+        } else if (itemId == R.id.stocks) {             // Onglet stock
 
             bundle = new Bundle();
             bundle.putString("typeName", "stockId");
@@ -124,7 +121,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             fragment.setArguments(bundle);
             Utils.addFragment(fragment, getFragmentManager());
 
-        } else if (itemId == R.id.planning) {
+        } else if (itemId == R.id.planning) {           // Onglet calendrier
 
             Utils.addFragment(new SetGoalFragment(), getFragmentManager());
 
@@ -137,7 +134,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             mealListFragment.initDates(new Date() , c.getTime());
             Utils.addFragment(mealListFragment, getFragmentManager());
 
-        } else if(itemId == R.id.recipes){
+        } else if(itemId == R.id.recipes){              // Onglet recette
 
             bundle = new Bundle();
             bundle.putString("title", "Recettes");
@@ -146,7 +143,7 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
             fragment.setArguments(bundle);
             Utils.addFragment(fragment, getFragmentManager());
 
-        } else if(itemId == R.id.groceries){
+        } else if(itemId == R.id.groceries){            // Onglet Liste de course
             bundle = new Bundle();
             bundle.putString("typeName", "grocerieId");
 
@@ -179,7 +176,5 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
     public void onBackPressed() {
 
     }
-
-
 
 }

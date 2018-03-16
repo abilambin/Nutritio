@@ -30,9 +30,6 @@ public class IngredientActivity extends AppCompatActivity {
     @BindView(R.id.ingredientBrand)
     TextView brand;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,12 +70,6 @@ public class IngredientActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
     }
-
-
-
-
-
-
 
 
 }

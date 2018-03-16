@@ -5,9 +5,6 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.restApi.GenericRestCaller;
 import com.example.abilambin.nutritio.restApi.specific.RecipeRestCaller;
 
-/**
- * Created by serial on 09/03/2018.
- */
 
 public class CreateIngredientEntryRecipeActivity extends CreateIngredientEntryActivity<Recipe> {
 

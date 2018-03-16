@@ -1,13 +1,11 @@
 package com.example.abilambin.nutritio.activity;
 
-import android.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.HeaderRecipeFragment;
-import com.example.abilambin.nutritio.fragment.IntakesFragment;
 import com.example.abilambin.nutritio.fragment.IntakesValuesFragment;
 import com.example.abilambin.nutritio.fragment.RecipeIngredientListFragment;
 import com.example.abilambin.nutritio.utils.Utils;
@@ -31,8 +29,6 @@ public class RecipeActivity extends AppCompatActivity {
         fg.setIngredientEntries(recipe.getIngredientEntries());
         Utils.addFragment(fg, getFragmentManager());
         Utils.addFragment(new RecipeIngredientListFragment(), getFragmentManager());
-
-
     }
 
     @Override
