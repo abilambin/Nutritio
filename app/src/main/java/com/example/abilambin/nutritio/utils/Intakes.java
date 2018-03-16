@@ -35,31 +35,31 @@ public class Intakes {
     }
 
     public void addProtein(IngredientEntry entry) {
-        this.protein += entry.getIngredient().getProtein() * entry.getAmount();
+        this.protein += entry.getIngredient().getProtein() * entry.getAmount() / 100;
     }
 
     public void addCarbohydrate(IngredientEntry entry) {
-        this.carbohydrate += entry.getIngredient().getCarbohydrate() * entry.getAmount();
+        this.carbohydrate += entry.getIngredient().getCarbohydrate() * entry.getAmount() / 100;
     }
 
     public void addSugar(IngredientEntry entry){
-        this.sugar += entry.getIngredient().getSugar() * entry.getAmount();
+        this.sugar += entry.getIngredient().getSugar() * entry.getAmount() / 100;
     }
 
     public void addFat(IngredientEntry entry) {
-        this.fat += entry.getIngredient().getFat() * entry.getAmount();
+        this.fat += entry.getIngredient().getFat() * entry.getAmount() / 100;
     }
 
     public void addSaturatedFat(IngredientEntry entry) {
-        this.saturatedFat += entry.getIngredient().getSaturatedFat() * entry.getAmount();
+        this.saturatedFat += entry.getIngredient().getSaturatedFat() * entry.getAmount() / 100;
     }
 
     public void addFibre(IngredientEntry entry) {
-        this.fibre += entry.getIngredient().getFibre() * entry.getAmount();
+        this.fibre += entry.getIngredient().getFibre() * entry.getAmount() / 100;
     }
 
     public void addEnergy(IngredientEntry entry) {
-        this.energy += entry.getIngredient().getEnergy() * entry.getAmount();
+        this.energy += entry.getIngredient().getEnergy() * entry.getAmount() / 100;
     }
 
     public int getProtein() {

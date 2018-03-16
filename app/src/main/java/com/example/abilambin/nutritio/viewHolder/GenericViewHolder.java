@@ -1,6 +1,7 @@
 package com.example.abilambin.nutritio.viewHolder;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
@@ -25,14 +26,16 @@ public abstract class GenericViewHolder<T extends Serializable> extends Recycler
 
     LinearLayout layout;
     private ActionMode mActionMode;
+    private Drawable background;
 
     public void selectItem(Integer item) {
         if (selectedItem == null || !selectedItem.equals(item)) {
             selectedItem = item;
+            background = layout.getBackground();
             layout.setBackgroundColor(R.drawable.list_meal_element_background_selected);
         } else {
             selectedItem = null;
-            layout.setBackgroundColor(R.drawable.list_meal_element_background);
+            layout.setBackground(background);
         }
     }
 

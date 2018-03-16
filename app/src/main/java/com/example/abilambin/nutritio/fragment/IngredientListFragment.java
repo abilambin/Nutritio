@@ -92,6 +92,8 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
             return new ArrayList<>();
         }
 
+        if (list == null) return new ArrayList<>();
+
         List<IngredientEntry> entries = new ArrayList<>();
         if(list.getIngredientEntries() != null && !list.getIngredientEntries().isEmpty()) {
             for (IngredientEntry ingredientEntry : list.getIngredientEntries()) {

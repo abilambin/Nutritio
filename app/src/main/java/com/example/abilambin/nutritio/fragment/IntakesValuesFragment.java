@@ -85,6 +85,7 @@ public class IntakesValuesFragment extends Fragment {
         Intakes intakes = new Intakes();
 
         for (IngredientEntry entry : ingredientEntries) {
+            entry.setAmount(100);
             intakes.addMoreIntakes(entry);
         }
 

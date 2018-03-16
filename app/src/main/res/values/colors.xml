@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#3ab54b</color>
     <color name="colorAccent">#3ab54b</color>
 
+    <color name="itemColor">#666666</color>
+    <color name="itemSelectedColor">#AAAAAA</color>
+
     <color name="greyBackground">#CCCCCC</color>
     <color name="whiteBackground">#FFFFFF</color>
     <color name="intakesText">#FFFFFF</color>
