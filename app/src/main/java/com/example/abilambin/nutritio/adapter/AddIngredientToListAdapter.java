@@ -24,6 +24,8 @@ public class AddIngredientToListAdapter extends AbstractListAdapter<Ingredient> 
         return createActivityClass;
     }
 
+    public AddIngredientToListAdapter(){}
+
     public AddIngredientToListAdapter(Context context, List<Ingredient> items, Class createActivityClass){
         super(context, items);
         this.createActivityClass = createActivityClass;
