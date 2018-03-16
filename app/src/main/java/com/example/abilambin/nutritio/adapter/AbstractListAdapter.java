@@ -11,9 +11,6 @@ import android.widget.Filterable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by serial on 08/03/2018.
- */
 
 public abstract class AbstractListAdapter<E> extends BaseAdapter implements Filterable {
     private List<E> originalsElements; //original values

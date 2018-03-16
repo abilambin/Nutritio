@@ -16,9 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class EnergyFragment extends Fragment {
 
     @BindView(R.id.energyFragmentCircularProgressBarId)

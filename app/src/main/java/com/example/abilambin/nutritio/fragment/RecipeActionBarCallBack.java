@@ -31,7 +31,6 @@ public class RecipeActionBarCallBack extends AbstractActionBarCallBack {
     }
 
     protected void delete() {
-        //TODO
         //Message de confirmation
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.confirmation_dialog);
@@ -46,15 +45,11 @@ public class RecipeActionBarCallBack extends AbstractActionBarCallBack {
                 try {
                     restCaller.delete(selectedEntry.getId());
 
-                } catch (ExecutionException e) {
+                } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     Thread.currentThread().interrupt();
-                } catch (WebServiceCallException e) {
-                    e.printStackTrace();
-                } catch (CannotAuthenticateUserException e) {
-                    e.printStackTrace();
                 }
                 dialog.cancel();
             }
@@ -70,7 +65,6 @@ public class RecipeActionBarCallBack extends AbstractActionBarCallBack {
 
         dialog.show();
     }
-
 
     protected void edit() {
 

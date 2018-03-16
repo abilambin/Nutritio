@@ -8,10 +8,6 @@ import com.j256.ormlite.field.DatabaseField;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by bellamy on 23/02/18.
- */
-
 public class Person implements Serializable{
 
     private static long serialVersionUID = 1L;

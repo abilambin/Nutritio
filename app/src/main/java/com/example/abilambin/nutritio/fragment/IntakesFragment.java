@@ -14,13 +14,8 @@ import android.widget.TextView;
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.backgroundTask.IntakesLoader;
 import com.example.abilambin.nutritio.bdd.model.Goal;
-import com.example.abilambin.nutritio.bdd.model.Ingredient;
 import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
-import com.example.abilambin.nutritio.utils.Intakes;
 import com.example.abilambin.nutritio.utils.PersonalGoal;
-import com.example.abilambin.nutritio.utils.Utils;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -34,10 +29,6 @@ import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAM
 public class IntakesFragment extends Fragment {
 
     private List<IngredientEntry> ingredientEntries;
-
-    private static int quantity = 100;
-
-    private int mode = 3;
 
     @BindView(R.id.intakesTitle)
     TextView title;
@@ -104,7 +95,6 @@ public class IntakesFragment extends Fragment {
 
         // Récupération de l'id utilisateur
         SharedPreferences prefs = this.getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
-        int userId = Integer.parseInt(prefs.getString("id", null));
 
         IntakesLoader loader = new IntakesLoader(
                 this.getActivity(),
@@ -129,7 +119,4 @@ public class IntakesFragment extends Fragment {
         super.onAttach(ctx);
     }
 
-    public void setMode(int mode) {
-        this.mode = mode;
-    }
 }

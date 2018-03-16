@@ -1,8 +1,5 @@
 package com.example.abilambin.nutritio.exception;
 
-/**
- * Created by bellamy on 23/02/18.
- */
 
 public class CannotAuthenticateUserException extends Exception{
 

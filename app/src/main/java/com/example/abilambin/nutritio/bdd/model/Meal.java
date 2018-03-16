@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by serial on 30/11/2017.
- */
 
 public class Meal implements Serializable{
 

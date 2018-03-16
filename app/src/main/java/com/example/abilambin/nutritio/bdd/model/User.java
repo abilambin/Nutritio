@@ -7,9 +7,6 @@ import com.j256.ormlite.field.DatabaseField;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by serial on 30/11/2017.
- */
 
 public class User implements Serializable {
 

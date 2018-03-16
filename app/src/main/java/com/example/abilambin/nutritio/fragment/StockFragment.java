@@ -48,15 +48,11 @@ public class StockFragment extends IngredientListFragment<Stock> {
                 return session.getPerson().getStock().getId();
             }
 
-        } catch (ExecutionException e) {
+        } catch (ExecutionException |WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
-            e.printStackTrace();
         }
         return -1;
     }

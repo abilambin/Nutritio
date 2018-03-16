@@ -24,9 +24,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by bellamy on 08/03/18.
- */
 
 public class IntakesLoader extends AsyncTask<Integer, Void, Intakes> {
     private int userId;
@@ -109,7 +106,13 @@ public class IntakesLoader extends AsyncTask<Integer, Void, Intakes> {
         return intakes;
     }
 
-
+    /**
+     * Met a jour une progressBar avec son texte et ses infos associés
+     * @param bar La progress bar a mettre a jour
+     * @param view  Le texte a mettre a jour
+     * @param val la progression
+     * @param obj l'équivalent au 100%
+     */
     private void showValueBar(ProgressBar bar, TextView view, int val, int obj) {
         bar.setProgress(Utils.percent(val, obj));
         if (view != null) view.setText(val + " / "+obj);

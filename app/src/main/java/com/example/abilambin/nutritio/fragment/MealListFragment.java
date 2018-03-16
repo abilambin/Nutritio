@@ -24,7 +24,6 @@ import butterknife.BindView;
 
 public class MealListFragment extends AbstractListFragment<Meal> {
 
-
     private Date debut;
     private Date fin;
 
@@ -32,17 +31,6 @@ public class MealListFragment extends AbstractListFragment<Meal> {
     protected TextView title;
 
     MealRestCaller mealRestCaller = new MealRestCaller();
-
-    MealViewHolder mealViewHolder;
-
-
-
-    public MealViewHolder getMealViewHolder() {
-        return mealViewHolder;
-    }
-
-    private int item = R.layout.item_meal;
-
 
     @Override
     public String getTitle() {
@@ -87,33 +75,19 @@ public class MealListFragment extends AbstractListFragment<Meal> {
                 });
             }
 
-
             return list;
 
-        } catch (WebServiceCallException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les plats :");
+        } catch (WebServiceCallException | ExecutionException | CannotAuthenticateUserException e) {
             e.printStackTrace();
             return new ArrayList<>();
         } catch (InterruptedException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les plats :");
             e.printStackTrace();
             Thread.currentThread().interrupt();
             return new ArrayList<>();
-        } catch (ExecutionException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les plats :");
-            e.printStackTrace();
-            return new ArrayList<>();
-        } catch (CannotAuthenticateUserException e) {
-            System.out.println("##### ERROR - Impossible de récupérer les ingrplatsédients :");
-            e.printStackTrace();
-            return new ArrayList<>();
         }
-
     }
 
-
     public void initDates(Date start, Date end) {
-
         Calendar calendar = new GregorianCalendar();
 
         //Si un début est défini, on le set, sinon, on le set à aujourd'hui
@@ -133,6 +107,5 @@ public class MealListFragment extends AbstractListFragment<Meal> {
 
         this.fin = calendar.getTime();
     }
-
 
 }

@@ -20,9 +20,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by serial on 09/02/2018.
- */
 
 public abstract class AbstractListFragment<T extends Serializable> extends Fragment {
 

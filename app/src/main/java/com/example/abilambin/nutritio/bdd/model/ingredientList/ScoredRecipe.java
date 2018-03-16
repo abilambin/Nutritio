@@ -1,8 +1,5 @@
 package com.example.abilambin.nutritio.bdd.model.ingredientList;
 
-/**
- * Created by bellamy on 15/03/18.
- */
 
 public class ScoredRecipe extends Recipe {
     private int score;

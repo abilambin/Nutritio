@@ -1,8 +1,6 @@
 package com.example.abilambin.nutritio.fragment;
 
-
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +9,11 @@ import android.widget.TextView;
 
 import com.example.abilambin.nutritio.R;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
-import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HeaderRecipeFragment extends Fragment {
 
     @BindView(R.id.headerRecipeFragmentTitle)

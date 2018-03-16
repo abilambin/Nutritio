@@ -7,9 +7,6 @@ import android.view.MenuItem;
 
 import com.example.abilambin.nutritio.R;
 
-/**
- * Created by abilambin on 14/03/2018.
- */
 
 public abstract class AbstractActionBarCallBack implements ActionMode.Callback  {
 

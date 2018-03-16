@@ -13,38 +13,10 @@ import butterknife.BindView;
 
 public class RecipeIngredientListFragment extends AbstractListFragment<IngredientEntry>{
 
-    private String typeName;
-
     @BindView(R.id.addIngredientButton)
     FloatingActionButton addIngredientButton;
 
     private Recipe recipe;
-/*
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
-        SharedPreferences prefs = getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
-        final Integer listeId = prefs.getInt("listId", 2); //TODO
-
-        typeName = (String) getArguments().get("typeName");
-        View v = super.onCreateView(inflater, container, savedInstanceState);
-
-        addIngredientButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(getActivity(), getAddIngredientActivity());
-                intent.putExtra(typeName, listeId);
-                intent.putExtra("typeName", typeName);
-                startActivity(intent);
-            }
-        });
-
-        return v;
-    }
-*/
-    public Class getAddIngredientActivity() {
-        return null;//AddIngredientToGrocerieActivity.class;
-    }
 
     @Override
     public String getTitle() {

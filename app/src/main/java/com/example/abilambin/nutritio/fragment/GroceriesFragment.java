@@ -3,7 +3,6 @@ package com.example.abilambin.nutritio.fragment;
 import com.example.abilambin.nutritio.activity.AddIngredientToGrocerieActivity;
 import com.example.abilambin.nutritio.bdd.model.Person;
 import com.example.abilambin.nutritio.bdd.model.ingredientList.Grocerie;
-import com.example.abilambin.nutritio.bdd.model.ingredientList.Stock;
 import com.example.abilambin.nutritio.exception.CannotAuthenticateUserException;
 import com.example.abilambin.nutritio.exception.WebServiceCallException;
 import com.example.abilambin.nutritio.restApi.specific.GrocerieRestCaller;
@@ -41,15 +40,13 @@ public class GroceriesFragment extends IngredientListFragment<Grocerie> {
         try {
             Person p = (Person) restCaller.get(Utils.getUserId(getActivity()));
             return p.getGrocerie().getId();
-        } catch (ExecutionException e) {
+        } catch (ExecutionException | WebServiceCallException | CannotAuthenticateUserException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (WebServiceCallException e) {
-            e.printStackTrace();
-        } catch (CannotAuthenticateUserException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
+
         return -1;
     }
 

@@ -9,9 +9,6 @@ import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
 
-/**
- * Created by serial on 11/01/2018.
- */
 
 public class IngredientEntry implements Serializable {
 

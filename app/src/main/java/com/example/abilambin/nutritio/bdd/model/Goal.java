@@ -2,9 +2,6 @@ package com.example.abilambin.nutritio.bdd.model;
 
 import com.j256.ormlite.field.DatabaseField;
 
-/**
- * Created by bellamy on 23/02/18.
- */
 
 public class Goal {
 

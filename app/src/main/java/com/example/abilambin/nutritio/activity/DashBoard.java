@@ -103,7 +103,6 @@ public class DashBoard extends AppCompatActivity implements BottomNavigationView
 
         if (itemId == R.id.dashboard) {                 // Onglet Accueil
             IntakesFragment intakesFragment = new IntakesFragment();
-            intakesFragment.setMode(3);
 
             Utils.addFragment(new EnergyFragment(), getFragmentManager());
             Utils.addFragment(intakesFragment, getFragmentManager());

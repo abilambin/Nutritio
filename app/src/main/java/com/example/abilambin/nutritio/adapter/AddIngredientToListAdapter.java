@@ -12,9 +12,6 @@ import com.example.abilambin.nutritio.bdd.model.Ingredient;
 
 import java.util.List;
 
-/**
- * Created by serial on 23/02/2018.
- */
 
 public class AddIngredientToListAdapter extends AbstractListAdapter<Ingredient> {
 
