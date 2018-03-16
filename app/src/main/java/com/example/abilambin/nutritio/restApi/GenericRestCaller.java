@@ -73,32 +73,6 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
     }
 
     @Override
-    public List<T> getAllOfBetween(Integer id, Date start, Date end) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
-
-        BackgroundRestCaller bgCaller = new BackgroundRestCaller();
-        Request request = new Request.Builder()
-                .url(this.path+"/of/"+id+"/between/"+dateFormat.format(start)+"/"+dateFormat.format(end))
-                .addHeader("Authorization", AuthenticateUser.getInstance().getAuthToken())
-                .build();
-
-        bgCaller.execute(request);
-
-        String res = bgCaller.get();
-
-        if(bgCaller.getResponseCode() >= 300){
-            throw new WebServiceCallException(res);
-        }
-
-        if(res != null){
-            return new Gson().fromJson(bgCaller.get(), this.listTypeToken.getType());
-        }else{
-            throw new WebServiceCallException();
-        }
-    }
-
-    @Override
     public T create(T item) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
         BackgroundRestCaller bgCaller = new BackgroundRestCaller();
         Request request = new Request.Builder()

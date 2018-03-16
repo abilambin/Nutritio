@@ -60,7 +60,7 @@ public interface RestCallerInterface<T> {
      * @throws WebServiceCallException
      * @throws CannotAuthenticateUserException
      */
-    void delete(int id) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException;
+    int delete(int id) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException;
 
     /**
      * Récupère l'item :id
