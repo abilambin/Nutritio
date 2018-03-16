@@ -27,6 +27,8 @@ public abstract class AbstractListAdapter<E> extends BaseAdapter implements Filt
 
     private LayoutInflater inflater;
 
+    public AbstractListAdapter(){}
+
     public AbstractListAdapter(Context context, List<E> items){
         originalsElements = items;
         filteredElements = items;
