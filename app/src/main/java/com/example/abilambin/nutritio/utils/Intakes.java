@@ -24,7 +24,6 @@ public class Intakes {
 
     public void addMoreIntakes(IngredientEntry entry) {
         addEnergy(entry);
-
         addProtein(entry);
         addCarbohydrate(entry);
         addFat(entry);
