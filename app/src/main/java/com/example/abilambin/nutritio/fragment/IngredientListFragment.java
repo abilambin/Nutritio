@@ -1,7 +1,6 @@
 package com.example.abilambin.nutritio.fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -22,9 +21,6 @@ import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 
-import static android.content.Context.MODE_PRIVATE;
-import static com.example.abilambin.nutritio.activity.LoginActivity.APP_INFO_NAME;
-
 public abstract class IngredientListFragment<T extends IngredientList> extends AbstractListFragment<IngredientEntry> {
 
     GenericRestCaller<T> restCaller;
@@ -42,9 +38,6 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        SharedPreferences prefs = getActivity().getSharedPreferences(APP_INFO_NAME, MODE_PRIVATE);
-        final Integer listeId = prefs.getInt("listId", 2);
-
         typeName = (String) getArguments().get("typeName");
         View v = super.onCreateView(inflater, container, savedInstanceState);
 
@@ -52,7 +45,7 @@ public abstract class IngredientListFragment<T extends IngredientList> extends A
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getActivity(), getAddIngredientActivity());
-                intent.putExtra(typeName, listeId);
+                intent.putExtra(typeName, getListId());
                 intent.putExtra("typeName", typeName);
                 startActivity(intent);
             }
