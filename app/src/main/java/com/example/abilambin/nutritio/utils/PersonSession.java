@@ -15,7 +15,6 @@ public class PersonSession {
 
     private Intakes globalIntake;
     private List<Meal> meals;
-    private Goal goal;
     private List<ScoredRecipe> recipe;
     private Person person;
     private Stock stock;
@@ -38,11 +37,12 @@ public class PersonSession {
     // Invalidate method
 
     public synchronized void invalidateData(){
-        this.globalIntake = null;
-        this.meals = null;
-        this.recipe = null;
-        this.stock = null;
-        this.grocerie = null;
+        this.invalidateIntakes();
+        this.invalidateMeals();
+        this.invalidateRecipe();
+        this.invalidateStock();
+        this.invalidateGrocerie();
+        this.invalidatePerson();
     }
 
     public synchronized void invalidateIntakes(){
@@ -59,6 +59,10 @@ public class PersonSession {
 
     public synchronized void invalidateStock() {
         this.stock = null;
+    }
+
+    public synchronized  void invalidatePerson() {
+        this.person = null;
     }
 
     public synchronized  void invalidateGrocerie() {

@@ -2,21 +2,18 @@ package com.example.abilambin.nutritio.utils;
 
 import com.example.abilambin.nutritio.bdd.model.Goal;
 
-/**
- * Created by bellamy on 09/03/18.
- */
 
 public class PersonalGoal {
     private static PersonalGoal personalGoal;
 
     private Goal goal;
 
-    private final int proteineNeeds = 70;
+    private final int proteineNeeds = 120;
     private final int glucideNeeds = 124;
-    private final int lipideNeeds = 620;
-    private final int sucreNeeds = 30;
-    private final int fibreNeeds = 30;
-    private final int agsNeeds = 10;
+    private final int lipideNeeds = 80;
+    private final int sucreNeeds = 50;
+    private final int fibreNeeds = 50;
+    private final int agsNeeds = 20;
     private final int energy = 2500;
 
     public PersonalGoal(){
