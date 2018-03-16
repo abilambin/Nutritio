@@ -10,9 +10,6 @@ import com.example.abilambin.nutritio.bdd.model.ingredientList.Recipe;
 import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
 import com.example.abilambin.nutritio.fragment.RecipeActionBarCallBack;
 
-/**
- * Created by abilambin on 13/03/2018.
- */
 
 public class RecipeViewHolder extends GenericViewHolder<Recipe> {
 

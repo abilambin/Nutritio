@@ -17,9 +17,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by abilambin on 13/03/2018.
- */
 
 public class MealViewHolder extends GenericViewHolder<Meal> {
 

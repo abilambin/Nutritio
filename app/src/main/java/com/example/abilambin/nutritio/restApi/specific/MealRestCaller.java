@@ -6,9 +6,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-/**
- * Created by abi on 08/03/2018.
- */
 
 public class MealRestCaller extends GenericRestCaller {
 

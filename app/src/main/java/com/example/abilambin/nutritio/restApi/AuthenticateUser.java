@@ -11,9 +11,6 @@ import com.google.gson.JsonParser;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-/**
- * Created by bellamy on 23/02/18.
- */
 
 public class AuthenticateUser {
     private static AuthenticateUser authenticateUser;

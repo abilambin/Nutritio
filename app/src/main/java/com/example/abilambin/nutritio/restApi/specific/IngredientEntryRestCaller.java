@@ -6,9 +6,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-/**
- * Created by Matthieu on 24/02/2018.
- */
 
 public class IngredientEntryRestCaller extends GenericRestCaller {
 

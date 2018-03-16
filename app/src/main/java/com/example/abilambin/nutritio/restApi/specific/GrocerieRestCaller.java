@@ -6,9 +6,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-/**
- * Created by bellamy on 16/02/18.
- */
 
 public class GrocerieRestCaller extends GenericRestCaller {
 

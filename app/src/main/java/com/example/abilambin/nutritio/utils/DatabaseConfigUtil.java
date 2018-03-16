@@ -13,11 +13,6 @@ import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 import java.io.IOException;
 import java.sql.SQLException;
 
-/**
- * Created by serial on 22/12/2017.
- *
- *
- */
 
 public class DatabaseConfigUtil extends OrmLiteConfigUtil {
 

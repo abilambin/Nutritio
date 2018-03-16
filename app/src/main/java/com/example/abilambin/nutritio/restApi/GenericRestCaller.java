@@ -72,8 +72,6 @@ public class GenericRestCaller<T> implements RestCallerInterface<T>  {
         }
     }
 
-
-
     @Override
     public List<T> getAllOfBetween(Integer id, Date start, Date end) throws ExecutionException, InterruptedException, WebServiceCallException, CannotAuthenticateUserException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");

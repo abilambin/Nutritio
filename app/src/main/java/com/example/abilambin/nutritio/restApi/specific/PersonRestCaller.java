@@ -6,9 +6,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
-/**
- * Created by bellamy on 23/02/18.
- */
 
 public class PersonRestCaller extends GenericRestCaller {
 

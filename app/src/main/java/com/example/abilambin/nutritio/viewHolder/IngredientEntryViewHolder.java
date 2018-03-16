@@ -13,9 +13,6 @@ import com.example.abilambin.nutritio.bdd.model.IngredientEntry;
 import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
 import com.example.abilambin.nutritio.fragment.IngredientEntryActionBarCallBack;
 
-/**
- * Created by abilambin on 13/03/2018.
- */
 
 public class IngredientEntryViewHolder extends GenericViewHolder<IngredientEntry> {
 

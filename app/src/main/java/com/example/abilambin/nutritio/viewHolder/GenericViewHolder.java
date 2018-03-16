@@ -13,9 +13,6 @@ import com.example.abilambin.nutritio.fragment.AbstractActionBarCallBack;
 
 import java.io.Serializable;
 
-/**
- * Created by abilambin on 12/03/2018.
- */
 
 public abstract class GenericViewHolder<T extends Serializable> extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
